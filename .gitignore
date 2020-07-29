@@ -1,0 +1,9 @@
+bin/
+intermediate/
+.vs/
+
+Meow.sln
+*.vcxproj
+*.user
+*.filters
+*.exe
