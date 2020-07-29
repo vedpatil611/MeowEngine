@@ -2,7 +2,7 @@ bin/
 intermediate/
 .vs/
 
-Meow.sln
+*.sln
 *.vcxproj
 *.user
 *.filters

@@ -9,6 +9,8 @@
 #elif MEOW_PLATFORM_LINUX
 	#ifdef MEOW_BUILD_DLL
 		#define MEOW_API __attribute__((visibility("default")))
+	#else
+		#define MEOW_API
 	#endif 
 #endif
 

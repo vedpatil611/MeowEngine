@@ -19,6 +19,10 @@ project "MeowEngine"
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("intermediate/" .. outputdir .. "/%{prj.name}")
 
+	defines {
+		"MEOW_BUILD_DLL"
+	}
+
 	files { 
 		"%{prj.name}/src/**.h", 
 		"%{prj.name}/src/**.cpp"
@@ -42,7 +46,6 @@ project "MeowEngine"
 	filter "configurations:Debug"
 		defines { 
 			"DEBUG",
-			"MEOW_BUILD_DLL"
 		}
 		symbols "On"
 
