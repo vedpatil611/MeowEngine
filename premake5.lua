@@ -9,12 +9,15 @@ workspace "Meow"
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
+include "Dependencies/GLFW"
+
+IncludeDirs = {}
+IncludeDirs["GLFW"] = "Dependencies/GLFW/include"
 project "MeowEngine"
 	location "MeowEngine"
 	kind "SharedLib"
 	language "C++"
 	cppdialect "C++17"
-	staticruntime "On"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("intermediate/" .. outputdir .. "/%{prj.name}")
@@ -23,9 +26,21 @@ project "MeowEngine"
 		"MEOW_BUILD_DLL"
 	}
 
+	includedirs {
+		"src",
+		"%{IncludeDirs.GLFW}"
+	}
+
+	links {
+		"GLFW",
+		"opengl32"
+	}
+
 	files { 
 		"%{prj.name}/src/**.h", 
-		"%{prj.name}/src/**.cpp"
+		"%{prj.name}/src/**.cpp",
+		"%{prj.name}/src/Meow/**.h", 
+		"%{prj.name}/src/Meow/**.cpp"
 	}
 
 	filter "system:windows"
@@ -59,7 +74,6 @@ project "MeowApplication"
 	kind "ConsoleApp"
 	language "C++"
 	cppdialect "C++17"
-	staticruntime "On"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("intermediate/" .. outputdir .. "/%{prj.name}")
@@ -80,7 +94,6 @@ project "MeowApplication"
 	filter "system:windows"
 		cppdialect "C++17"
 		systemversion "latest"
-		staticruntime "On"
 		defines {
 			"MEOW_PLATFORM_WINDOWS"
 		}
