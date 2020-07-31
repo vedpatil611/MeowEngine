@@ -10,9 +10,12 @@ workspace "Meow"
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 include "Dependencies/GLFW"
+include "Dependencies/GLAD"
 
 IncludeDirs = {}
 IncludeDirs["GLFW"] = "Dependencies/GLFW/include"
+IncludeDirs["GLAD"] = "Dependencies/GLAD/include"
+
 project "MeowEngine"
 	location "MeowEngine"
 	kind "SharedLib"
@@ -28,12 +31,13 @@ project "MeowEngine"
 
 	includedirs {
 		"src",
-		"%{IncludeDirs.GLFW}"
+		"%{IncludeDirs.GLFW}",
+		"%{IncludeDirs.GLAD}"
 	}
 
 	links {
 		"GLFW",
-		"opengl32"
+		"GLAD"
 	}
 
 	files { 
@@ -79,11 +83,13 @@ project "MeowApplication"
 	objdir ("intermediate/" .. outputdir .. "/%{prj.name}")
 
 	includedirs {
-		"MeowEngine/src"
+		"MeowEngine/src",
+		"%{IncludeDirs.GLAD}"
 	}
 
 	links {
-		"MeowEngine"
+		"MeowEngine",
+		"GLAD"
 	}
 
 	files { 
