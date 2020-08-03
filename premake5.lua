@@ -30,7 +30,7 @@ project "MeowEngine"
 	}
 
 	includedirs {
-		"src",
+		"%{prj.name}/src/",
 		"%{IncludeDirs.GLFW}",
 		"%{IncludeDirs.GLAD}"
 	}
@@ -44,7 +44,10 @@ project "MeowEngine"
 		"%{prj.name}/src/**.h", 
 		"%{prj.name}/src/**.cpp",
 		"%{prj.name}/src/Meow/**.h", 
-		"%{prj.name}/src/Meow/**.cpp"
+		"%{prj.name}/src/Meow/**.cpp",
+		"%{prj.name}/src/Meow/Maths/**.h",
+		"%{prj.name}/src/Meow/Maths/vector/**.h",
+		"%{prj.name}/src/Meow/Maths/vector/**.cpp"
 	}
 
 	filter "system:windows"
@@ -78,18 +81,19 @@ project "MeowApplication"
 	kind "ConsoleApp"
 	language "C++"
 	cppdialect "C++17"
+	staticruntime "On"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("intermediate/" .. outputdir .. "/%{prj.name}")
 
 	includedirs {
 		"MeowEngine/src",
+		"%{IncludeDirs.GLFW}",
 		"%{IncludeDirs.GLAD}"
 	}
 
 	links {
-		"MeowEngine",
-		"GLAD"
+		"MeowEngine"
 	}
 
 	files { 

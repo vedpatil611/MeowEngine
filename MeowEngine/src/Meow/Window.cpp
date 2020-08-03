@@ -23,10 +23,10 @@ namespace Meow {
 
 		glfwMakeContextCurrent(m_Window);
 
+
 		if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
 			throw std::runtime_error("Failed to init glad");
 
-		
 		//glad triangle test
 		unsigned int vbo;
 		glGenBuffers(1, &vbo);
@@ -62,7 +62,7 @@ namespace Meow {
 		unsigned int fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
 		glShaderSource(fragmentShader, 1, &frag_src, nullptr);
 		glCompileShader(fragmentShader);
-		
+
 		unsigned int shaderProgram = glCreateProgram();
 		glAttachShader(shaderProgram, vertexShader);
 		glAttachShader(shaderProgram, fragmentShader);
@@ -71,6 +71,7 @@ namespace Meow {
 		glDeleteShader(vertexShader);
 		glDeleteShader(fragmentShader);
 		glUseProgram(shaderProgram);
+
 	}
 
 	Window::~Window()
@@ -80,9 +81,9 @@ namespace Meow {
 
 	void Window::update() const
 	{
+		glDrawArrays(GL_TRIANGLES, 0, 3);
 		//glClear(GL_COLOR_BUFFER_BIT);
 		//glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-		glDrawArrays(GL_TRIANGLES, 0, 3);
 		glfwSwapBuffers(m_Window);
 		glfwPollEvents();
 	}
