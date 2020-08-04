@@ -81,7 +81,6 @@ project "MeowApplication"
 	kind "ConsoleApp"
 	language "C++"
 	cppdialect "C++17"
-	staticruntime "On"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("intermediate/" .. outputdir .. "/%{prj.name}")
@@ -93,7 +92,8 @@ project "MeowApplication"
 	}
 
 	links {
-		"MeowEngine"
+		"MeowEngine",
+		"GLAD"
 	}
 
 	files { 

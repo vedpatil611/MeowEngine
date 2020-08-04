@@ -3,6 +3,7 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <Meow/Maths/Maths.h>
+#include <Meow/Window.h>
 #include <iostream>
 #include <sstream>
 #include <fstream>
@@ -15,7 +16,7 @@ Meow::Application* Meow::CreateApplication()
 	a -= vec4(1.0f, 2.0f, 0.0f, 0.0f);
 	vec4 b(3.0f, 2.0f, 1.0f, 0.0f);
 	vec4 c = a + b;
-	vec4 d = a.add(b);
+	vec4 d = a.sub(b);
 	a.x = 100.0f;
 	std::cout << c << " " << d;
 
@@ -29,6 +30,5 @@ void MeowApplication::Run()
 	while (!window.closed())
 	{
 		window.update();
-
 	}
 }

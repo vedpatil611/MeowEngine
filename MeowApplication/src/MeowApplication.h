@@ -2,7 +2,6 @@
 
 #include <Meow.h>
 
-
 class MeowApplication: public Meow::Application
 {
 private:

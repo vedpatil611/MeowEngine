@@ -1,5 +1,7 @@
 #pragma once
 
-#include "vector/vec2.h"
-#include "vector/vec3.h"
-#include "vector/vec4.h"
+#include "vec2.h"
+#include "vec3.h"
+#include "vec4.h"
+
+#include "mat4.h"
