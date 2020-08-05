@@ -63,6 +63,11 @@ namespace Meow {
 			return x == vec.x && y == vec.y && z == vec.z;
 		}
 
+		bool vec3::operator!=(const vec3& vec)
+		{
+			return x != vec.x || y != vec.y || z != vec.z;
+		}
+
 		vec3& operator+(vec3 a, const vec3& b)
 		{
 			return a.add(b);

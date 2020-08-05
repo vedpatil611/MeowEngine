@@ -5,14 +5,16 @@
 
 namespace Meow {
 	namespace Maths {
-		class MEOW_API vec3
+		struct MEOW_API vec3
 		{
-		public:
+			// Members
 			float x, y, z;
-		public:
+		
+			// Constructors
 			vec3();
 			vec3(float x, float y, float z);
 
+			// Functions
 			vec3& add(const vec3& vec);
 			vec3& sub(const vec3& vec);
 			vec3& mul(const float& num);
@@ -29,6 +31,7 @@ namespace Meow {
 			vec3& operator/=(const float& num);
 
 			bool operator==(const vec3& vec);
+			bool operator!=(const vec3& vec);
 
 			#ifdef DEBUG
 			MEOW_API friend std::ostream& operator<<(std::ostream& stream, const vec3& vec);

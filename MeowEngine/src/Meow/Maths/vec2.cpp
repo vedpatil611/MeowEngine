@@ -58,6 +58,11 @@ namespace Meow {
 		{
 			return x == vec.x && y == vec.y;
 		}
+
+		bool vec2::operator!=(const vec2& vec)
+		{
+			return x != vec.x || y != vec.y;
+		}
 		
 		vec2& operator+(vec2 a, const vec2& b)
 		{
