@@ -1,5 +1,7 @@
 #pragma once
 
+#include "vec3.h"
+
 #include <Meow/Core.h>
 #include <ostream>
 
@@ -13,6 +15,8 @@ namespace Meow {
 		
 			// Constructor
 			vec4();
+			vec4(const vec3& vec);
+			vec4(const vec3& vec, float w);
 			vec4(float x, float y, float z, float w);
 
 			// Functions
