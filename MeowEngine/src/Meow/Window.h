@@ -21,7 +21,12 @@ namespace Meow {
 		Window(const char* title, int width, int height);
 		~Window();
 
-		void update() const;
+		inline int getWidth() const { return m_Width; }
+		inline int getHeight() const { return m_Height; }
+
+		void update();
 		bool closed() const;
+	private:
+		static void windowResizeCallback(GLFWwindow* window, int width, int height);
 	};
 }

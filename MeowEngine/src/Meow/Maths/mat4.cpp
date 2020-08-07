@@ -1,5 +1,7 @@
 #include "mat4.h"
 
+#include "Maths.h"
+
 namespace Meow {
 	namespace Maths {
 		mat4::mat4() {
@@ -101,6 +103,30 @@ namespace Meow {
 		mat4 mat4::identity()
 		{
 			return mat4(1.0f);
+		}
+
+		mat4 mat4::orthographic(const float& left, const float& right, const float& top, const float& bottom, const float& near, const float& far)
+		{
+			mat4 mat(1.0f);
+			mat.elems[0 + 0 * 4] = 2 / (right - left);
+			mat.elems[1 + 1 * 4] = 2 / (top - bottom);
+			mat.elems[2 + 2 * 4] = -2 / (far - near);
+			
+			mat.elems[0 + 3 * 4] = -(right + left) / (right - left);
+			mat.elems[1 + 3 * 4] = -(top + bottom) / (top - bottom);
+			mat.elems[2 + 3 * 4] = -(far + near) / (far - near);
+			return mat;
+		}
+
+		mat4 mat4::perspective(const float& fov, const float& aspectratio, const float& near, const float& far)
+		{
+			mat4 mat;
+			mat.elems[0 + 0 * 4] = 1 / (aspectratio * tan(toRad(fov / 2)));
+			mat.elems[1 + 1 * 4] = 1 / (tan(toRad(fov / 2)));
+			mat.elems[2 + 2 * 4] = (-near - far) / (near - far);
+			mat.elems[2 + 3 * 4] = (2 * far * near) / (near - far);
+			mat.elems[3 + 2 * 4] = 1;
+			return mat;
 		}
 		
 		mat4& operator+(mat4 matA, const mat4& matB)

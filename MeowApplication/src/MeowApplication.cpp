@@ -30,5 +30,6 @@ void MeowApplication::Run()
 	while (!window.closed())
 	{
 		window.update();
+		std::cout << window.getWidth() << " " << window.getHeight() << std::endl;
 	}
 }

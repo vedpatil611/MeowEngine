@@ -20,7 +20,8 @@ namespace Meow {
 			glfwTerminate();
 			throw std::runtime_error("Failed to init glfw");
 		}
-
+		
+		glfwSetWindowSizeCallback(m_Window, &Meow::Window::windowResizeCallback);
 		glfwMakeContextCurrent(m_Window);
 
 		if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
@@ -77,11 +78,10 @@ namespace Meow {
 		glfwTerminate();
 	}
 
-	void Window::update() const
+	void Window::update() 
 	{
-		//glClear(GL_COLOR_BUFFER_BIT);
-		//glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 		glDrawArrays(GL_TRIANGLES, 0, 3);
+		glfwGetWindowSize(m_Window, &m_Width, &m_Height);
 		glfwSwapBuffers(m_Window);
 		glfwPollEvents();
 	}
@@ -89,5 +89,10 @@ namespace Meow {
 	bool Window::closed() const
 	{
 		return glfwWindowShouldClose(m_Window);
+	}
+	void Window::windowResizeCallback(GLFWwindow* window, int width, int height)
+	{
+		glfwSetWindowSize(window, width, height);
+		glad_glViewport(0, 0, width, height);
 	}
 }
