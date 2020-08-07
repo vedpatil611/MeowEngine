@@ -1,5 +1,6 @@
 workspace "Meow"
 	architecture "x64"
+	startproject "MeowApplication"
 
 	configurations
 	{
