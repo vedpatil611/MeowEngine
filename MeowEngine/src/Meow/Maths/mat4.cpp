@@ -8,7 +8,7 @@ namespace Meow {
 			for (int i = 0; i < 16; ++i) elements[i] = 0;
 		}
 		
-		mat4::mat4(float diagonal)
+		mat4::mat4(const float& diagonal)
 		{
 			for (int i = 0; i < 16; ++i) elements[i] = 0;
 			elements[0 + 0 * 4] = elements[1 + 1 * 4] = elements[2 + 2 * 4] = elements[3 + 3 * 4] = diagonal;
@@ -137,7 +137,7 @@ namespace Meow {
 		mat4 mat4::translation(const vec3& translation)
 		{
 			mat4 result(1.0f);
-			result.cols[3] = translation;
+			result.cols[3 * 4] = translation;
 			return result;
 		}
 

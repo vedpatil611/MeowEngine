@@ -1,0 +1,25 @@
+#pragma once
+
+#include <Meow/Core.h>
+#include <vector>
+#include <string>
+
+#define COLOUR_RST		"\033[0;39m"
+#define COLOUR_RED		"\033[1;31m"
+#define COLOUR_GRN		"\033[1;32m"
+#define COLOUR_YEL		"\033[1;33m"
+#define COLOUR_MAG		"\033[1;35m"
+
+namespace Meow {
+	class Printable {
+	public:
+		virtual std::string Print() = 0;
+	};
+
+	class MEOW_API Log {
+	public:
+		static void log(const char* format, const std::vector<Printable*>& printList);
+		static void warn(const char* format, const std::vector<Printable*>& printList);
+		static void error(const char* format, const std::vector<Printable*>& printList);
+	};
+}

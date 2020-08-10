@@ -19,7 +19,7 @@ namespace Meow {
 		
 			//Constructor
 			mat4();
-			mat4(float diagonal);
+			mat4(const float& diagonal);
 
 			//Functions
 			mat4& add(const mat4& matrix);

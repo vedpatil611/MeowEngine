@@ -1,11 +1,13 @@
 #pragma once
 
 #include <Meow/Core.h>
+#include <Meow/Log.h>
+
 #include <ostream>
 
 namespace Meow {
 	namespace Maths {
-		struct MEOW_API vec2
+		struct MEOW_API vec2 : public Printable
 		{
 			// Members
 			float x, y;
@@ -36,6 +38,8 @@ namespace Meow {
 			#ifdef DEBUG
 			MEOW_API friend std::ostream& operator<<(std::ostream& stream, const vec2& vec);
 			#endif
+
+			std::string Print() override;
 		};
 	}
 }

@@ -1,5 +1,7 @@
 #include "vec2.h"
 
+#include <string>
+
 namespace Meow {
 	namespace Maths {
 		vec2::vec2() :x(0.0f), y(0.0f) {}
@@ -62,6 +64,11 @@ namespace Meow {
 		bool vec2::operator!=(const vec2& vec)
 		{
 			return x != vec.x || y != vec.y;
+		}
+
+		std::string vec2::Print()
+		{
+			return std::string(std::to_string(x) + " " + std::to_string(y));
 		}
 		
 		vec2& operator+(vec2 a, const vec2& b)
