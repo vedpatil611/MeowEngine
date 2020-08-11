@@ -13,12 +13,3 @@
 #define MEOW_API
 #endif 
 #endif
-
-#ifdef DEBUG
-	#define ASSERT(x) if(!(x)) __debugbreak();
-	#define GLCALL(func) func;
-#else
-	#define ASSERT(x)
-	#define GLCALL(func) func; 
-#endif 
-

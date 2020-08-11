@@ -8,7 +8,7 @@ namespace Meow
 	void Log::log(const char* format, const std::vector<Printable*>& printList)
 	{
 		#ifdef DEBUG
-		std::istringstream ss(format);
+		std::stringstream ss(format);
 		std::string s;
 		int argCount = 0;
 
@@ -31,7 +31,7 @@ namespace Meow
 	void Log::warn(const char* format, const std::vector<Printable*>& printList)
 	{
 		#ifdef DEBUG
-		std::istringstream ss(format);
+		std::stringstream ss(format);
 		std::string s;
 		int argCount = 0;
 
@@ -53,7 +53,7 @@ namespace Meow
 	void Log::error(const char* format, const std::vector<Printable*>& printList)
 	{
 		#ifdef DEBUG
-		std::istringstream ss(format);
+		std::stringstream ss(format);
 		std::string s;
 		int argCount = 0;
 
@@ -70,6 +70,29 @@ namespace Meow
 			}
 		}
 		std::cout << COLOUR_RST << std::endl;
+		#endif 
+	}
+	void Log::fatal_exception(const char* format, const std::exception& e, const std::vector<Printable*>& printList)
+	{
+		#ifdef DEBUG
+		std::stringstream ss(format);
+		std::string s;
+		int argCount = 0;
+
+		std::cout << COLOUR_MAG << "Fatal exception: ";
+		while (ss >> s)
+		{
+			if (s == "{}")
+			{
+				std::cout << printList[argCount++]->Print() << " ";
+			}
+			else
+			{
+				std::cout << s << " ";
+			}
+		}
+		std::cout << COLOUR_RST << std::endl;
+		throw e;
 		#endif 
 	}
 }

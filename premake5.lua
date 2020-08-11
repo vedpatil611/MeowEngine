@@ -47,8 +47,9 @@ project "MeowEngine"
 		"%{prj.name}/src/Meow/**.h", 
 		"%{prj.name}/src/Meow/**.cpp",
 		"%{prj.name}/src/Meow/Maths/**.h",
-		"%{prj.name}/src/Meow/Maths/vector/**.h",
-		"%{prj.name}/src/Meow/Maths/vector/**.cpp"
+		"%{prj.name}/src/Meow/Maths/**.cpp",
+		"%{prj.name}/src/Meow/Utils/**.h",
+		"%{prj.name}/src/Meow/Utils/**.cpp"
 	}
 
 	filter "system:windows"

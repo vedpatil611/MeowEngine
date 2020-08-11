@@ -4,12 +4,13 @@
 #include "vec3.h"
 
 #include <Meow/Core.h>
+#include <Meow/Log.h>
 #include <ostream>
 
 namespace Meow { 
 	namespace Maths {
 
-		struct MEOW_API vec4 {
+		struct MEOW_API vec4 : public Printable {
 		
 			// Member
 			float x, y, z, w;
@@ -45,6 +46,8 @@ namespace Meow {
 			#ifdef DEBUG
 			MEOW_API friend std::ostream& operator<<(std::ostream& stream, const vec4& vec);
 			#endif
+
+			std::string Print() override;
 		};
 	}
 }

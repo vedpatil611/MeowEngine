@@ -3,7 +3,6 @@
 #include <Meow/Core.h>
 #include <ostream>
 
-#include "vec3.h"
 #include "vec4.h"
 
 namespace Meow {
@@ -20,6 +19,7 @@ namespace Meow {
 			//Constructor
 			mat4();
 			mat4(const float& diagonal);
+			mat4(const mat4& mat);
 
 			//Functions
 			mat4& add(const mat4& matrix);

@@ -13,6 +13,11 @@ namespace Meow {
 			for (int i = 0; i < 16; ++i) elements[i] = 0;
 			elements[0 + 0 * 4] = elements[1 + 1 * 4] = elements[2 + 2 * 4] = elements[3 + 3 * 4] = diagonal;
 		}
+
+		mat4::mat4(const mat4& mat)
+		{
+			for (int i = 0; i < 16; ++i) elements[i] = mat.elements[i];
+		}
 		
 		mat4& mat4::add(const mat4& matrix)
 		{

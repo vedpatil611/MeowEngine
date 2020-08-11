@@ -81,6 +81,11 @@ namespace Meow {
 		{
 			return x != vec.x || y != vec.y || z != vec.z || w != vec.w;
 		}
+
+		std::string vec4::Print()
+		{
+			return std::string(std::to_string(x) + " " + std::to_string(y) + " " + std::to_string(z) + " " + std::to_string(w));
+		}
 		
 		vec4& operator+(vec4 a, const vec4& b)
 		{
