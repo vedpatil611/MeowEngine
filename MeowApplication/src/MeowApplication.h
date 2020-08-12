@@ -7,8 +7,8 @@ class MeowApplication: public Meow::Application
 private:
 	
 public:
-	MeowApplication() {}
-	~MeowApplication() {}
+	MeowApplication();
+	~MeowApplication();
 	
 	void Run() override;
 };

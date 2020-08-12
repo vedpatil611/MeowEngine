@@ -120,7 +120,7 @@ namespace Meow {
 			mat4 mat(1.0f);
 			mat[0 + 0 * 4] = 2 / (right - left);
 			mat[1 + 1 * 4] = 2 / (top - bottom);
-			mat[2 + 2 * 4] = -2 / (far - near);
+			mat[2 + 2 * 4] = 2 / (near - far);
 			
 			mat[0 + 3 * 4] = -(right + left) / (right - left);
 			mat[1 + 3 * 4] = -(top + bottom) / (top - bottom);

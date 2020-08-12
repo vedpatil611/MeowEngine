@@ -1,6 +1,7 @@
 #include "Renderer.h"
 
 #include <iostream>
+#include <GLFW/glfw3.h>
 
 void GlClearError()
 {
@@ -11,8 +12,20 @@ bool GlLogCall(const char* functionName, const char* file, const int& line)
 {
     while (GLenum error = glGetError())
     {
-        std::cout << COLOUR_RED << "[OpenGL error] (" << error << "): " << functionName << " " << file << ":" << line << COLOUR_RST << std::endl;
+        LOG_WARN << "[OpenGL error] (" << error << "): " << functionName << " " << file << ":" << line << END_LOG;
         return false;
     }
     return true;
+}
+
+namespace Meow
+{
+    Renderer::Renderer(const Window& window) 
+    {
+        window.setCurrentContext();
+
+        if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
+            throw std::runtime_error("Failed to init glad");
+
+    }
 }

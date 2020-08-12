@@ -22,7 +22,8 @@ namespace Meow {
 		}
 		
 		glfwSetWindowSizeCallback(m_Window, &Meow::Window::windowResizeCallback);
-		glfwMakeContextCurrent(m_Window);
+
+		setCurrentContext();
 	}
 
 	Window::~Window()
@@ -41,6 +42,12 @@ namespace Meow {
 	{
 		return glfwWindowShouldClose(m_Window);
 	}
+	
+	void Window::setCurrentContext() const
+	{
+		glfwMakeContextCurrent(m_Window);
+	}
+
 	void Window::windowResizeCallback(GLFWwindow* window, int width, int height)
 	{
 		glfwSetWindowSize(window, width, height);
