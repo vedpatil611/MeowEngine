@@ -1,6 +1,6 @@
 #include "Renderer.h"
 
-#include <iostream>
+#include <Meow/Log.h>
 #include <GLFW/glfw3.h>
 
 void GlClearError()
@@ -26,6 +26,5 @@ namespace Meow
 
         if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
             throw std::runtime_error("Failed to init glad");
-
     }
 }

@@ -3,6 +3,7 @@
 #include <Meow/Core.h>
 #include <vector>
 #include <string>
+#include <iostream>
 #include <stdexcept>
 
 #define COLOUR_RST		"\033[0;39m"
@@ -11,9 +12,10 @@
 #define COLOUR_YEL		"\033[1;33m"
 #define COLOUR_MAG		"\033[1;35m"
 
-#define LOG_WARN std::cout << COLOUR_YEL
-#define LOG_ERROR std::cout << COLOUR_RED
-#define END_LOG COLOUR_RST << std::endl
+#define LOG			std::cout << COLOUR_GRN
+#define LOG_WARN	std::cout << COLOUR_YEL
+#define LOG_ERROR	std::cout << COLOUR_RED
+#define END_LOG		COLOUR_RST << std::endl
 
 namespace Meow {
 	class MEOW_API Printable {

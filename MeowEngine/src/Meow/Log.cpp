@@ -1,6 +1,5 @@
 #include "Log.h"
 
-#include <iostream>
 #include <sstream>
 
 namespace Meow
