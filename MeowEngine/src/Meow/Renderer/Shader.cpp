@@ -3,7 +3,7 @@
 #include <glad/glad.h>
 #include <Meow/Log.h>
 #include <Meow/Utils/File.h>
-#include <Meow/Render/Renderer.h>
+#include <Meow/Renderer/Renderer.h>
 
 namespace Meow
 {

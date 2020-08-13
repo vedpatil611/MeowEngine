@@ -22,6 +22,9 @@ namespace Meow {
 		glfwSetWindowSizeCallback(m_Window, &Meow::Window::windowResizeCallback);
 		glfwSetKeyCallback(m_Window, &Meow::Window::keyCallback);
 		setCurrentContext();
+
+		if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
+			throw std::runtime_error("Failed to init glad");
 	}
 
 	Window::~Window()

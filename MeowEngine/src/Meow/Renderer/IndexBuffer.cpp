@@ -1,6 +1,6 @@
 #include "IndexBuffer.h"
 
-#include "Meow/Render/Renderer.h"
+#include "Meow/Renderer/Renderer.h"
 
 namespace Meow {
 	IndexBuffer::IndexBuffer(const unsigned short int* data, unsigned int count)

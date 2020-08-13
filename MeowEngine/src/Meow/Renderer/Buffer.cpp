@@ -1,6 +1,6 @@
 #include "Buffer.h"
 
-#include <Meow/Render/Renderer.h>
+#include <Meow/Renderer/Renderer.h>
 
 namespace Meow
 {

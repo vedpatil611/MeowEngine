@@ -6,6 +6,7 @@ uniform mat4 u_pr_mat;
 
 out vec4 pos;
 out vec4 color;
+
 void main()
 {
     gl_Position = u_pr_mat * position;

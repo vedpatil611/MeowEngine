@@ -2,9 +2,8 @@
 
 #include <glad/glad.h>
 #include <Meow/Core.h>
-#include <Meow/Window.h>
-#include <Meow/Render/Shader.h>
-#include <Meow/Maths/Maths.h>
+#include <Meow/Renderer/Renderer2D.h>
+#include <deque>
 
 #ifdef DEBUG
 	#ifdef MEOW_PLATFORM_WINDOWS
@@ -23,10 +22,14 @@ bool GlLogCall(const char* functionName, const char* file, const int& line);
 
 namespace Meow
 {
-	class MEOW_API Renderer
+	class MEOW_API Renderer: public Renderer2D
 	{
+	private:
+		std::deque<const Renderable2D*> m_RenderQueue;
 	public:
-		Renderer(const Window& window);
+		void submit(const Renderable2D& renderable) override;
+
+		void flush() override;
 
 		void testRender(unsigned int count)
 		{
