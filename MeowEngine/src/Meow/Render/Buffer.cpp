@@ -1,10 +1,10 @@
-#include "VertexBuffer.h"
+#include "Buffer.h"
 
 #include <Meow/Render/Renderer.h>
 
 namespace Meow
 {
-	VertexBuffer::VertexBuffer(const void* data, unsigned int count, unsigned componentCount)
+	Buffer::Buffer(const void* data, unsigned int count, unsigned componentCount)
 		:m_ComponentCount(componentCount)
 	{
 		GLCALL(glGenBuffers(1, &m_BufferId));
@@ -13,15 +13,15 @@ namespace Meow
 		GLCALL(glBindBuffer(GL_ARRAY_BUFFER, 0));
 	}
 
-	VertexBuffer::~VertexBuffer()
+	Buffer::~Buffer()
 	{
 		GLCALL(glDeleteBuffers(1, &m_BufferId));
 	}
-	void VertexBuffer::bind() const
+	void Buffer::bind() const
 	{
 		GLCALL(glBindBuffer(GL_ARRAY_BUFFER, m_BufferId));
 	}
-	void VertexBuffer::unbind() const
+	void Buffer::unbind() const
 	{
 		GLCALL(glBindBuffer(GL_ARRAY_BUFFER, 0));
 	}

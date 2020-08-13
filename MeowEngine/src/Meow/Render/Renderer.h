@@ -30,6 +30,7 @@ namespace Meow
 
 		void testRender(unsigned int count)
 		{
+			glClear(GL_COLOR_BUFFER_BIT);
 			GLCALL(glDrawElements(GL_TRIANGLES, count, GL_UNSIGNED_SHORT, nullptr));
 		}
 	};

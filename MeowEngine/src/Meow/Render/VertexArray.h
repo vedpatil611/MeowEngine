@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Meow/Core.h>
-#include <Meow/Render/VertexBuffer.h>
+#include <Meow/Render/Buffer.h>
 #include <vector>
 
 namespace Meow {
@@ -9,12 +9,12 @@ namespace Meow {
 	{
 	private:
 		unsigned int m_ArrayId;
-		std::vector<VertexBuffer*> m_Buffers;
+		std::vector<Buffer*> m_Buffers;
 	public:
 		VertexArray();
 		~VertexArray();
 
-		void addBuffer(VertexBuffer* buffer, unsigned int index);
+		void addBuffer(Buffer* buffer, unsigned int index);
 
 		void bind() const;
 		void unbind() const;

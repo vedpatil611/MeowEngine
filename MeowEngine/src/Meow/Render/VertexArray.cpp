@@ -15,13 +15,13 @@ namespace Meow
 			delete m_Buffers[i];
 	}
 
-	void VertexArray::addBuffer(VertexBuffer* buffer, unsigned int index)
+	void VertexArray::addBuffer(Buffer* buffer, unsigned int index)
 	{
 		bind();
 		buffer->bind();
 
 		GLCALL(glEnableVertexAttribArray(index));
-		GLCALL(glVertexAttribPointer(index, buffer->getComponentCount(), GL_FLOAT, false, 0, nullptr));
+		glVertexAttribPointer(index, buffer->getComponentCount(), GL_FLOAT, false, 0, nullptr);
 
 		buffer->unbind();
 		unbind();

@@ -6,6 +6,7 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
+#include <Meow/Log.h>
 
 namespace Meow {
 	Window::Window(const char* title, int width, int height)
@@ -22,7 +23,6 @@ namespace Meow {
 		}
 		
 		glfwSetWindowSizeCallback(m_Window, &Meow::Window::windowResizeCallback);
-
 		setCurrentContext();
 	}
 
@@ -33,9 +33,11 @@ namespace Meow {
 
 	void Window::update() 
 	{
-		glfwGetWindowSize(m_Window, &m_Width, &m_Height);
-		glfwSwapBuffers(m_Window);
 		glfwPollEvents();
+		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+		glfwSwapBuffers(m_Window);
+		glfwGetWindowSize(m_Window, &m_Width, &m_Height);
+		glfwGetCursorPos(m_Window, &m_MouseX, &m_MouseY);
 	}
 
 	bool Window::closed() const
@@ -50,7 +52,6 @@ namespace Meow {
 
 	void Window::windowResizeCallback(GLFWwindow* window, int width, int height)
 	{
-		glfwSetWindowSize(window, width, height);
-		glad_glViewport(0, 0, width, height);
+		glViewport(0, 0, width, height);
 	}
 }

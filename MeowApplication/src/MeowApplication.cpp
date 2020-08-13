@@ -7,7 +7,7 @@
 #include <Meow/Render/Shader.h>
 #include <Meow/Render/IndexBuffer.h>
 #include <Meow/Render/VertexArray.h>
-#include <Meow/Render/VertexBuffer.h>
+#include <Meow/Render/Buffer.h>
 #include <Meow/Utils/File.h>
 #include <Meow/Window.h>
 #include <Meow/Log.h>
@@ -40,41 +40,43 @@ MeowApplication::~MeowApplication()
 
 void MeowApplication::Run()
 {
-	Meow::Window window("Meow", 800, 600);
-	Meow::Maths::vec2 a;
-	Meow::Maths::vec2 b(3.0f, 2.0f);
+	Meow::Window window("Meow", 800, 800);
 
 	Meow::Renderer* renderer = new Meow::Renderer(window);
 	Meow::Shader* shader = new Meow::Shader("shaders/vert.glsl", "shaders/frag.glsl");
-	shader->enable();
-	//renderer->testDraw(*shader);
 	float vertices[] =
 	{
-		 8.0f, 3.0f, 0.0f,
-		 4.0f, 6.0f, 0.0f,
-		12.0f, 6.0f, 0.0f
+		200.0f, 200.0f, 0.0f,
+		200.0f, 600.0f, 0.0f,
+		600.0f, 600.0f, 0.0f,
+		600.0f, 200.0f, 0.0f
 	};
 
-	unsigned short indices[] = { 0, 1, 2 };
+	unsigned short indices[] = { 0, 1, 2, 2, 3, 0 };
 	Meow::VertexArray vao;
-	Meow::VertexBuffer* vbo = new Meow::VertexBuffer(vertices, 3 * 3, 3);
-	Meow::IndexBuffer ibo(indices, 3);
+	Meow::Buffer* vbo = new Meow::Buffer(vertices, 4 * 3, 3);
+	Meow::IndexBuffer ibo(indices, 6);
 	vao.addBuffer(vbo, 0);
 	
-	Meow::Maths::mat4 m = Meow::Maths::mat4::orthographic(0, 16, 0, 9, -1, 1);
-	shader->setUniformMat4f("pr_mat", m);
+	shader->enable();
+	Meow::Maths::mat4 proj = Meow::Maths::mat4::orthographic(0, 800, 0, 800, -1, 1);
+	shader->setUniformMat4f("u_pr_mat", proj);
+	shader->setUniform4f("u_Color", Meow::Maths::vec4(0.0f, 0.5f, 0.5f, 1.0f));
+	shader->setUniform2f("u_LightPos", Meow::Maths::vec2(400.0f, 400.0f));
 
 	while (!window.closed())
 	{
+		window.update();
 		vao.bind();
 		ibo.bind();
+		shader->enable();
+		shader->setUniform2f("u_LightPos", Meow::Maths::vec2(window.getMouseX(), window.getMouseY()));
 		renderer->testRender(ibo.getCount());
 		ibo.unbind();
 		vao.unbind();
-		window.update();
 	}
 
-	//delete vbo;
-	delete renderer;
+	delete vbo;
 	delete shader;
+	delete renderer;
 }
