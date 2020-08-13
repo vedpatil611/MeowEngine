@@ -1,6 +1,7 @@
 #include "Renderer.h"
 
 #include <Meow/Log.h>
+#include <Meow/Maths/Maths.h>
 #include <GLFW/glfw3.h>
 
 void GlClearError()
@@ -33,8 +34,8 @@ namespace Meow
             renderable.getVAO()->bind();
             renderable.getIBO()->bind();
             renderable.getShader().enable();
+            renderable.getShader().setUniformMat4f("u_model_mat", Maths::mat4::translation(renderable.getPositions()));
             GLCALL(glDrawElements(GL_TRIANGLES, renderable.getIBO()->getCount(), GL_UNSIGNED_SHORT, nullptr));
-            renderable.getShader().disable();
             renderable.getIBO()->unbind();
             renderable.getVAO()->unbind();
 

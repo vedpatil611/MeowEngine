@@ -2,8 +2,8 @@
 
 namespace Meow
 {
-	Renderable2D::Renderable2D(Maths::vec3 postion, Maths::vec2 size, Maths::vec4 colour, const Shader& shader)
-		:m_Position(postion), m_Size(size), m_Colour(colour), m_Shader(shader)
+	Renderable2D::Renderable2D(const Maths::vec3& position, const Maths::vec2& size, const Maths::vec4& colour, Shader& shader)
+		:m_Position(position), m_Size(size), m_Colour(colour), m_Shader(shader)
 	{
 		m_VertexArray = new VertexArray();
 		float vertices[] =
@@ -32,6 +32,11 @@ namespace Meow
 	{
 		delete m_VertexArray;
 		delete m_IndexBuffer;
+	}
+
+	void Renderable2D::translate(const Maths::vec3& translation)
+	{
+		m_Position += translation;
 	}
 }
 

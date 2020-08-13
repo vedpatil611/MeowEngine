@@ -4,11 +4,7 @@
 #include <GLFW/glfw3.h>
 #include <Meow/Maths/Maths.h>
 #include <Meow/Renderer/Renderer.h>
-#include <Meow/Renderer/Renderable2D.h>
 #include <Meow/Renderer/Shader.h>
-#include <Meow/Renderer/IndexBuffer.h>
-#include <Meow/Renderer/VertexArray.h>
-#include <Meow/Renderer/Buffer.h>
 #include <Meow/Utils/File.h>
 #include <Meow.h>
 #ifdef MEOW_PLATFORM_WINDOWS
@@ -46,12 +42,14 @@ void MeowApplication::Run()
 	
 	shader->enable();
 	Meow::Maths::mat4 proj = Meow::Maths::mat4::orthographic(0, 800, 0, 800, -1, 1);
-	shader->setUniformMat4f("u_pr_mat", proj);
-
+	shader->setUniformMat4f("u_proj_mat", proj);
+	
 	Meow::Renderable2D testObj(Meow::Maths::vec3(200.0f, 200.0f, 0.0f), Meow::Maths::vec2(100.0f, 100.0f), Meow::Maths::vec4(1.0f, 0.0f, 0.0f, 1.0f), *shader);
+	Meow::Renderable2D testObj2(Meow::Maths::vec3(500.0f, 300.0f, 0.0f), Meow::Maths::vec2(200.0f, 300.0f), Meow::Maths::vec4(0.0f, 0.0f, 1.0f, 1.0f), *shader);
 	while (!window.closed())
 	{
 		window.update();
+		renderer->submit(testObj2);
 		renderer->submit(testObj);
 		renderer->flush();
 	}

@@ -142,7 +142,11 @@ namespace Meow {
 		mat4 mat4::translation(const vec3& translation)
 		{
 			mat4 result(1.0f);
-			result.cols[3] = translation;
+			//result.cols[3] = translation;
+			result.elements[0 + 3 * 4] = translation.x;
+			result.elements[1 + 3 * 4] = translation.y;
+			result.elements[2 + 3 * 4] = translation.z;
+			result.elements[3 + 3 * 4] = 1;
 			return result;
 		}
 
