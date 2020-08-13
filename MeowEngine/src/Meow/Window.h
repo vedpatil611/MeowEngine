@@ -6,17 +6,18 @@ struct GLFWwindow;
 
 namespace Meow {
 
+	enum KeyActions {
+		KEY_RELEASE = 0,
+		KEY_PRESSES = 1,
+		KEY_REPEAT = 2
+	};
+
 	class MEOW_API Window {
 		friend GLFWwindow;
-	public:
-		float vertex[6] = {
-			 0.0f,  0.5f,
-			-0.5f, -0.5f,
-			 0.5f, -0.5f
-		};
 	private:
 		GLFWwindow* m_Window;
 		const char* m_Title;
+
 		int m_Height, m_Width;
 		double m_MouseX, m_MouseY;
 	public:
@@ -34,5 +35,6 @@ namespace Meow {
 		void setCurrentContext() const;
 	private:
 		static void windowResizeCallback(GLFWwindow* window, int width, int height);
+		static void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods);
 	};
 }

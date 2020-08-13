@@ -56,7 +56,8 @@ project "MeowEngine"
 		cppdialect "C++17"
 		systemversion "latest"
 		defines {
-			"MEOW_PLATFORM_WINDOWS"
+			"MEOW_PLATFORM_WINDOWS",
+			"_CRT_SECURE_NO_WARNINGS"
 		}
 		postbuildcommands {
 			("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/MeowApplication")

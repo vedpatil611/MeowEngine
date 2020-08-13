@@ -35,8 +35,8 @@ namespace Meow {
 			vec3& operator*=(const float& num);
 			vec3& operator/=(const float& num);
 
-			bool operator==(const vec3& vec);
-			bool operator!=(const vec3& vec);
+			bool operator==(const vec3& vec) const;
+			bool operator!=(const vec3& vec) const;
 
 			#ifdef DEBUG
 			MEOW_API friend std::ostream& operator<<(std::ostream& stream, const vec3& vec);

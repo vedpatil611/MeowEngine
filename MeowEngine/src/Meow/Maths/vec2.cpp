@@ -56,12 +56,12 @@ namespace Meow {
 			return div(num);
 		}
 		
-		bool vec2::operator==(const vec2& vec)
+		bool vec2::operator==(const vec2& vec) const
 		{
 			return x == vec.x && y == vec.y;
 		}
 
-		bool vec2::operator!=(const vec2& vec)
+		bool vec2::operator!=(const vec2& vec) const
 		{
 			return x != vec.x || y != vec.y;
 		}

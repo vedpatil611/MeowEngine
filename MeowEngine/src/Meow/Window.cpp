@@ -3,9 +3,6 @@
 #include <GLAD/glad.h>
 #include <GLFW/glfw3.h>
 #include <stdexcept>
-#include <iostream>
-#include <fstream>
-#include <sstream>
 #include <Meow/Log.h>
 
 namespace Meow {
@@ -23,6 +20,7 @@ namespace Meow {
 		}
 		
 		glfwSetWindowSizeCallback(m_Window, &Meow::Window::windowResizeCallback);
+		glfwSetKeyCallback(m_Window, &Meow::Window::keyCallback);
 		setCurrentContext();
 	}
 
@@ -53,5 +51,14 @@ namespace Meow {
 	void Window::windowResizeCallback(GLFWwindow* window, int width, int height)
 	{
 		glViewport(0, 0, width, height);
+	}
+	
+	void Window::keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods)
+	{
+		/*keyPressedState = (Meow::KeyActions) action;
+		if (action == GLFW_PRESS)
+			Window::m_PressedKey[key] = true;
+		else if (action == GLFW_RELEASE)
+			Window::m_PressedKey[key] = false;*/
 	}
 }
