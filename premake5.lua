@@ -26,6 +26,9 @@ project "MeowEngine"
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("intermediate/" .. outputdir .. "/%{prj.name}")
 
+	pchheader "MeowPCH.h"
+	pchsource "MeowEngine/src/MeowPCH.cpp"
+
 	defines {
 		"MEOW_BUILD_DLL"
 	}

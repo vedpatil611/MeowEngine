@@ -1,3 +1,4 @@
+#include "MeowPCH.h"
 #include "mat4.h"
 
 #include "Maths.h"
@@ -142,11 +143,7 @@ namespace Meow {
 		mat4 mat4::translation(const vec3& translation)
 		{
 			mat4 result(1.0f);
-			//result.cols[3] = translation;
-			result.elements[0 + 3 * 4] = translation.x;
-			result.elements[1 + 3 * 4] = translation.y;
-			result.elements[2 + 3 * 4] = translation.z;
-			result.elements[3 + 3 * 4] = 1;
+			result.cols[3] = translation;
 			return result;
 		}
 
@@ -191,10 +188,15 @@ namespace Meow {
 		
 		std::ostream& operator<<(std::ostream& stream, const mat4& matrix)
 		{
-			for (int i = 0; i < 16; ++i)
+			for (int i = 0; i < 4; ++i)
 			{
-				if (i & 0b100) stream << "\n";
-				stream << matrix[i] << " ";
+				for (int j = 0; j < 4; ++j)
+				{
+					stream << matrix[i + j * 4] << " ";
+				}
+				stream << "\n";
+				//if (!(i & 0b100)) stream << "\n"1;
+				//stream << matrix[i] << " ";
 			}
 			return stream;
 		}

@@ -1,6 +1,5 @@
+#include "MeowPCH.h"
 #include "Log.h"
-
-#include <sstream>
 
 namespace Meow
 {

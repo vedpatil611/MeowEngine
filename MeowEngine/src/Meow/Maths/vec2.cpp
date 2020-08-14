@@ -1,6 +1,5 @@
+#include "MeowPCH.h"
 #include "vec2.h"
-
-#include <string>
 
 namespace Meow {
 	namespace Maths {
@@ -66,11 +65,6 @@ namespace Meow {
 			return x != vec.x || y != vec.y;
 		}
 
-		std::string vec2::Print()
-		{
-			return std::string(std::to_string(x) + " " + std::to_string(y));
-		}
-		
 		vec2& operator+(vec2 a, const vec2& b)
 		{
 			return a.add(b);

@@ -1,8 +1,8 @@
 #pragma once
 
 #include <Meow/Core.h>
-#include <Meow/Renderer/Buffer.h>
-#include <vector>
+#include "Buffer.h"
+#include "MeowPCH.h"
 
 namespace Meow {
 	class MEOW_API VertexArray

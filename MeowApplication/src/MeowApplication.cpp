@@ -1,3 +1,4 @@
+#include "MeowPCH.h"
 #include "MeowApplication.h"
 
 #include <glad/glad.h>
@@ -37,23 +38,20 @@ void MeowApplication::Run()
 {
 	Meow::Window window("Meow", 800, 800);
 
-	Meow::Renderer* renderer = new Meow::Renderer();
-	Meow::Shader* shader = new Meow::Shader("shaders/renderable2d.vert.glsl", "shaders/renderable2d.frag.glsl");
+	Meow::Renderer renderer;
+	Meow::Shader shader("shaders/renderable2d.vert.glsl", "shaders/renderable2d.frag.glsl");
 	
-	shader->enable();
+	shader.enable();
 	Meow::Maths::mat4 proj = Meow::Maths::mat4::orthographic(0, 800, 0, 800, -1, 1);
-	shader->setUniformMat4f("u_proj_mat", proj);
-	
-	Meow::Renderable2D testObj(Meow::Maths::vec3(200.0f, 200.0f, 0.0f), Meow::Maths::vec2(100.0f, 100.0f), Meow::Maths::vec4(1.0f, 0.0f, 0.0f, 1.0f), *shader);
-	Meow::Renderable2D testObj2(Meow::Maths::vec3(500.0f, 300.0f, 0.0f), Meow::Maths::vec2(200.0f, 300.0f), Meow::Maths::vec4(0.0f, 0.0f, 1.0f, 1.0f), *shader);
+	shader.setUniformMat4f("u_proj_mat", proj);
+
+	Meow::Renderable2D testObj(Meow::Maths::vec3(200.0f, 200.0f, 0.0f), Meow::Maths::vec2(100.0f, 100.0f), Meow::Maths::vec4(1.0f, 0.0f, 0.0f, 1.0f), shader);
+	Meow::Renderable2D testObj2(Meow::Maths::vec3(500.0f, 300.0f, 0.0f), Meow::Maths::vec2(200.0f, 300.0f), Meow::Maths::vec4(0.0f, 0.0f, 1.0f, 1.0f), shader);
 	while (!window.closed())
 	{
 		window.update();
-		renderer->submit(testObj2);
-		renderer->submit(testObj);
-		renderer->flush();
+		renderer.submit(testObj);
+		renderer.submit(testObj2);
+		renderer.flush();
 	}
-
-	delete shader;
-	delete renderer;
 }

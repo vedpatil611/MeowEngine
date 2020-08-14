@@ -2,8 +2,8 @@
 
 #include <glad/glad.h>
 #include <Meow/Core.h>
-#include <Meow/Renderer/Renderer2D.h>
-#include <deque>
+#include "MeowPCH.h"
+#include "Renderer2D.h"
 
 #ifdef DEBUG
 	#ifdef MEOW_PLATFORM_WINDOWS

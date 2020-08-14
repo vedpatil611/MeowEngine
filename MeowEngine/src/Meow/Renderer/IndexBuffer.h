@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Meow/Core.h>
-#include <Meow/Renderer/Buffer.h>
+#include "Buffer.h"
 
 namespace Meow
 {

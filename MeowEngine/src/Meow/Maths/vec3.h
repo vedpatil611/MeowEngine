@@ -8,7 +8,7 @@
 
 namespace Meow {
 	namespace Maths {
-		struct MEOW_API vec3: public Printable
+		struct MEOW_API vec3
 		{
 			// Members
 			float x, y, z;
@@ -41,8 +41,6 @@ namespace Meow {
 			#ifdef DEBUG
 			MEOW_API friend std::ostream& operator<<(std::ostream& stream, const vec3& vec);
 			#endif
-
-			std::string Print() override;
 		};
 	}
 }

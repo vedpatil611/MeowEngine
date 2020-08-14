@@ -2,9 +2,9 @@
 
 #include <Meow/Core.h>
 #include <Meow/Maths/Maths.h>
-#include <Meow/Renderer/IndexBuffer.h>
-#include <Meow/Renderer/VertexArray.h>
-#include <Meow/Renderer/Shader.h>
+#include "IndexBuffer.h"
+#include "VertexArray.h"
+#include "Shader.h"
 
 namespace Meow 
 { 

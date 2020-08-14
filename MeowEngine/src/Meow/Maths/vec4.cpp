@@ -1,3 +1,4 @@
+#include "MeowPCH.h"
 #include "vec4.h"
 
 namespace Meow {
@@ -10,7 +11,7 @@ namespace Meow {
 
 		vec4::vec4(const vec2& vecA, const vec2 vecB) : x(vecA.x), y(vecA.y), z(vecB.x), w(vecB.y) {}
 
-		vec4::vec4(const vec3& vec) : x(vec.x), y(vec.y), z(vec.z), w(0) {}
+		vec4::vec4(const vec3& vec) : x(vec.x), y(vec.y), z(vec.z), w(1) {}
 
 		vec4::vec4(const vec3& vec, float w) : x(vec.x), y(vec.y), z(vec.z), w(w) {}
 		
@@ -80,11 +81,6 @@ namespace Meow {
 		bool vec4::operator!=(const vec4& vec) const
 		{
 			return x != vec.x || y != vec.y || z != vec.z || w != vec.w;
-		}
-
-		std::string vec4::Print()
-		{
-			return std::string(std::to_string(x) + " " + std::to_string(y) + " " + std::to_string(z) + " " + std::to_string(w));
 		}
 		
 		vec4& operator+(vec4 a, const vec4& b)

@@ -1,9 +1,10 @@
+#include "MeowPCH.h"
 #include "Shader.h"
 
 #include <glad/glad.h>
 #include <Meow/Log.h>
 #include <Meow/Utils/File.h>
-#include <Meow/Renderer/Renderer.h>
+#include "Renderer.h"
 
 namespace Meow
 {
