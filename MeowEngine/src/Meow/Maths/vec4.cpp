@@ -11,7 +11,7 @@ namespace Meow {
 
 		vec4::vec4(const vec2& vecA, const vec2 vecB) : x(vecA.x), y(vecA.y), z(vecB.x), w(vecB.y) {}
 
-		vec4::vec4(const vec3& vec) : x(vec.x), y(vec.y), z(vec.z), w(1) {}
+		vec4::vec4(const vec3& vec) : x(vec.x), y(vec.y), z(vec.z), w(0) {}
 
 		vec4::vec4(const vec3& vec, float w) : x(vec.x), y(vec.y), z(vec.z), w(w) {}
 		

@@ -35,6 +35,8 @@ namespace Meow {
 
 	void Window::update() 
 	{
+		//if (m_PressedKey[GLFW_KEY_UP])
+			//LOG << "pressed" << END_LOG;
 		glfwPollEvents();
 		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 		glfwSwapBuffers(m_Window);
@@ -59,10 +61,9 @@ namespace Meow {
 	
 	void Window::keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods)
 	{
-		/*keyPressedState = (Meow::KeyActions) action;
-		if (action == GLFW_PRESS)
-			Window::m_PressedKey[key] = true;
-		else if (action == GLFW_RELEASE)
-			Window::m_PressedKey[key] = false;*/
+		//if (action == GLFW_PRESS)
+			//m_PressedKey[key] = true;
+		//else if (action == GLFW_RELEASE)
+			//m_PressedKey[key] = false;
 	}
 }

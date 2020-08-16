@@ -6,20 +6,21 @@ struct GLFWwindow;
 
 namespace Meow {
 
-	enum KeyActions {
+	/*enum KeyActions {
 		KEY_RELEASE = 0,
 		KEY_PRESSES = 1,
 		KEY_REPEAT = 2
-	};
+	};*/
 
 	class MEOW_API Window {
-		friend GLFWwindow;
+		//friend GLFWwindow;
 	private:
 		GLFWwindow* m_Window;
 		const char* m_Title;
 
 		int m_Height, m_Width;
 		double m_MouseX, m_MouseY;
+		//static bool m_PressedKey[512];
 	public:
 		Window(const char* title, int width, int height);
 		~Window();

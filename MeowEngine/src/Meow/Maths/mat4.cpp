@@ -144,6 +144,35 @@ namespace Meow {
 		{
 			mat4 result(1.0f);
 			result.cols[3] = translation;
+			result[15] = 1.0f;
+			return result;
+		}
+
+		mat4 mat4::rotation(const float& angle, const vec3& axis)
+		{
+			mat4 result(1.0f);
+
+			float r = toRad(angle);
+			float c = cos(r);
+			float s = sin(r);
+			float omc = 1 - c;
+
+			const float &x = axis.x;
+			const float &y = axis.y;
+			const float &z = axis.z;
+
+			result[0 + 0 * 4] = x * omc + c;
+			result[1 + 0 * 4] = y * x * omc + z * s;
+			result[2 + 0 * 4] = x * z * omc - y * s;
+			
+			result[0 + 1 * 4] = x * y*  omc - z * s;
+			result[1 + 1 * 4] = y * omc + c;
+			result[2 + 1 * 4] = y * z * omc + x * s;
+			
+			result[0 + 2 * 4] = x * z*  omc + y * s;
+			result[1 + 2 * 4] = y * z * omc - x * s;
+			result[2 + 2 * 4] = y * omc + c;
+
 			return result;
 		}
 
@@ -151,8 +180,9 @@ namespace Meow {
 		{
 			mat4 result;
 			result[0 + 0 * 4] = scale.x;
-			result[1 + 2 * 4] = scale.y;
-			result[1 + 2 * 4] = scale.z;
+			result[1 + 1 * 4] = scale.y;
+			result[2 + 2 * 4] = scale.z;
+			result[3 + 3 * 4] = 1.0f;
 			return result;
 		}
 		
