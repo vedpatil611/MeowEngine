@@ -1,15 +1,15 @@
 #include "MeowPCH.h"
 #include "IndexBuffer.h"
 
-#include "Renderer.h"
+#include "SimpleRenderer2D.h"
 
 namespace Meow {
-	IndexBuffer::IndexBuffer(const unsigned short int* data, unsigned int count)
+	IndexBuffer::IndexBuffer(const unsigned short* data, unsigned int count)
 		:m_Count(count)
 	{
 		GLCALL(glGenBuffers(1, &m_BufferID));
 		GLCALL(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_BufferID));
-		GLCALL(glBufferData(GL_ELEMENT_ARRAY_BUFFER, count * sizeof(unsigned short int), data, GL_STATIC_DRAW));
+		GLCALL(glBufferData(GL_ELEMENT_ARRAY_BUFFER, count * sizeof(unsigned short int), data, GL_DYNAMIC_DRAW));
 		GLCALL(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0));
 	}
 

@@ -4,7 +4,7 @@
 #include <glad/glad.h>
 #include <Meow/Log.h>
 #include <Meow/Utils/File.h>
-#include "Renderer.h"
+#include "SimpleRenderer2D.h"
 
 namespace Meow
 {

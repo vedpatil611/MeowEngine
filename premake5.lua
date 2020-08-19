@@ -74,9 +74,7 @@ project "MeowEngine"
 		}
 
 	filter "configurations:Debug"
-		defines { 
-			"DEBUG",
-		}
+		defines { "DEBUG" }
 		symbols "On"
 
 	filter "configurations:Release"

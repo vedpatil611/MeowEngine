@@ -161,17 +161,17 @@ namespace Meow {
 			const float &y = axis.y;
 			const float &z = axis.z;
 
-			result[0 + 0 * 4] = x * omc + c;
-			result[1 + 0 * 4] = y * x * omc + z * s;
-			result[2 + 0 * 4] = x * z * omc - y * s;
+			result[0 + 0 * 4] = x * x * omc + c;
+			result[1 + 0 * 4] = y * x * omc - z * s;
+			result[2 + 0 * 4] = x * z * omc + y * s;
 			
-			result[0 + 1 * 4] = x * y*  omc - z * s;
-			result[1 + 1 * 4] = y * omc + c;
-			result[2 + 1 * 4] = y * z * omc + x * s;
+			result[0 + 1 * 4] = x * y*  omc + z * s;
+			result[1 + 1 * 4] = y * y * omc + c;
+			result[2 + 1 * 4] = y * z * omc - x * s;
 			
-			result[0 + 2 * 4] = x * z*  omc + y * s;
-			result[1 + 2 * 4] = y * z * omc - x * s;
-			result[2 + 2 * 4] = y * omc + c;
+			result[0 + 2 * 4] = x * z*  omc - y * s;
+			result[1 + 2 * 4] = y * z * omc + x * s;
+			result[2 + 2 * 4] = z * z * omc + c;
 
 			return result;
 		}
