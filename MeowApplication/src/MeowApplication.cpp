@@ -1,6 +1,8 @@
 #include "MeowPCH.h"
 #include "MeowApplication.h"
 
+#include <ctime>
+
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <Meow/Maths/Maths.h>
@@ -47,14 +49,26 @@ void MeowApplication::Run()
 	Meow::SimpleRenderer2D renderer;
 #endif 
 
-	Meow::Shader shader("shaders/renderable2d.vert.glsl", "shaders/renderable2d.frag.glsl");
+	Meow::Shader shader("shaders/mouse_lighting.vert.glsl", "shaders/mouse_lighting.frag.glsl");
 	
-	Meow::Maths::mat4 proj = Meow::Maths::mat4::orthographic(0, 800, 0, 800, -1, 1);
+	Meow::Maths::mat4 proj = Meow::Maths::mat4::orthographic(0, 100, 0, 100, -1, 1);
 	shader.enable();
 	shader.setUniformMat4f("u_proj_mat", proj);
 
-	Meow::StaticSprite testObj1(Meow::Maths::vec3(200.0f, 200.0f, 0.0f), Meow::Maths::vec2(100.0f, 100.0f), Meow::Maths::vec4(1.0f, 0.0f, 0.0f, 1.0f), &shader);
-	Meow::StaticSprite testObj2(Meow::Maths::vec3(500.0f, 300.0f, 0.0f), Meow::Maths::vec2(200.0f, 300.0f), Meow::Maths::vec4(0.0f, 0.0f, 1.0f, 1.0f), &shader);
+	std::vector<Meow::StaticSprite*> sprites;
+	
+	srand(time(NULL));
+	
+	for (float y = 0; y < 100.0f; ++y)
+	{
+		for (float x = 0; x < 100.0f; ++x)
+		{
+			sprites.emplace_back(new Meow::StaticSprite(Meow::Maths::vec3(x, y, 0), Meow::Maths::vec2(0.9f, 0.9f), Meow::Maths::vec4(rand() % 10 / 10.0f, 0.7f, 0.0f, 1.0f), &shader));
+		}
+	}
+
+	//Meow::StaticSprite testObj1(Meow::Maths::vec3(200.0f, 200.0f, 0.0f), Meow::Maths::vec2(100.0f, 100.0f), Meow::Maths::vec4(1.0f, 0.0f, 0.0f, 1.0f), &shader);
+	//Meow::StaticSprite testObj2(Meow::Maths::vec3(500.0f, 300.0f, 0.0f), Meow::Maths::vec2(200.0f, 300.0f), Meow::Maths::vec4(0.0f, 0.0f, 1.0f, 1.0f), &shader);
 	shader.enable();
 	while (!window.closed())
 	{
@@ -62,8 +76,13 @@ void MeowApplication::Run()
 #if BATCH_RENDER
 		renderer.begin();
 #endif
-		renderer.submit(&testObj1);
-		renderer.submit(&testObj2);
+		for (int i = 0; i < sprites.size(); ++i)
+		{
+			renderer.submit(sprites[i]);
+		}
+		shader.setUniform2f("u_LightPos", Meow::Maths::vec2(window.getMouseX() / 8, window.getMouseY() / 8));
+		//renderer.submit(&testObj1);
+		//renderer.submit(&testObj2);
 #if BATCH_RENDER
 		renderer.end();
 #endif
