@@ -19,7 +19,7 @@ namespace Meow {
 	private:
 		unsigned int m_VAO;
 		IndexBuffer* m_IBO;
-		unsigned short m_IndexCount;
+		int m_IndexCount;
 		unsigned int m_VBO;
 		VertexData* m_Buffer;
 	public:
