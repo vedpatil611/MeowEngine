@@ -26,6 +26,7 @@ namespace Meow {
 
 		if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
 			throw std::runtime_error("Failed to init glad");
+		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 	}
 
 	Window::~Window()
@@ -38,7 +39,6 @@ namespace Meow {
 		//if (m_PressedKey[GLFW_KEY_UP])
 			//LOG << "pressed" << END_LOG;
 		glfwPollEvents();
-		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 		glfwSwapBuffers(m_Window);
 		glfwGetWindowSize(m_Window, &m_Width, &m_Height);
 		glfwGetCursorPos(m_Window, &m_MouseX, &m_MouseY);

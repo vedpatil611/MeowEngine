@@ -6,7 +6,7 @@ namespace Meow
 	StaticSprite::StaticSprite(const Maths::vec3& position, const Maths::vec2& size, const Maths::vec4& colour, Shader* shader)
 		:Renderable2D(position, size, colour), m_Shader(shader)
 	{
-		m_VertexArray = new VertexArray();
+		/*m_VertexArray = new VertexArray();
 		float vertices[] =
 		{
 			0.0f  , 0.0f  , 0.0f,
@@ -26,11 +26,11 @@ namespace Meow
 		m_VertexArray->addBuffer(new Buffer(colours, 4 * 4, 4), 1);
 
 		unsigned short indices[] = { 0, 1, 2, 2, 3, 0 };
-		m_IndexBuffer = new IndexBuffer(indices, 6);
+		m_IndexBuffer = new IndexBuffer(indices, 6);*/
 	}
 	StaticSprite::~StaticSprite()
 	{
-		delete m_IndexBuffer;
-		delete m_VertexArray;
+		//delete m_IndexBuffer;
+		//delete m_VertexArray;
 	}
 }

@@ -13,7 +13,7 @@ namespace Meow
 		GLCALL(glGenBuffers(1, &m_BufferId));
 		GLCALL(glBindBuffer(GL_ARRAY_BUFFER, m_BufferId));
 		GLCALL(glBufferData(GL_ARRAY_BUFFER, count * sizeof(float), data, GL_DYNAMIC_DRAW));
-		GLCALL(glBindBuffer(GL_ARRAY_BUFFER, 0));
+		//GLCALL(glBindBuffer(GL_ARRAY_BUFFER, 0));
 	}
 
 	Buffer::~Buffer()

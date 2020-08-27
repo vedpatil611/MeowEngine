@@ -21,7 +21,7 @@ namespace Meow
 	void BatchRenderer2D::begin()
 	{
 		GLCALL(glBindBuffer(GL_ARRAY_BUFFER, m_VBO));
-		GLCALL(m_Buffer = (VertexData*) glMapBuffer(GL_ARRAY_BUFFER, GL_READ_WRITE));
+		GLCALL(m_Buffer = (VertexData*) glMapBuffer(GL_ARRAY_BUFFER, GL_WRITE_ONLY));
 	}
 
 	void BatchRenderer2D::submit(const Renderable2D* renderable)
@@ -50,15 +50,13 @@ namespace Meow
 		m_Buffer->colour = colour;
 		m_Buffer++;
 		
-		//GLCALL(glBufferData(GL_ARRAY_BUFFER, RENDERER_BUFFER_SIZE, m_Buffer, GL_DYNAMIC_DRAW));
-		//renderable->getShader()->setUniformMat4f("u_model_mat", Maths::mat4::translation())
 		m_IndexCount += 6;
 	}
 
 	void BatchRenderer2D::end()
 	{
 		GLCALL(glUnmapBuffer(GL_ARRAY_BUFFER));
-		GLCALL(glBindBuffer(GL_ARRAY_BUFFER, 0));
+		//GLCALL(glBindBuffer(GL_ARRAY_BUFFER, 0));
 	}
 
 	void BatchRenderer2D::flush()
@@ -68,8 +66,8 @@ namespace Meow
 
 		GLCALL(glDrawElements(GL_TRIANGLES, m_IndexCount, GL_UNSIGNED_SHORT, nullptr));
 
-		m_IBO->unbind();
-		GLCALL(glBindVertexArray(0));
+		//m_IBO->unbind();
+		//GLCALL(glBindVertexArray(0));
 	}
 
 	void BatchRenderer2D::init() 
@@ -86,7 +84,7 @@ namespace Meow
 		GLCALL(glVertexAttribPointer(SHADER_VERTEX_INDEX, 3, GL_FLOAT, false, RENDERER_VERTEX_SIZE, (const void*) 0));
 		GLCALL(glVertexAttribPointer(SHADER_COLOUR_INDEX, 4, GL_FLOAT, false, RENDERER_VERTEX_SIZE, (const void*) (3 * sizeof(float))));
 		
-		GLCALL(glBindBuffer(GL_ARRAY_BUFFER, 0));
+		//GLCALL(glBindBuffer(GL_ARRAY_BUFFER, 0));
 		
 		unsigned short indices[RENDERER_INDICES_SIZE];
 		
@@ -102,6 +100,6 @@ namespace Meow
 		}
 
 		m_IBO = new IndexBuffer(indices, RENDERER_INDICES_SIZE);
-		GLCALL(glBindVertexArray(0));
+		//GLCALL(glBindVertexArray(0));
 	}
 }
