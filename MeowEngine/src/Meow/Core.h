@@ -21,6 +21,9 @@
 		#define GLCALL(func) GlClearError();					\
 				func;											\
 				ASSERT(GlLogCall(#func, __FILE__, __LINE__))
+	#else
+		#define ASSERT(x)
+		#define GLCALL(func) func; 
 	#endif
 #else
 	#define ASSERT(x)

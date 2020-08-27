@@ -5,6 +5,7 @@
 #include "MeowPCH.h"
 #include "Renderer2D.h"
 
+#pragma depricated
 namespace Meow
 {
 	class MEOW_API SimpleRenderer2D: public Renderer2D
