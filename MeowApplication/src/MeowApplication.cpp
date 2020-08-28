@@ -46,7 +46,7 @@ void MeowApplication::Run()
 
 	Meow::Shader shader("shaders/mouse_lighting.vert.glsl", "shaders/mouse_lighting.frag.glsl");
 	
-	Meow::Maths::mat4 proj = Meow::Maths::mat4::orthographic(0, 100, 0, 100, -1, 1);
+	auto proj = Meow::Maths::mat4::orthographic(0, 100, 0, 100, -1, 1);
 	shader.enable();
 	shader.setUniformMat4f("u_proj_mat", proj);
 
@@ -58,7 +58,7 @@ void MeowApplication::Run()
 	{
 		for (float x = 0; x < 100.0f; ++x)
 		{
-			sprites.emplace_back(new Meow::StaticSprite(Meow::Maths::vec3(x, y, 0), Meow::Maths::vec2(0.9f, 0.9f), Meow::Maths::vec4(rand() % 10 / 10.0f, 0.0f, 1.0f, 1.0f), &shader));
+			sprites.emplace_back(new Meow::StaticSprite(Meow::Maths::vec3(x, y, 0), Meow::Maths::vec2(0.9f, 0.9f), Meow::Maths::vec4(0.0f, rand() % 10 / 10.0f, 0.0f, 1.0f), &shader));
 		}
 	}
 	

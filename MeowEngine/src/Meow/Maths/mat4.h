@@ -44,9 +44,7 @@ namespace Meow {
 			bool operator==(const mat4& matrix) const;
 			bool operator!=(const mat4& matrix) const;
 
-			#ifdef DEBUG
 			MEOW_API friend std::ostream& operator<<(std::ostream& stream, const mat4& matrix);
-			#endif 
 
 			float& operator[](int i);
 			float operator[](int i) const;
