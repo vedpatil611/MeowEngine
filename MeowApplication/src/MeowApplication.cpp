@@ -2,7 +2,6 @@
 #include "MeowApplication.h"
 
 #include <ctime>
-
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <Meow/Maths/Maths.h>
@@ -11,6 +10,7 @@
 #include <Meow/Renderer/StaticSprite.h>
 #include <Meow/Renderer/Shader.h>
 #include <Meow/Utils/File.h>
+#include <Meow/Utils/Timer.h>
 #include <Meow.h>
 
 #ifdef MEOW_PLATFORM_WINDOWS
@@ -50,6 +50,7 @@ void MeowApplication::Run()
 	shader.enable();
 	shader.setUniformMat4f("u_proj_mat", proj);
 
+	// Vector of square sprites for tile map
 	std::vector<Meow::StaticSprite*> sprites;
 	
 	srand(time(NULL));
@@ -63,10 +64,11 @@ void MeowApplication::Run()
 	}
 	
 	shader.enable();
+	Meow::Utils::Timer timer;
 	while (!window.closed())
 	{
+		timer.reset();
 		window.update();
-
 		renderer.begin();
 		
 		for (int i = 0; i < sprites.size(); ++i)
@@ -76,7 +78,8 @@ void MeowApplication::Run()
 		shader.setUniform2f("u_LightPos", Meow::Maths::vec2(window.getMouseX() / 8, window.getMouseY() / 8));
 		
 		renderer.end();
-		
 		renderer.flush();
+
+		LOG << 1 / timer.getElapsedTime() << END_LOG;
 	}
 }

@@ -1,27 +1,30 @@
 #include "MeowPCH.h"
 #include "Timer.h"
 
+#include<GLFW/glfw3.h>
+
 namespace Meow
 {
 	namespace Utils
 	{
 		Timer::Timer()
-			: start(std::chrono::high_resolution_clock::now()) {}
+			: start(glfwGetTime()) {}
 
 		Timer::~Timer() 
 		{
-			end = std::chrono::high_resolution_clock::now();
-			auto time = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
+			end = glfwGetTime();
+			double time = end-start;
 		}
 
 		void Timer::reset()
 		{
-			start = std::chrono::high_resolution_clock::now();
+			glfwSetTime(0);
+			start = 0;
 		}
 		
-		float Timer::elapsedTime()
+		double Timer::getElapsedTime()
 		{
-			return std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
+			return glfwGetTime() - start;
 		}
 	}
 }

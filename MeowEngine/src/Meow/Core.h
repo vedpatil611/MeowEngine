@@ -14,7 +14,7 @@
 #endif 
 #endif
 
-
+// Deug break for debug config
 #ifdef DEBUG
 	#ifdef MEOW_PLATFORM_WINDOWS
 		#define ASSERT(x) if(!(x)) __debugbreak();

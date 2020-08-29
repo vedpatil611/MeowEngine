@@ -2,8 +2,6 @@
 
 #include <Meow/Core.h>
 
-#include <chrono>
-
 namespace Meow
 {
 	namespace Utils
@@ -11,13 +9,13 @@ namespace Meow
 		class MEOW_API Timer
 		{
 		private:
-			std::chrono::steady_clock::time_point start, end;
+			double start, end;
 		public:
 			Timer();
 			~Timer();
 
 			void reset();
-			float elapsedTime();
+			double getElapsedTime();
 		};
 	}
 }
