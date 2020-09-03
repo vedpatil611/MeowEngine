@@ -6,7 +6,6 @@
 #include <GLFW/glfw3.h>
 #include <Meow/Maths/Maths.h>
 #include <Meow/Renderer/BatchRenderer2D.h>
-#include <Meow/Renderer/SimpleRenderer2D.h>
 #include <Meow/Renderer/StaticSprite.h>
 #include <Meow/Renderer/Shader.h>
 #include <Meow/Utils/File.h>
