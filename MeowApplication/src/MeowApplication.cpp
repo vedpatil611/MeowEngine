@@ -18,13 +18,13 @@
 
 Meow::Application* Meow::CreateApplication()
 {
-	#ifdef MEOW_PLATFORM_WINDOWS
+	/*#ifdef MEOW_PLATFORM_WINDOWS
 		#ifndef DEBUG
 			ShowWindow(GetConsoleWindow(), SW_HIDE);
 		#else
 			ShowWindow(GetConsoleWindow(), SW_SHOW);
 		#endif 
-	#endif 
+	#endif */
 
 	return new MeowApplication();
 }
@@ -79,6 +79,6 @@ void MeowApplication::Run()
 		renderer.end();
 		renderer.flush();
 
-		LOG << 1 / timer.getElapsedTime() << END_LOG;
+		LOG << static_cast<int>(1 / timer.getElapsedTime()) << END_LOG;
 	}
 }

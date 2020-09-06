@@ -24,6 +24,9 @@ namespace Meow {
 		glfwSetKeyCallback(m_Window, &Meow::Window::keyCallback);
 		setCurrentContext();
 
+		// 0 for vsync off
+		glfwSwapInterval(0);
+
 		if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
 			throw std::runtime_error("Failed to init glad");
 		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
