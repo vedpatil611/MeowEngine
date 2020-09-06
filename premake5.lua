@@ -23,6 +23,8 @@ project "MeowEngine"
 	language "C++"
 	cppdialect "C++17"
 
+	inlining "Auto"
+
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("intermediate/" .. outputdir .. "/%{prj.name}")
 
@@ -87,6 +89,8 @@ project "MeowApplication"
 	kind "ConsoleApp"
 	language "C++"
 	cppdialect "C++17"
+
+	inlining "Auto"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("intermediate/" .. outputdir .. "/%{prj.name}")

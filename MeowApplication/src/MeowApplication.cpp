@@ -66,8 +66,9 @@ void MeowApplication::Run()
 	Meow::Utils::Timer timer;
 	while (!window.closed())
 	{
-		timer.reset();
 		window.update();
+
+		timer.reset();
 		renderer.begin();
 		
 		for (int i = 0; i < sprites.size(); ++i)
@@ -78,7 +79,7 @@ void MeowApplication::Run()
 		
 		renderer.end();
 		renderer.flush();
-
+		
 		LOG << static_cast<int>(1 / timer.getElapsedTime()) << END_LOG;
 	}
 }
