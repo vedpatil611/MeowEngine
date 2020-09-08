@@ -12,7 +12,7 @@ namespace Meow
 		unsigned int m_ShaderID;
 		const char* m_VertPath;
 		const char* m_FragPath;
-		std::unordered_map<const char*, int> m_UniformLocationCache;
+		std::unordered_map<const char*, int>* m_UniformLocationCache;
 	public:
 		Shader(const char* vertPath, const char* fragPath);
 		~Shader();

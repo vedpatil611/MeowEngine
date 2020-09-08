@@ -12,8 +12,10 @@ namespace Meow
 
 	VertexArray::~VertexArray()
 	{
-		for (int i = 0; i < m_Buffers.size(); ++i)
-			delete m_Buffers[i];
+		for (int i = 0; i < m_Buffers->size(); ++i)
+			delete (*m_Buffers)[i];
+
+		delete m_Buffers;
 	}
 
 	void VertexArray::addBuffer(Buffer* buffer, unsigned int index)
@@ -23,7 +25,7 @@ namespace Meow
 
 		GLCALL(glEnableVertexAttribArray(index));
 		GLCALL(glVertexAttribPointer(index, buffer->getComponentCount(), GL_FLOAT, false, 0, nullptr));
-		m_Buffers.emplace_back(buffer);
+		m_Buffers->emplace_back(buffer);
 
 		buffer->unbind();
 		unbind();

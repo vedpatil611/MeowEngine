@@ -1,9 +1,14 @@
 #include "MeowPCH.h"
 #include "MeowApplication.h"
 
+#ifdef MEOW_PLATFORM_WINDOWS
+#include <Windows.h>
+#endif 
+
 #include <ctime>
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
+#include <math.h>
 #include <Meow/Maths/Maths.h>
 #include <Meow/Renderer/BatchRenderer2D.h>
 #include <Meow/Renderer/StaticSprite.h>
@@ -11,10 +16,6 @@
 #include <Meow/Utils/File.h>
 #include <Meow/Utils/Timer.h>
 #include <Meow.h>
-
-#ifdef MEOW_PLATFORM_WINDOWS
-#include <Windows.h>
-#endif 
 
 Meow::Application* Meow::CreateApplication()
 {
@@ -52,7 +53,7 @@ void MeowApplication::Run()
 	// Vector of square sprites for tile map
 	std::vector<Meow::StaticSprite*> sprites;
 	
-	srand(time(NULL));
+	srand(static_cast<unsigned int>(time(NULL)));
 	
 	for (float y = 0; y < 100.0f; ++y)
 	{
@@ -63,7 +64,8 @@ void MeowApplication::Run()
 	}
 	
 	shader.enable();
-	Meow::Utils::Timer timer;
+	Meow::Utils::Timer timer, t2;
+	t2.reset();
 	while (!window.closed())
 	{
 		window.update();
@@ -75,8 +77,8 @@ void MeowApplication::Run()
 		{
 			renderer.submit(sprites[i]);
 		}
-		shader.setUniform2f("u_LightPos", Meow::Maths::vec2(window.getMouseX() / 8, window.getMouseY() / 8));
-		
+		shader.setUniform2f("u_LightPos", Meow::Maths::vec2(static_cast<float>(window.getMouseX() / 8), static_cast<float>(window.getMouseY() / 8)));
+
 		renderer.end();
 		renderer.flush();
 		

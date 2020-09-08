@@ -19,6 +19,7 @@ namespace Meow
 	Shader::~Shader()
 	{
 		GLCALL(glDeleteProgram(m_ShaderID));
+		delete m_UniformLocationCache;
 	}
 
 	void Shader::enable() const
@@ -33,8 +34,8 @@ namespace Meow
 
 	int Shader::getUniformLocation(const char* uniformName)
 	{
-		if (m_UniformLocationCache.find(uniformName) != m_UniformLocationCache.end())
-			return m_UniformLocationCache[uniformName];
+		if (m_UniformLocationCache->find(uniformName) != m_UniformLocationCache->end())
+			return (*m_UniformLocationCache)[uniformName];
 
 		GLCALL(int location = glGetUniformLocation(m_ShaderID, uniformName));
 		if (location == -1)

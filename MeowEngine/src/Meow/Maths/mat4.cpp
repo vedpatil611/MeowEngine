@@ -59,7 +59,13 @@ namespace Meow {
 				elements[i] /= value;
 			return *this;
 		}
-		
+
+		void mat4::operator=(const mat4& mat)
+		{
+			for (int i = 0; i < 16; ++i)
+				elements[i] = mat[i];
+		}
+
 		mat4& mat4::operator+=(const mat4& matrix)
 		{
 			return add(matrix);
@@ -109,6 +115,18 @@ namespace Meow {
 		float mat4::operator[](int i) const
 		{
 			return elements[i];
+		}
+
+		mat4 mat4::traspose(mat4& matrix)
+		{
+			mat4 result;
+			float t;
+			for (int i = 0; i < 4; ++i)
+				for (int j = 0; j < 4; ++j)
+					result[i + j * 4] = matrix[j + i * 4];
+
+			matrix = result;
+			return matrix;
 		}
 
 		mat4 mat4::identity()

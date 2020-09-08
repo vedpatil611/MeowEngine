@@ -30,23 +30,19 @@ namespace Meow
 		const Maths::vec2& size = renderable->getSize();
 		const Maths::vec4& colour = renderable->getColour();
 
-		m_Buffer->vertex = Maths::vec3(position.x, position.y, position.z);
-		//m_Buffer->vertex = Maths::vec3(0.0f, 0.0f, 0.0f);
+		m_Buffer->vertex = position;
 		m_Buffer->colour = colour;
 		m_Buffer++;
 
-		m_Buffer->vertex = Maths::vec3(position.x, position.y + size.y, position.z);
-		//m_Buffer->vertex = Maths::vec3(0.0f, size.y, 0.0f);
+		m_Buffer->vertex = { position.x, position.y + size.y, position.z };
 		m_Buffer->colour = colour;
 		m_Buffer++;
 
-		m_Buffer->vertex = Maths::vec3(position.x + size.x, position.y + size.y, position.z);
-		//m_Buffer->vertex = Maths::vec3(size.x, size.y, 0.0f);
+		m_Buffer->vertex = { position.x + size.x, position.y + size.y, position.z };
 		m_Buffer->colour = colour;
 		m_Buffer++;
 
-		m_Buffer->vertex = Maths::vec3(position.x + size.x, position.y, position.z);
-		//m_Buffer->vertex = Maths::vec3(size.x, 0.0f, 0.0f);
+		m_Buffer->vertex = { position.x + size.x, position.y, position.z };
 		m_Buffer->colour = colour;
 		m_Buffer++;
 		

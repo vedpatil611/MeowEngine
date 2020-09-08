@@ -34,6 +34,7 @@ namespace Meow {
 			friend mat4& operator*(mat4 matA, const float& value);
 			friend mat4& operator*(const float& value, mat4 matA);
 			friend mat4& operator/(mat4 matA, const float& value);
+			void operator=(const mat4& mat);
 
 			mat4& operator+=(const mat4& matrix);
 			mat4& operator-=(const mat4& matrix);
@@ -51,7 +52,7 @@ namespace Meow {
 
 			static mat4 inverse(const mat4& matrix);
 			static float mod(const mat4& matrix);
-			static mat4 traspose(const mat4& matrix);
+			static mat4 traspose(mat4& matrix);
 
 			static mat4 identity();
 

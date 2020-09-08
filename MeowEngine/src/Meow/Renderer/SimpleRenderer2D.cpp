@@ -3,15 +3,19 @@
 #include "StaticSprite.h"
 namespace Meow
 {
-	void SimpleRenderer2D::submit(const Renderable2D* renderable)
+    SimpleRenderer2D::~SimpleRenderer2D()
+    {
+        delete m_RenderQueue;
+    }
+    void SimpleRenderer2D::submit(const Renderable2D* renderable)
 	{
-		m_RenderQueue.push_back(renderable);
+		m_RenderQueue->push_back(renderable);
 	}
 	void SimpleRenderer2D::flush()
 	{
-        while (!m_RenderQueue.empty())
+        while (!m_RenderQueue->empty())
         {
-            const StaticSprite* renderable = (StaticSprite*)m_RenderQueue.front();
+            const StaticSprite* renderable = (StaticSprite*)m_RenderQueue->front();
             renderable->getVAO()->bind();
             renderable->getIBO()->bind();
             renderable->getShader()->enable();
@@ -20,7 +24,7 @@ namespace Meow
             renderable->getIBO()->unbind();
             renderable->getVAO()->unbind();
 
-            m_RenderQueue.pop_front();
+            m_RenderQueue->pop_front();
         }
 	}
 }

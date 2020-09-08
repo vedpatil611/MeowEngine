@@ -9,7 +9,7 @@ namespace Meow {
 	{
 	private:
 		unsigned int m_ArrayId;
-		std::vector<Buffer*> m_Buffers;
+		std::vector<Buffer*> *m_Buffers;
 	public:
 		VertexArray();
 		~VertexArray();
