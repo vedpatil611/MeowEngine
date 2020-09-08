@@ -12,6 +12,7 @@ namespace Meow
 	private:
 		std::deque<const Renderable2D*> *m_RenderQueue;
 	public:
+		SimpleRenderer2D();
 		~SimpleRenderer2D();
 
 		void submit(const Renderable2D* renderable) override;

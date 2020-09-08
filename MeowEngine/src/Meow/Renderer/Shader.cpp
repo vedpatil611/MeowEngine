@@ -12,7 +12,8 @@ namespace Meow
 		:m_VertPath(vertPath), m_FragPath(fragPath)
 	{
 		unsigned int program = glCreateProgram();
-
+		m_UniformLocationCache = new std::unordered_map<const char*, int>();
+		//m_UniformLocationCache = std::make_unique<std::unordered_map<const char*, int>>();
 		m_ShaderID = createShaderProgram(Utils::readFile(vertPath), Utils::readFile(fragPath));
 	}
 

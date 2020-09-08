@@ -8,6 +8,8 @@ namespace Meow
 	VertexArray::VertexArray()
 	{
 		GLCALL(glGenVertexArrays(1, &m_ArrayId));
+
+		m_Buffers = new std::vector<Buffer*>();
 	}
 
 	VertexArray::~VertexArray()

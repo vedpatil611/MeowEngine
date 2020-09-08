@@ -3,6 +3,10 @@
 #include "StaticSprite.h"
 namespace Meow
 {
+    SimpleRenderer2D::SimpleRenderer2D()
+    {
+        m_RenderQueue = new std::deque<const Renderable2D*>();
+    }
     SimpleRenderer2D::~SimpleRenderer2D()
     {
         delete m_RenderQueue;
