@@ -1,10 +1,10 @@
 #include "MeowPCH.h"
+#include "Meow/Core.h"
 #include "Shader.h"
 
 #include <glad/glad.h>
 #include <Meow/Log.h>
 #include <Meow/Utils/File.h>
-#include "SimpleRenderer2D.h"
 
 namespace Meow
 {
@@ -13,7 +13,6 @@ namespace Meow
 	{
 		unsigned int program = glCreateProgram();
 		m_UniformLocationCache = new std::unordered_map<const char*, int>();
-		//m_UniformLocationCache = std::make_unique<std::unordered_map<const char*, int>>();
 		m_ShaderID = createShaderProgram(Utils::readFile(vertPath), Utils::readFile(fragPath));
 	}
 

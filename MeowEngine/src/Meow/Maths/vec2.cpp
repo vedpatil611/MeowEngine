@@ -65,22 +65,22 @@ namespace Meow {
 			return x != vec.x || y != vec.y;
 		}
 
-		vec2& operator+(vec2 a, const vec2& b)
+		vec2 operator+(vec2 a, const vec2& b)
 		{
 			return a.add(b);
 		}
 		
-		vec2& operator-(vec2 a, const vec2& b)
+		vec2 operator-(vec2 a, const vec2& b)
 		{
 			return a.sub(b);
 		}
 		
-		vec2& operator*(vec2 a, const float& num)
+		vec2 operator*(vec2 a, const float& num)
 		{
 			return a.mul(num);
 		}
 
-		vec2& operator/(vec2 a, const float& num)
+		vec2 operator/(vec2 a, const float& num)
 		{
 			return a.div(num);
 		}

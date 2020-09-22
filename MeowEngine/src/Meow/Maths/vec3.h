@@ -25,10 +25,10 @@ namespace Meow {
 			vec3& mul(const float& num);
 			vec3& div(const float& num);
 
-			MEOW_API friend vec3& operator+(vec3 a, const vec3& b);
-			MEOW_API friend vec3& operator-(vec3 a, const vec3& b);
-			MEOW_API friend vec3& operator*(vec3 a, const float& num);
-			MEOW_API friend vec3& operator/(vec3 a, const float& num);
+			MEOW_API friend vec3 operator+(vec3 a, const vec3& b);
+			MEOW_API friend vec3 operator-(vec3 a, const vec3& b);
+			MEOW_API friend vec3 operator*(vec3 a, const float& num);
+			MEOW_API friend vec3 operator/(vec3 a, const float& num);
 
 			vec3& operator+=(const vec3& vec);
 			vec3& operator-=(const vec3& vec);

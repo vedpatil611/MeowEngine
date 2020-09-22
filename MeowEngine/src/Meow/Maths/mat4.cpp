@@ -17,7 +17,12 @@ namespace Meow {
 
 		mat4::mat4(const mat4& mat)
 		{
-			for (int i = 0; i < 16; ++i) elements[i] = mat.elements[i];
+			memcpy(elements, mat.elements, sizeof(elements));
+		}
+
+		mat4::mat4(mat4&& mat)
+		{
+			memcpy(elements, mat.elements, sizeof(elements));
 		}
 		
 		mat4& mat4::add(const mat4& matrix)
@@ -41,7 +46,7 @@ namespace Meow {
 			for (int i = 0; i < 4; ++i)
 				for (int j = 0; j < 4; ++j)
 					for (int k = 0; k < 4; ++k)
-						result[i + j * 4] += elements[i + k * 4] * elements[k + j * 4];
+						result[i + j * 4] += elements[i + k * 4] * matrix.elements[k + j * 4];
 
 			return result;
 		}
@@ -62,8 +67,7 @@ namespace Meow {
 
 		void mat4::operator=(const mat4& mat)
 		{
-			for (int i = 0; i < 16; ++i)
-				elements[i] = mat[i];
+			memcpy(elements, mat.elements, 16 * sizeof(float));
 		}
 
 		mat4& mat4::operator+=(const mat4& matrix)
@@ -112,7 +116,7 @@ namespace Meow {
 			return elements[i];
 		}
 
-		float mat4::operator[](int i) const
+		const float mat4::operator[](int i) const
 		{
 			return elements[i];
 		}
@@ -120,7 +124,6 @@ namespace Meow {
 		mat4 mat4::traspose(mat4& matrix)
 		{
 			mat4 result;
-			float t;
 			for (int i = 0; i < 4; ++i)
 				for (int j = 0; j < 4; ++j)
 					result[i + j * 4] = matrix[j + i * 4];
@@ -204,32 +207,32 @@ namespace Meow {
 			return result;
 		}
 		
-		mat4& operator+(mat4 matA, const mat4& matB)
+		mat4 operator+(mat4 matA, const mat4& matB)
 		{
 			return matA.add(matB);
 		}
 		
-		mat4& operator-(mat4 matA, const mat4& matB)
+		mat4 operator-(mat4 matA, const mat4& matB)
 		{
 			return matA.sub(matB);
 		}
 
-		mat4& operator*(mat4 matA, const mat4& matB)
+		mat4 operator*(mat4 matA, const mat4& matB)
 		{
 			return matA.mul(matB);
 		}
 		
-		mat4& operator*(mat4 matA, const float& value)
+		mat4 operator*(mat4 matA, const float& value)
 		{
 			return matA.mul(value);
 		}
 
-		mat4& operator*(const float& value, mat4 matA)
+		mat4 operator*(const float& value, mat4 matA)
 		{
 			return matA.mul(value);
 		}
 		
-		mat4& operator/(mat4 matA, const float& value)
+		mat4 operator/(mat4 matA, const float& value)
 		{
 			return matA.div(value);
 		}

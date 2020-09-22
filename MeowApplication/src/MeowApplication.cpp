@@ -44,7 +44,8 @@ void MeowApplication::Run()
 
 	Meow::BatchRenderer2D renderer;
 
-	Meow::Shader shader("shaders/mouse_lighting.vert.glsl", "shaders/mouse_lighting.frag.glsl");
+	Meow::Shader shader("shaders/renderable2d.vert.glsl", "shaders/renderable2d.frag.glsl");
+	//Meow::Shader shader("shaders/mouse_lighting.vert.glsl", "shaders/mouse_lighting.frag.glsl");
 	
 	auto proj = Meow::Maths::mat4::orthographic(0, 100, 0, 100, -1, 1);
 	shader.enable();
@@ -63,6 +64,10 @@ void MeowApplication::Run()
 		}
 	}
 	
+	Meow::Maths::vec2 a(2.0f, 3.0f);
+	Meow::Maths::vec2 b(1.0f, 2.0f);
+	Meow::Maths::vec2 c = a + b;
+	std::cout << a << std::endl << c << std::endl;
 	shader.enable();
 	Meow::Utils::Timer timer, t2;
 	t2.reset();
@@ -77,11 +82,11 @@ void MeowApplication::Run()
 		{
 			renderer.submit(sprites[i]);
 		}
-		shader.setUniform2f("u_LightPos", Meow::Maths::vec2(static_cast<float>(window.getMouseX() / 8), static_cast<float>(window.getMouseY() / 8)));
+		//shader.setUniform2f("u_LightPos", Meow::Maths::vec2(static_cast<float>(window.getMouseX() / 8), static_cast<float>(window.getMouseY() / 8)));
 
 		renderer.end();
 		renderer.flush();
 		
-		LOG << static_cast<int>(1 / timer.getElapsedTime()) << END_LOG;
+		//LOG << static_cast<int>(1 / timer.getElapsedTime()) << END_LOG;
 	}
 }

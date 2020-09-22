@@ -1,7 +1,8 @@
 #include "MeowPCH.h"
-#include "VertexArray.h"
+#include "Meow/Core.h"
 
-#include "SimpleRenderer2D.h"
+#include "glad/glad.h"
+#include "VertexArray.h"
 
 namespace Meow
 {

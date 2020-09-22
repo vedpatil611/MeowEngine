@@ -37,7 +37,7 @@ namespace Meow {
 		glfwTerminate();
 	}
 
-	void Window::update() 
+	void Window::update()
 	{
 		//if (m_PressedKey[GLFW_KEY_UP])
 			//LOG << "pressed" << END_LOG;

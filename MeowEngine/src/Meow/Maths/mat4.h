@@ -20,20 +20,22 @@ namespace Meow {
 			mat4();
 			mat4(const float& diagonal);
 			mat4(const mat4& mat);
+			mat4(mat4&& mat);
 
 			//Functions
 			mat4& add(const mat4& matrix);
 			mat4& sub(const mat4& matrix);
-			mat4& mul(const mat4& matrix);
+			mat4& mul(const mat4& matrix);	// Warning: return garbage
 			mat4& mul(const float& value);
 			mat4& div(const float& value);
 
-			friend mat4& operator+(mat4 matA, const mat4& matB);
-			friend mat4& operator-(mat4 matA, const mat4& matB);
-			friend mat4& operator*(mat4 matA, const mat4& matB);
-			friend mat4& operator*(mat4 matA, const float& value);
-			friend mat4& operator*(const float& value, mat4 matA);
-			friend mat4& operator/(mat4 matA, const float& value);
+			friend mat4 operator+(mat4 matA, const mat4& matB);
+			friend mat4 operator-(mat4 matA, const mat4& matB);
+			friend mat4 operator*(mat4 matA, const mat4& matB);
+			friend mat4 operator*(mat4 matA, const float& value);
+			friend mat4 operator*(const float& value, mat4 matA);
+			friend mat4 operator/(mat4 matA, const float& value);
+
 			void operator=(const mat4& mat);
 
 			mat4& operator+=(const mat4& matrix);
@@ -48,7 +50,7 @@ namespace Meow {
 			MEOW_API friend std::ostream& operator<<(std::ostream& stream, const mat4& matrix);
 
 			float& operator[](int i);
-			float operator[](int i) const;
+			const float operator[](int i) const;
 
 			static mat4 inverse(const mat4& matrix);
 			static float mod(const mat4& matrix);

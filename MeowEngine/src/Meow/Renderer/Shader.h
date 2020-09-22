@@ -1,12 +1,12 @@
 #pragma once
 
+#include "MeowPCH.h"
 #include <Meow/Core.h>
 #include <Meow/Maths/Maths.h>
-#include "MeowPCH.h"
 
 namespace Meow
 {
-	class MEOW_API Shader
+	class MEOW_API Shader // OpenGL shader
 	{
 	private:
 		unsigned int m_ShaderID;
