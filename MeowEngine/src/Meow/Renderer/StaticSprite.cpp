@@ -3,8 +3,8 @@
 
 namespace Meow
 {
-	StaticSprite::StaticSprite(const Maths::vec3& position, const Maths::vec2& size, const Maths::vec4& colour, Shader* shader)
-		:Renderable2D(position, size, colour), m_Shader(shader)
+	StaticSprite::StaticSprite(const Maths::vec3& position, const Maths::vec2& size, const Maths::vec4& color, Shader* shader)
+		:Renderable2D(position, size), m_Shader(shader), m_Color(color)
 	{
 		/*m_VertexArray = new VertexArray();
 		float vertices[] =

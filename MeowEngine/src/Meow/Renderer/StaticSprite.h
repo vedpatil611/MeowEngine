@@ -15,6 +15,7 @@ namespace Meow
 		Shader* m_Shader;
 		VertexArray* m_VertexArray;
 		IndexBuffer* m_IndexBuffer;
+		Maths::vec4 m_Color;
 	public:
 		StaticSprite(const Maths::vec3& position, const Maths::vec2& size, const Maths::vec4& colour, Shader* shader);
 		~StaticSprite() override;
@@ -25,6 +26,6 @@ namespace Meow
 
 		inline const Maths::vec3& getPositions() const { return m_Position; }
 		inline const Maths::vec2& getSize() const { return m_Size; }
-		inline const Maths::vec4& getColour() const { return m_Colour; }
+		inline const Maths::vec4& getColor() const override { return m_Color; }
 	};
 }

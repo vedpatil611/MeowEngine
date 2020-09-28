@@ -28,7 +28,7 @@ namespace Meow
 	{
 		const Maths::vec3& position = renderable->getPositions();
 		const Maths::vec2& size = renderable->getSize();
-		const Maths::vec4& colour = renderable->getColour();
+		const Maths::vec4& colour = renderable->getColor();
 
 		m_Buffer->vertex = position;
 		m_Buffer->colour = colour;
