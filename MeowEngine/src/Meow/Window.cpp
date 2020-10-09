@@ -44,6 +44,7 @@ namespace Meow {
 		glfwPollEvents();
 		glfwSwapBuffers(m_Window);
 		glfwGetWindowSize(m_Window, &m_Width, &m_Height);
+		//glfwGetFramebufferSize(m_Window, &m_Width, &m_Height);
 		glfwGetCursorPos(m_Window, &m_MouseX, &m_MouseY);
 	}
 

@@ -64,10 +64,6 @@ void MeowApplication::Run()
 		}
 	}
 	
-	Meow::Maths::vec2 a(2.0f, 3.0f);
-	Meow::Maths::vec2 b(1.0f, 2.0f);
-	Meow::Maths::vec2 c = a + b;
-	std::cout << a << std::endl << c << std::endl;
 	shader.enable();
 	Meow::Utils::Timer timer, t2;
 	t2.reset();

@@ -13,8 +13,26 @@ namespace Meow {
 		struct MEOW_API vec4 {
 		
 			// Member
-			float x, y, z, w;
-		
+			union
+			{
+				float x;
+				float r;
+			};
+			union
+			{
+				float y;
+				float g;
+			};
+			union
+			{
+				float z;
+				float b;
+			};
+			union
+			{
+				float w;
+				float a;
+			};
 			// Constructor
 			vec4();
 			vec4(const vec2& vec);
