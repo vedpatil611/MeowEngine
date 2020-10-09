@@ -25,7 +25,7 @@ namespace Meow {
 			//Functions
 			mat4& add(const mat4& matrix);
 			mat4& sub(const mat4& matrix);
-			mat4& mul(const mat4& matrix);	// Warning: return garbage
+			mat4  mul(const mat4& matrix);
 			mat4& mul(const float& value);
 			mat4& div(const float& value);
 
@@ -40,7 +40,7 @@ namespace Meow {
 
 			mat4& operator+=(const mat4& matrix);
 			mat4& operator-=(const mat4& matrix);
-			mat4& operator*=(const mat4& matrix);
+			mat4  operator*=(const mat4& matrix);
 			mat4& operator*=(const float& value);
 			mat4& operator/=(const float& value);
 

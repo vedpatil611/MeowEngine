@@ -39,7 +39,7 @@ namespace Meow {
 			return *this;
 		}
 
-		mat4& mat4::mul(const mat4& matrix)
+		mat4 mat4::mul(const mat4& matrix)
 		{
 			mat4 result;
 			float sum = 0;
@@ -80,7 +80,7 @@ namespace Meow {
 			return sub(matrix);
 		}
 
-		mat4& mat4::operator*=(const mat4& matrix)
+		mat4 mat4::operator*=(const mat4& matrix)
 		{
 			return mul(matrix);
 		}

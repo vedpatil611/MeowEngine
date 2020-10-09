@@ -3,5 +3,5 @@
 
 float Meow::Maths::toRad(float degree)
 {
-    return(M_PI * degree / 180);
+    return static_cast<float>(M_PI * degree / 180);
 }
