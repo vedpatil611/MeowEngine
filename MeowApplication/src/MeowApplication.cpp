@@ -84,5 +84,6 @@ void MeowApplication::Run()
 		renderer.flush();
 		
 		//LOG << static_cast<int>(1 / timer.getElapsedTime()) << END_LOG;
+		printf("%d\n", static_cast<int>(1 / timer.getElapsedTime()));
 	}
 }
