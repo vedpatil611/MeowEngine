@@ -9,5 +9,5 @@ in vec2 texCoords;
 
 void main()
 {
-	color = texture(u_Texture, texCoords);
+	color = multColour * texture(u_Texture, texCoords);
 }

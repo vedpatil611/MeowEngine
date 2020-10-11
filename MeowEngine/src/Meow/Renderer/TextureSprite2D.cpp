@@ -1,5 +1,5 @@
 #include <MeowPCH.h>
-#include "Texture2D.h"
+#include "TextureSprite2D.h"
 
 namespace Meow
 {
