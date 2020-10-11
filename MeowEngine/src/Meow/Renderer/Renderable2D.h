@@ -19,8 +19,9 @@ namespace Meow
 	protected:
 		Maths::vec3 m_Position;
 		Maths::vec2 m_Size;
+		Maths::vec4 m_Colour;
 	public:
-		Renderable2D(const Maths::vec3& position, const Maths::vec2& size);
+		Renderable2D(const Maths::vec3& position, const Maths::vec2& size, const Maths::vec4 colour);
 		virtual ~Renderable2D();
 
 		virtual inline const VertexArray* getVAO() const = 0;
@@ -29,6 +30,6 @@ namespace Meow
 
 		inline const Maths::vec3& getPositions() const { return m_Position; }
 		inline const Maths::vec2& getSize() const { return m_Size; }
-		virtual inline const Maths::vec4& getColor() const = 0;
+		inline const Maths::vec4& getColor() const { return m_Colour; };
 	};
 }
