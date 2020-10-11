@@ -37,6 +37,7 @@ project "MeowEngine"
 
 	includedirs {
 		"%{prj.name}/src/",
+		"%{prj.name}/src/Meow/vendors",
 		"%{IncludeDirs.GLFW}",
 		"%{IncludeDirs.GLAD}"
 	}
@@ -53,10 +54,12 @@ project "MeowEngine"
 		"%{prj.name}/src/Meow/**.cpp",
 		"%{prj.name}/src/Meow/Maths/**.h",
 		"%{prj.name}/src/Meow/Maths/**.cpp",
+		"%{prj.name}/src/Meow/Renderer/**.h",
+		"%{prj.name}/src/Meow/Renderer/**.cpp",
 		"%{prj.name}/src/Meow/Utils/**.h",
 		"%{prj.name}/src/Meow/Utils/**.cpp",
-		"%{prj.name}/src/Meow/Renderer/**.h",
-		"%{prj.name}/src/Meow/Renderer/**.cpp"
+		"%{prj.name}/src/Meow/vendors/stb_image/**.h",
+		"%{prj.name}/src/Meow/vendors/stb_image/**.cpp"
 	}
 
 	filter "system:windows"
