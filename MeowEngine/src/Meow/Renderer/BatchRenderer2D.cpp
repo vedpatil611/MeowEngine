@@ -32,20 +32,25 @@ namespace Meow
 
 		m_Buffer->vertex = position;
 		m_Buffer->colour = colour;
+		m_Buffer->UV = { 0.0f, 0.0f };
 		m_Buffer++;
 
 		m_Buffer->vertex = { position.x, position.y + size.y, position.z };
 		m_Buffer->colour = colour;
+		m_Buffer->UV = { 0.0f, 1.0f };
 		m_Buffer++;
 
 		m_Buffer->vertex = { position.x + size.x, position.y + size.y, position.z };
 		m_Buffer->colour = colour;
+		m_Buffer->UV = { 1.0f, 1.0f };
 		m_Buffer++;
 
 		m_Buffer->vertex = { position.x + size.x, position.y, position.z };
 		m_Buffer->colour = colour;
+		m_Buffer->UV = { 1.0f, 0.0f };
 		m_Buffer++;
 		
+		++submitCount;
 		m_IndexCount += 6;
 	}
 
@@ -79,6 +84,7 @@ namespace Meow
 		GLCALL(glEnableVertexAttribArray(SHADER_COLOUR_INDEX));
 		GLCALL(glVertexAttribPointer(SHADER_VERTEX_INDEX, 3, GL_FLOAT, false, RENDERER_VERTEX_SIZE, (const void*) 0));
 		GLCALL(glVertexAttribPointer(SHADER_COLOUR_INDEX, 4, GL_FLOAT, false, RENDERER_VERTEX_SIZE, (const void*) (3 * sizeof(float))));
+		GLCALL(glVertexAttribPointer(SHADER_UV_INDEX, 2, GL_FLOAT, false, RENDERER_VERTEX_SIZE, (const void*) (7 * sizeof(float))));
 		
 		//GLCALL(glBindBuffer(GL_ARRAY_BUFFER, 0));
 		

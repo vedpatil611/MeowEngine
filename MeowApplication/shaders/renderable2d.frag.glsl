@@ -2,7 +2,6 @@
 
 out vec4 outColor;
 
-in vec4 pos;
 in vec4 color;
 
 void main()

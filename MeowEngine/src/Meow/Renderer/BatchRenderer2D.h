@@ -12,6 +12,7 @@
 
 #define SHADER_VERTEX_INDEX 0
 #define SHADER_COLOUR_INDEX 1
+#define SHADER_UV_INDEX 2
 
 namespace Meow {
 	class MEOW_API BatchRenderer2D : public Renderer2D
@@ -22,6 +23,7 @@ namespace Meow {
 		int m_IndexCount;
 		unsigned int m_VBO;
 		VertexData* m_Buffer;
+		unsigned int submitCount = 0;
 	public:
 		BatchRenderer2D();
 		~BatchRenderer2D();

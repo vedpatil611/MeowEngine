@@ -1,15 +1,17 @@
 #version 450 core
 
 layout(location = 0) in vec4 position;
-layout(location = 1) in vec2 texcoords;
+layout(location = 1) in vec4 color;
+layout(location = 2) in vec2 texcoords;
 
-//uniform vec4 u_BlendColor;
-uniform mat4 u_MVP;
+uniform mat4 u_proj_mat = mat4(1.0f);
+uniform mat4 u_model_mat = mat4(1.0f);
 
 out vec2 texCoords;
+out vec4 outColor;
 
 void main()
 {
-	gl_Position = u_MVP * position;
+	gl_Position = u_model_mat * u_proj_mat * position;
 	texCoords = texcoords;
 }

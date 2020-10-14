@@ -13,11 +13,13 @@ namespace Meow {
 			union 
 			{
 				float x;
+				float u;
 				float width;
 			};
 			union
 			{
 				float y;
+				float v;
 				float height;
 			};
 		

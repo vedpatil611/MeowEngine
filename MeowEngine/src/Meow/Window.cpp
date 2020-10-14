@@ -20,6 +20,7 @@ namespace Meow {
 			throw std::runtime_error("Failed to init glfw");
 		}
 		
+
 		glfwSetWindowSizeCallback(m_Window, &Meow::Window::windowResizeCallback);
 		glfwSetKeyCallback(m_Window, &Meow::Window::keyCallback);
 		setCurrentContext();
@@ -29,7 +30,12 @@ namespace Meow {
 
 		if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
 			throw std::runtime_error("Failed to init glad");
-		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+		
+		GLCALL(glEnable(GL_TEXTURE_2D));
+		//GLCALL(glEnable(GL_BLEND));
+		//GLCALL(glDisable(GL_BLEND));
+		//GLCALL(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));
+		GLCALL(glClearColor(0.0f, 0.0f, 0.0f, 0.0f));
 	}
 
 	Window::~Window()
@@ -41,11 +47,13 @@ namespace Meow {
 	{
 		//if (m_PressedKey[GLFW_KEY_UP])
 			//LOG << "pressed" << END_LOG;
+		GLCALL(glClear(GL_COLOR_BUFFER_BIT));
 		glfwPollEvents();
 		glfwSwapBuffers(m_Window);
 		glfwGetWindowSize(m_Window, &m_Width, &m_Height);
 		//glfwGetFramebufferSize(m_Window, &m_Width, &m_Height);
 		glfwGetCursorPos(m_Window, &m_MouseX, &m_MouseY);
+
 	}
 
 	bool Window::closed() const

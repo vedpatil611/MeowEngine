@@ -17,7 +17,7 @@ namespace Meow
 
 		inline unsigned int getTextureId() const { return m_TexID; }
 
-		void bind(unsigned int slot) const;
+		void bind(unsigned int slot = 0) const;
 		void unbind() const;
 	};
 }

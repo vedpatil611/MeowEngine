@@ -9,7 +9,7 @@
 
 namespace Meow
 {
-	class MEOW_API Texture2D: Renderable2D
+	class MEOW_API TextureSprite2D: public Renderable2D
 	{
 	private:
 		Shader* m_Shader;
@@ -17,8 +17,8 @@ namespace Meow
 		VertexArray* m_VertexArray;
 		IndexBuffer* m_IndexBuffer;
 	public:
-		Texture2D(const Maths::vec3& position, const Maths::vec2& size, const Maths::vec4 colour, const char* texturePath, Shader* shader);
-		~Texture2D();
+		TextureSprite2D(const Maths::vec3& position, const Maths::vec2& size, const Maths::vec4 colour, const char* texturePath, Shader* shader);
+		~TextureSprite2D();
 
 		inline const VertexArray* getVAO() const override { return m_VertexArray; }
 		inline const IndexBuffer* getIBO() const override { return m_IndexBuffer; }

@@ -110,6 +110,7 @@ project "MeowApplication"
 	}
 
 	files { 
+		"%{prj.name}/shaders/**.glsl", 
 		"%{prj.name}/src/**.h", 
 		"%{prj.name}/src/**.cpp"
 	}

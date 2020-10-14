@@ -77,20 +77,20 @@ namespace Meow
 	{
 		unsigned int id = glCreateShader(type);
 		const char* src = source.c_str();
-		glShaderSource(id, 1, &src, nullptr);
-		glCompileShader(id);
+		GLCALL(glShaderSource(id, 1, &src, nullptr));
+		GLCALL(glCompileShader(id));
 
 		#ifdef DEBUG
 		int result;
-		glGetShaderiv(id, GL_COMPILE_STATUS, &result);
+		GLCALL(glGetShaderiv(id, GL_COMPILE_STATUS, &result));
 		if (!result)
 		{
 			int length;
-			glGetShaderiv(id, GL_INFO_LOG_LENGTH, &length);
+			GLCALL(glGetShaderiv(id, GL_INFO_LOG_LENGTH, &length));
 			char* message = new char[length];
-			glGetShaderInfoLog(id, length, &length, message);
+			GLCALL(glGetShaderInfoLog(id, length, &length, message));
 			LOG_ERROR << "Failed to compile " << (type == GL_VERTEX_SHADER ? "vertex" : "fragment") << " shader" << message << END_LOG;
-			glDeleteShader(id);
+			GLCALL(glDeleteShader(id));
 			delete[] message;
 			return 0;
 		}
@@ -101,17 +101,17 @@ namespace Meow
 
 	unsigned int Shader::createShaderProgram(const std::string& vertexShader, const std::string& fragmentShader)
 	{
-		unsigned int program = glCreateProgram();
+		GLCALL(unsigned int program = glCreateProgram());
 		unsigned int vs = compileShader(GL_VERTEX_SHADER, vertexShader);
 		unsigned int fs = compileShader(GL_FRAGMENT_SHADER, fragmentShader);
 
-		glAttachShader(program, vs);
-		glAttachShader(program, fs);
-		glLinkProgram(program);
-		glValidateProgram(program);
-
-		glDeleteShader(vs);
-		glDeleteShader(fs);
+		GLCALL(glAttachShader(program, vs));
+		GLCALL(glAttachShader(program, fs));
+		GLCALL(glLinkProgram(program));
+		GLCALL(glValidateProgram(program));
+	
+		GLCALL(glDeleteShader(vs));
+		GLCALL(glDeleteShader(fs));
 
 		return program;
 	}
