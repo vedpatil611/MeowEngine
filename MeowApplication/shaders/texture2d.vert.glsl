@@ -14,4 +14,5 @@ void main()
 {
 	gl_Position = u_model_mat * u_proj_mat * position;
 	texCoords = texcoords;
+	outColor = color;
 }

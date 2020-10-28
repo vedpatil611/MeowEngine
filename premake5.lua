@@ -16,6 +16,7 @@ include "Dependencies/GLAD"
 IncludeDirs = {}
 IncludeDirs["GLFW"] = "Dependencies/GLFW/include"
 IncludeDirs["GLAD"] = "Dependencies/GLAD/include"
+IncludeDirs["FreeImage"] = "Dependencies/FreeImage/include"
 
 project "MeowEngine"
 	location "MeowEngine"
@@ -37,14 +38,19 @@ project "MeowEngine"
 
 	includedirs {
 		"%{prj.name}/src/",
-		"%{prj.name}/src/Meow/vendors",
 		"%{IncludeDirs.GLFW}",
-		"%{IncludeDirs.GLAD}"
+		"%{IncludeDirs.GLAD}",
+		"%{IncludeDirs.FreeImage}"
+	}
+
+	libdirs {
+		"Dependencies/FreeImage/libs"
 	}
 
 	links {
 		"GLFW",
-		"GLAD"
+		"GLAD",
+		"FreeImage"
 	}
 
 	files { 
@@ -57,9 +63,7 @@ project "MeowEngine"
 		"%{prj.name}/src/Meow/Renderer/**.h",
 		"%{prj.name}/src/Meow/Renderer/**.cpp",
 		"%{prj.name}/src/Meow/Utils/**.h",
-		"%{prj.name}/src/Meow/Utils/**.cpp",
-		"%{prj.name}/src/Meow/vendors/stb_image/**.h",
-		"%{prj.name}/src/Meow/vendors/stb_image/**.cpp"
+		"%{prj.name}/src/Meow/Utils/**.cpp"
 	}
 
 	filter "system:windows"
@@ -101,12 +105,18 @@ project "MeowApplication"
 	includedirs {
 		"MeowEngine/src",
 		"%{IncludeDirs.GLFW}",
-		"%{IncludeDirs.GLAD}"
+		"%{IncludeDirs.GLAD}",
+		"%{IncludeDirs.FreeImage}"
+	}
+	
+	libdirs {
+		"Dependencies/FreeImage/libs"
 	}
 
 	links {
 		"MeowEngine",
-		"GLAD"
+		"GLAD",
+		"FreeImage"
 	}
 
 	files { 

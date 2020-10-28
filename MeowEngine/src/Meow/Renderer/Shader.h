@@ -22,8 +22,8 @@ namespace Meow
 		void enable() const;
 		void disable() const;
 
-		void setUniform1i(const char* uniformName, const int& value);
-		void setUniform1f(const char* uniformName, const float& value);
+		void setUniform1i(const char* uniformName, int value);
+		void setUniform1f(const char* uniformName, float value);
 		void setUniform2f(const char* uniformName, const Maths::vec2& vec);
 		void setUniform3f(const char* uniformName, const Maths::vec3& vec);
 		void setUniform4f(const char* uniformName, const Maths::vec4& vec);

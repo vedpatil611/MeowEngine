@@ -43,12 +43,12 @@ namespace Meow
 		return location;
 	}
 
-	void Shader::setUniform1i(const char* uniformName, const int& value)
+	void Shader::setUniform1i(const char* uniformName, int value)
 	{
 		GLCALL(glUniform1i(getUniformLocation(uniformName), value));
 	}
 
-	void Shader::setUniform1f(const char* uniformName, const float& value)
+	void Shader::setUniform1f(const char* uniformName, float value)
 	{
 		GLCALL(glUniform1f(getUniformLocation(uniformName), value));
 	}
@@ -75,7 +75,7 @@ namespace Meow
 
 	unsigned int Shader::compileShader(unsigned int type, const std::string& source)
 	{
-		unsigned int id = glCreateShader(type);
+		GLCALL(unsigned int id = glCreateShader(type));
 		const char* src = source.c_str();
 		GLCALL(glShaderSource(id, 1, &src, nullptr));
 		GLCALL(glCompileShader(id));
@@ -89,7 +89,7 @@ namespace Meow
 			GLCALL(glGetShaderiv(id, GL_INFO_LOG_LENGTH, &length));
 			char* message = new char[length];
 			GLCALL(glGetShaderInfoLog(id, length, &length, message));
-			LOG_ERROR << "Failed to compile " << (type == GL_VERTEX_SHADER ? "vertex" : "fragment") << " shader" << message << END_LOG;
+			LOG_ERROR << "Failed to compile " << (type == GL_VERTEX_SHADER ? "vertex" : "fragment") << " shader: " << message << END_LOG;
 			GLCALL(glDeleteShader(id));
 			delete[] message;
 			return 0;

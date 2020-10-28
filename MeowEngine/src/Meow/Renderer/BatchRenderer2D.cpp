@@ -3,6 +3,7 @@
 
 #include "glad/glad.h"
 
+#define VERTEX_DATA_OFFSET(offset) (const void*) ((offset) * sizeof(float))
 namespace Meow
 {
 	BatchRenderer2D::BatchRenderer2D()
@@ -82,9 +83,10 @@ namespace Meow
 		
 		GLCALL(glEnableVertexAttribArray(SHADER_VERTEX_INDEX));
 		GLCALL(glEnableVertexAttribArray(SHADER_COLOUR_INDEX));
-		GLCALL(glVertexAttribPointer(SHADER_VERTEX_INDEX, 3, GL_FLOAT, false, RENDERER_VERTEX_SIZE, (const void*) 0));
-		GLCALL(glVertexAttribPointer(SHADER_COLOUR_INDEX, 4, GL_FLOAT, false, RENDERER_VERTEX_SIZE, (const void*) (3 * sizeof(float))));
-		GLCALL(glVertexAttribPointer(SHADER_UV_INDEX, 2, GL_FLOAT, false, RENDERER_VERTEX_SIZE, (const void*) (7 * sizeof(float))));
+		GLCALL(glEnableVertexAttribArray(SHADER_UV_INDEX));
+		GLCALL(glVertexAttribPointer(SHADER_VERTEX_INDEX, 3, GL_FLOAT, false, RENDERER_VERTEX_SIZE, VERTEX_DATA_OFFSET(0)));
+		GLCALL(glVertexAttribPointer(SHADER_COLOUR_INDEX, 4, GL_FLOAT, false, RENDERER_VERTEX_SIZE, VERTEX_DATA_OFFSET(3)));
+		GLCALL(glVertexAttribPointer(SHADER_UV_INDEX, 2, GL_FLOAT, false, RENDERER_VERTEX_SIZE, VERTEX_DATA_OFFSET(3 + 4)));
 		
 		//GLCALL(glBindBuffer(GL_ARRAY_BUFFER, 0));
 		

@@ -1,6 +1,6 @@
 #version 450 core
 
-layout(location = 0) out vec4 color;
+out vec4 fragColor;
 
 uniform sampler2D u_Texture;
 
@@ -10,6 +10,7 @@ in vec4 outColor;
 void main()
 {
 	vec4 texColor = texture(u_Texture, texCoords);
-	color = texColor;
-	//color = outColor;
+	fragColor = texColor;
+	//gl_FragColor = color;
+	fragColor = outColor;
 }

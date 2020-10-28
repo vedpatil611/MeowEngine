@@ -32,9 +32,9 @@ namespace Meow {
 			throw std::runtime_error("Failed to init glad");
 		
 		GLCALL(glEnable(GL_TEXTURE_2D));
-		//GLCALL(glEnable(GL_BLEND));
-		//GLCALL(glDisable(GL_BLEND));
-		//GLCALL(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));
+		GLCALL(glEnable(GL_BLEND));
+		GLCALL(glEnable(GL_DEPTH_TEST));
+		GLCALL(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));
 		GLCALL(glClearColor(0.0f, 0.0f, 0.0f, 0.0f));
 	}
 
@@ -47,7 +47,7 @@ namespace Meow {
 	{
 		//if (m_PressedKey[GLFW_KEY_UP])
 			//LOG << "pressed" << END_LOG;
-		GLCALL(glClear(GL_COLOR_BUFFER_BIT));
+		GLCALL(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
 		glfwPollEvents();
 		glfwSwapBuffers(m_Window);
 		glfwGetWindowSize(m_Window, &m_Width, &m_Height);

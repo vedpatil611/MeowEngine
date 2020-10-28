@@ -51,7 +51,7 @@ void MeowApplication::Run()
 	//Meow::Shader shader("shaders/renderable2d.vert.glsl", "shaders/renderable2d.frag.glsl");
 	//Meow::Shader shader("shaders/mouse_lighting.vert.glsl", "shaders/mouse_lighting.frag.glsl");
 	
-	auto proj = Meow::Maths::mat4::orthographic(0, 100, 0, 100, -1, 1);
+	auto proj = Meow::Maths::mat4::orthographic(0, 100, 0, 100, -10, 10);
 	shader.enable();
 	shader.setUniformMat4f("u_proj_mat", proj);
 	//shader.setUniformMat4f("u_MVP", proj);
@@ -61,16 +61,17 @@ void MeowApplication::Run()
 	
 	srand(static_cast<unsigned int>(time(NULL)));
 	
-	Meow::Texture texture("assets/DarkSign.png");
-	texture.bind(0);
+	Meow::Texture texture("assets/knight.png");
+	texture.bind();
 	shader.enable();
 	shader.setUniform1i("u_Texture", 0);
 
-	for (float y = 0; y < 1.0f; ++y)
+	for (float y = 0; y < 100.0f; ++y)
 	{
-		for (float x = 0; x < 1.0f; ++x)
+		for (float x = 0; x < 100.0f; ++x)
 		{
-			sprites.emplace_back(new Meow::StaticSprite(Meow::Maths::vec3(x, y, 0), Meow::Maths::vec2(0.9f, 0.9f), Meow::Maths::vec4(0.0f, rand() % 10 / 10.0f, 0.0f, 1.0f), &shader));
+			sprites.emplace_back(new Meow::StaticSprite(Meow::Maths::vec3(x, y, 0), Meow::Maths::vec2(0.9f, 0.9f),
+				Meow::Maths::vec4(0.0f, rand() % 10 / 10.0f, 0.0f, 1.0f), &shader));
 			//sprites.emplace_back(new Meow::TextureSprite2D(Meow::Maths::vec3(x, y, 0), Meow::Maths::vec2(09.9f, 09.9f),
 				//Meow::Maths::vec4(1.0f, 1.0f, 1.0f, 1.0f), "assets/knight.png", &shader));
 		}
@@ -86,7 +87,7 @@ void MeowApplication::Run()
 		timer.reset();
 		renderer.begin();
 		
-		for (int i = 0; i < sprites.size(); ++i)
+		for (unsigned int i = 0; i < sprites.size(); ++i)
 		{
 			renderer.submit(sprites[i]);
 		}

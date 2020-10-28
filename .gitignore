@@ -2,6 +2,8 @@ bin/
 intermediate/
 .vs/
 
+!Dependencies/FreeImage/bin/
+
 *.sln
 *.vcxproj
 *.user
