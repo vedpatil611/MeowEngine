@@ -33,22 +33,22 @@ namespace Meow
 
 		m_Buffer->vertex = position;
 		m_Buffer->colour = colour;
-		m_Buffer->UV = { 0.0f, 0.0f };
+		//m_Buffer->UV = { 0.0f, 0.0f };
 		m_Buffer++;
 
 		m_Buffer->vertex = { position.x, position.y + size.y, position.z };
 		m_Buffer->colour = colour;
-		m_Buffer->UV = { 0.0f, 1.0f };
+		//m_Buffer->UV = { 0.0f, 1.0f };
 		m_Buffer++;
 
 		m_Buffer->vertex = { position.x + size.x, position.y + size.y, position.z };
 		m_Buffer->colour = colour;
-		m_Buffer->UV = { 1.0f, 1.0f };
+		//m_Buffer->UV = { 1.0f, 1.0f };
 		m_Buffer++;
 
 		m_Buffer->vertex = { position.x + size.x, position.y, position.z };
 		m_Buffer->colour = colour;
-		m_Buffer->UV = { 1.0f, 0.0f };
+		//m_Buffer->UV = { 1.0f, 0.0f };
 		m_Buffer++;
 		
 		++submitCount;
@@ -81,12 +81,12 @@ namespace Meow
 		GLCALL(glBindBuffer(GL_ARRAY_BUFFER, m_VBO));
 		GLCALL(glBufferData(GL_ARRAY_BUFFER, RENDERER_BUFFER_SIZE, nullptr, GL_DYNAMIC_DRAW));
 		
-		GLCALL(glEnableVertexAttribArray(SHADER_VERTEX_INDEX));
-		GLCALL(glEnableVertexAttribArray(SHADER_COLOUR_INDEX));
-		GLCALL(glEnableVertexAttribArray(SHADER_UV_INDEX));
 		GLCALL(glVertexAttribPointer(SHADER_VERTEX_INDEX, 3, GL_FLOAT, false, RENDERER_VERTEX_SIZE, VERTEX_DATA_OFFSET(0)));
 		GLCALL(glVertexAttribPointer(SHADER_COLOUR_INDEX, 4, GL_FLOAT, false, RENDERER_VERTEX_SIZE, VERTEX_DATA_OFFSET(3)));
-		GLCALL(glVertexAttribPointer(SHADER_UV_INDEX, 2, GL_FLOAT, false, RENDERER_VERTEX_SIZE, VERTEX_DATA_OFFSET(3 + 4)));
+		//GLCALL(glVertexAttribPointer(SHADER_UV_INDEX, 2, GL_FLOAT, false, RENDERER_VERTEX_SIZE, VERTEX_DATA_OFFSET(3 + 4)));
+		GLCALL(glEnableVertexAttribArray(SHADER_VERTEX_INDEX));
+		GLCALL(glEnableVertexAttribArray(SHADER_COLOUR_INDEX));
+		//GLCALL(glEnableVertexAttribArray(SHADER_UV_INDEX));
 		
 		//GLCALL(glBindBuffer(GL_ARRAY_BUFFER, 0));
 		

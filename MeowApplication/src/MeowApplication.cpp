@@ -47,8 +47,8 @@ void MeowApplication::Run()
 
 	Meow::BatchRenderer2D renderer;
 
-	Meow::Shader shader("shaders/texture2d.vert.glsl", "shaders/texture2d.frag.glsl");
-	//Meow::Shader shader("shaders/renderable2d.vert.glsl", "shaders/renderable2d.frag.glsl");
+	//Meow::Shader shader("shaders/texture2d.vert.glsl", "shaders/texture2d.frag.glsl");
+	Meow::Shader shader("shaders/renderable2d.vert.glsl", "shaders/renderable2d.frag.glsl");
 	//Meow::Shader shader("shaders/mouse_lighting.vert.glsl", "shaders/mouse_lighting.frag.glsl");
 	
 	auto proj = Meow::Maths::mat4::orthographic(0, 100, 0, 100, -10, 10);
@@ -61,10 +61,10 @@ void MeowApplication::Run()
 	
 	srand(static_cast<unsigned int>(time(NULL)));
 	
-	Meow::Texture texture("assets/knight.png");
+	/*Meow::Texture texture("assets/knight.png");
 	texture.bind();
 	shader.enable();
-	shader.setUniform1i("u_Texture", 0);
+	shader.setUniform1i("u_Texture", 0);*/
 
 	for (float y = 0; y < 100.0f; ++y)
 	{
