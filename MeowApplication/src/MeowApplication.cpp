@@ -72,8 +72,6 @@ void MeowApplication::Run()
 		{
 			sprites.emplace_back(new Meow::StaticSprite(Meow::Maths::vec3(x, y, 0), Meow::Maths::vec2(4.9f, 4.9f),
 				Meow::Maths::vec4(0.0f, rand() % 10 / 10.0f, 0.0f, 1.0f), &shader));
-			//sprites.emplace_back(new Meow::TextureSprite2D(Meow::Maths::vec3(x, y, 0), Meow::Maths::vec2(09.9f, 09.9f),
-				//Meow::Maths::vec4(1.0f, 1.0f, 1.0f, 1.0f), "assets/knight.png", &shader));
 		}
 	}
 	
@@ -95,7 +93,6 @@ void MeowApplication::Run()
 
 		renderer.end();
 		renderer.flush();
-		//LOG << static_cast<int>(1 / timer.getElapsedTime()) << END_LOG;
 		printf("%d\n", static_cast<int>(1 / timer.getElapsedTime()));
 	}
 }

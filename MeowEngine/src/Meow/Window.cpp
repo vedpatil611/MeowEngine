@@ -32,9 +32,9 @@ namespace Meow {
 			throw std::runtime_error("Failed to init glad");
 		
 		//GLCALL(glEnable(GL_TEXTURE_2D));
-		//GLCALL(glEnable(GL_BLEND));
 		//GLCALL(glEnable(GL_DEPTH_TEST));
-		//GLCALL(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));
+		GLCALL(glEnable(GL_BLEND));
+		GLCALL(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));
 		GLCALL(glClearColor(0.0f, 0.0f, 0.0f, 0.0f));
 	}
 
