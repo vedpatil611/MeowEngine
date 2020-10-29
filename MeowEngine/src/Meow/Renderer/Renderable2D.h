@@ -12,7 +12,7 @@ namespace Meow
 	struct VertexData {
 		Maths::vec3 vertex;
 		Maths::vec4 colour;
-		//Maths::vec2 UV;
+		Maths::vec2 UV;
 	};
 
 	class MEOW_API Renderable2D
