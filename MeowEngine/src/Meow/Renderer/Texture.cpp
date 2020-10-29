@@ -33,6 +33,8 @@ namespace Meow
 		if (!dib)
 			throw std::exception("Failed to load textures");
 
+		FreeImage_FlipVertical(dib);
+
 		bits = FreeImage_GetBits(dib);
 		m_Width = FreeImage_GetWidth(dib);
 		m_Height = FreeImage_GetHeight(dib);
