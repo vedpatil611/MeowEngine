@@ -34,6 +34,7 @@ namespace Meow {
 		void update();
 		bool closed() const;
 		void setCurrentContext() const;
+		bool setVSyncEnable(bool b);
 	private:
 		static void windowResizeCallback(GLFWwindow* window, int width, int height);
 		static void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods);

@@ -44,6 +44,7 @@ MeowApplication::~MeowApplication()
 void MeowApplication::Run()
 {
 	Meow::Window window("Meow", 800, 800);
+	window.setVSyncEnable(false);
 
 	Meow::BatchRenderer2D renderer;
 

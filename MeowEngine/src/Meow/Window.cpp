@@ -66,6 +66,12 @@ namespace Meow {
 		glfwMakeContextCurrent(m_Window);
 	}
 
+	bool Window::setVSyncEnable(bool b)
+	{
+		glfwSwapInterval(b);
+		return b;
+	}
+
 	void Window::windowResizeCallback(GLFWwindow* window, int width, int height)
 	{
 		glViewport(0, 0, width, height);
