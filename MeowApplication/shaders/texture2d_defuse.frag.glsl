@@ -13,6 +13,6 @@ in vec4 pos;
 void main()
 {
 	float intensity = u_LightSize / length(pos.xy - u_LightPos);
-	color = multColour * texture(u_Texture, texCoords) * intensity;
-	//color = texture(u_Texture, texCoords);
+	color = texture(u_Texture, texCoords) * intensity;
+	//color = multColour * texture(u_Texture, texCoords) * intensity;
 }

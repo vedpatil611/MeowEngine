@@ -47,7 +47,8 @@ void MeowApplication::Run()
 
 	Meow::BatchRenderer2D renderer;
 
-	Meow::Shader shader("shaders/texture2d.vert.glsl", "shaders/texture2d.frag.glsl");
+	//Meow::Shader shader("shaders/texture2d.vert.glsl", "shaders/texture2d.frag.glsl");
+	Meow::Shader shader("shaders/texture2d_defuse.vert.glsl", "shaders/texture2d_defuse.frag.glsl");
 	//Meow::Shader shader("shaders/renderable2d.vert.glsl", "shaders/renderable2d.frag.glsl");
 	//Meow::Shader shader("shaders/mouse_lighting.vert.glsl", "shaders/mouse_lighting.frag.glsl");
 	
@@ -61,7 +62,7 @@ void MeowApplication::Run()
 	
 	srand(static_cast<unsigned int>(time(NULL)));
 	
-	Meow::Texture texture("assets/knight.png");
+	Meow::Texture texture("assets/Circle.png");
 	texture.bind();
 	shader.enable();
 	shader.setUniform1i("u_Texture", 0);
@@ -89,7 +90,7 @@ void MeowApplication::Run()
 		{
 			renderer.submit(sprites[i]);
 		}
-		//shader.setUniform2f("u_LightPos", Meow::Maths::vec2(static_cast<float>(window.getMouseX() / 8), static_cast<float>(window.getMouseY() / 8)));
+		shader.setUniform2f("u_LightPos", Meow::Maths::vec2(static_cast<float>(window.getMouseX() / 8), static_cast<float>(window.getMouseY() / 8)));
 
 		renderer.end();
 		renderer.flush();
