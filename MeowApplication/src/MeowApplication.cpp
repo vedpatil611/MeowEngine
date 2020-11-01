@@ -68,11 +68,19 @@ void MeowApplication::Run()
 	shader.enable();
 	shader.setUniform1i("u_Texture", 0);
 
-	for (float y = 0; y < 100.0f; y+=5)
+	/*for (float y = 0; y < 100.0f; y+=5)
 	{
 		for (float x = 0; x < 100.0f; x+=5)
 		{
 			sprites.emplace_back(new Meow::StaticSprite(Meow::Maths::vec3(x, y, 0), Meow::Maths::vec2(4.9f, 4.9f),
+				Meow::Maths::vec4(0.0f, rand() % 10 / 10.0f, 0.0f, 1.0f), &shader));
+		}
+	}*/
+	for (float y = 0; y < 100.0f; ++y)
+	{
+		for (float x = 0; x < 100.0f; ++x)
+		{
+			sprites.emplace_back(new Meow::StaticSprite(Meow::Maths::vec3(x, y, 0), Meow::Maths::vec2(0.9f, 0.9f),
 				Meow::Maths::vec4(0.0f, rand() % 10 / 10.0f, 0.0f, 1.0f), &shader));
 		}
 	}
@@ -95,6 +103,11 @@ void MeowApplication::Run()
 
 		renderer.end();
 		renderer.flush();
-		printf("%d\n", static_cast<int>(1 / timer.getElapsedTime()));
+
+		if (t2.getElapsedTime() - timer.getElapsedTime() > 1)
+		{
+			t2.reset();
+			printf("%d\n", static_cast<int>(1 / timer.getElapsedTime()));
+		}
 	}
 }

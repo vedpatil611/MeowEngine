@@ -23,7 +23,7 @@ namespace Meow {
 
 		glfwSetWindowSizeCallback(m_Window, &Meow::Window::windowResizeCallback);
 		glfwSetKeyCallback(m_Window, &Meow::Window::keyCallback);
-		setCurrentContext();
+		glfwMakeContextCurrent(m_Window);
 
 		// 0 for vsync off
 		glfwSwapInterval(1);
@@ -68,7 +68,7 @@ namespace Meow {
 
 	bool Window::setVSyncEnable(bool b)
 	{
-		glfwSwapInterval(b);
+		glfwSwapInterval(static_cast<int>(b));
 		return b;
 	}
 

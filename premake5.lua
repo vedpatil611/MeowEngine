@@ -74,7 +74,8 @@ project "MeowEngine"
 			"_CRT_SECURE_NO_WARNINGS"
 		}
 		postbuildcommands {
-			("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/MeowApplication")
+			("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/MeowApplication"),
+			("{COPY} ../Dependencies/FreeImage/bin/ ../bin/" .. outputdir .. "/MeowApplication")
 		}
 
 	filter "system:linux"
