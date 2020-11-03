@@ -1,6 +1,7 @@
 #pragma once
 
 #include <Meow/Core.h>
+#include <chrono>
 
 namespace Meow
 {
@@ -9,13 +10,13 @@ namespace Meow
 		class MEOW_API Timer
 		{
 		private:
-			double start, end;
+			std::chrono::steady_clock::time_point start, end;
 		public:
 			Timer();
-			~Timer();
+			~Timer() = default;
 
 			void reset();
-			double getElapsedTime();
+			long long getElapsedTime();
 		};
 	}
 }

@@ -26,7 +26,7 @@ namespace Meow {
 		glfwMakeContextCurrent(m_Window);
 
 		// 0 for vsync off
-		glfwSwapInterval(1);
+		glfwSwapInterval(0);
 
 		if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
 			throw std::runtime_error("Failed to init glad");

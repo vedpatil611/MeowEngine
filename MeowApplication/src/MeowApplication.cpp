@@ -44,7 +44,7 @@ MeowApplication::~MeowApplication()
 void MeowApplication::Run()
 {
 	Meow::Window window("Meow", 800, 800);
-	window.setVSyncEnable(false);
+	//window.setVSyncEnable(false);
 
 	Meow::BatchRenderer2D renderer;
 
@@ -104,10 +104,10 @@ void MeowApplication::Run()
 		renderer.end();
 		renderer.flush();
 
-		if (t2.getElapsedTime() - timer.getElapsedTime() > 1)
-		{
-			t2.reset();
-			printf("%d\n", static_cast<int>(1 / timer.getElapsedTime()));
-		}
+		//if (t2.getElapsedTime() - timer.getElapsedTime() > 1000000)
+		//{
+			//t2.reset();
+			printf("%d\n", static_cast<int>(1000000 / timer.getElapsedTime()));
+		//}
 	}
 }
