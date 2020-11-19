@@ -20,7 +20,7 @@ namespace Meow {
 			union
 			{
 				float y;
-				float width;
+				float height;
 				float g;
 			};
 			union

@@ -51,8 +51,9 @@ namespace Meow {
 		glfwPollEvents();
 		glfwSwapBuffers(m_Window);
 		glfwGetWindowSize(m_Window, &m_Width, &m_Height);
-		//glfwGetFramebufferSize(m_Window, &m_Width, &m_Height);
+		glfwGetFramebufferSize(m_Window, &m_Width, &m_Height);
 		glfwGetCursorPos(m_Window, &m_MouseX, &m_MouseY);
+		GLCALL(glClear(GL_COLOR_BUFFER_BIT));
 
 	}
 
@@ -70,6 +71,12 @@ namespace Meow {
 	{
 		glfwSwapInterval(static_cast<int>(b));
 		return b;
+	}
+
+	void Window::setBackgrondColor(const Meow::Maths::vec4& color)
+	{
+		GLCALL(glClearColor(color.r, color.g, color.b, color.a));
+		//GLCALL(glClear(GL_COLOR_BUFFER_BIT));
 	}
 
 	void Window::windowResizeCallback(GLFWwindow* window, int width, int height)

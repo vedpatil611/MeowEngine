@@ -164,7 +164,7 @@ namespace Meow {
 		mat4 mat4::translation(const vec3& translation)
 		{
 			mat4 result(1.0f);
-			result.cols[3] = translation;
+			result.cols[3] += translation;
 			result[15] = 1.0f;
 			return result;
 		}
@@ -205,6 +205,15 @@ namespace Meow {
 			result[2 + 2 * 4] = scale.z;
 			result[3 + 3 * 4] = 1.0f;
 			return result;
+		}
+
+		void mat4::translate(const vec3& translation)
+		{
+			auto r = mat4::translation(translation);
+			for (auto& i : elements)
+			{
+				i += r[i];
+			}
 		}
 		
 		mat4 operator+(mat4 matA, const mat4& matB)

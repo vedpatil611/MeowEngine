@@ -64,6 +64,8 @@ namespace Meow {
 			static mat4 translation(const vec3& translation);
 			static mat4 rotation(const float& angle, const vec3& axis);
 			static mat4 scaling(const vec3& scale);
+
+			void translate(const vec3& translation);
 		};
 	}
 }

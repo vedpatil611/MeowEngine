@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Core.h"
-
+#include <Meow/Maths/Maths.h>
 struct GLFWwindow;
 
 namespace Meow {
@@ -35,6 +35,7 @@ namespace Meow {
 		bool closed() const;
 		void setCurrentContext() const;
 		bool setVSyncEnable(bool b);
+		void setBackgrondColor(const Meow::Maths::vec4& color);
 	private:
 		static void windowResizeCallback(GLFWwindow* window, int width, int height);
 		static void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods);

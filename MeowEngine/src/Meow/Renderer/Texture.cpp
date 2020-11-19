@@ -50,7 +50,6 @@ namespace Meow
 
 		//std::cout << FreeImage_GetBPP(dib) << std::endl << FreeImage_GetColorType(dib) << std::endl;
 		
-		
 		GLCALL(glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, m_Width, m_Height, 0, GL_BGRA, GL_UNSIGNED_BYTE, bits));
 		
 		FreeImage_Unload(dib);

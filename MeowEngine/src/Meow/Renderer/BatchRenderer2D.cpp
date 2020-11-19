@@ -4,6 +4,7 @@
 #include "glad/glad.h"
 
 #define VERTEX_DATA_OFFSET(offset) (const void*) ((offset) * sizeof(float))
+
 namespace Meow
 {
 	BatchRenderer2D::BatchRenderer2D()

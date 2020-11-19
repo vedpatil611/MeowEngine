@@ -3,8 +3,10 @@
 #ifdef MEOW_PLATFORM_WINDOWS
 	#ifdef MEOW_BUILD_DLL
 		#define MEOW_API __declspec(dllexport)
+		#define EXPORT_EXTERN 
 	#else
 		#define MEOW_API __declspec(dllimport)
+		#define EXPORT_EXTERN extern
 	#endif 
 #elif MEOW_PLATFORM_LINUX
 	#ifdef MEOW_BUILD_DLL

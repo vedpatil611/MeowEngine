@@ -44,7 +44,8 @@ MeowApplication::~MeowApplication()
 void MeowApplication::Run()
 {
 	Meow::Window window("Meow", 800, 800);
-	//window.setVSyncEnable(false);
+	window.setVSyncEnable(false);
+	window.setBackgrondColor({ 0.0f, 0.0f, 0.0f, 1.0f });
 
 	Meow::BatchRenderer2D renderer;
 
@@ -54,8 +55,12 @@ void MeowApplication::Run()
 	//Meow::Shader shader("shaders/mouse_lighting.vert.glsl", "shaders/mouse_lighting.frag.glsl");
 	
 	auto proj = Meow::Maths::mat4::orthographic(0, 100, 0, 100, -10, 10);
+	auto view = Meow::Maths::mat4::translation({ 10.0f, 0.0f, 0.0f });
+
 	shader.enable();
+	view.translate({ 0.0f, 0.0f, 0.0f });
 	shader.setUniformMat4f("u_proj_mat", proj);
+	//shader.setUniformMat4f("u_view_mat", view);
 	//shader.setUniformMat4f("u_MVP", proj);
 
 	// Vector of square sprites for tile map
@@ -68,14 +73,6 @@ void MeowApplication::Run()
 	shader.enable();
 	shader.setUniform1i("u_Texture", 0);
 
-	/*for (float y = 0; y < 100.0f; y+=5)
-	{
-		for (float x = 0; x < 100.0f; x+=5)
-		{
-			sprites.emplace_back(new Meow::StaticSprite(Meow::Maths::vec3(x, y, 0), Meow::Maths::vec2(4.9f, 4.9f),
-				Meow::Maths::vec4(0.0f, rand() % 10 / 10.0f, 0.0f, 1.0f), &shader));
-		}
-	}*/
 	for (float y = 0; y < 100.0f; ++y)
 	{
 		for (float x = 0; x < 100.0f; ++x)
@@ -99,7 +96,7 @@ void MeowApplication::Run()
 		{
 			renderer.submit(sprites[i]);
 		}
-		shader.setUniform2f("u_LightPos", Meow::Maths::vec2(static_cast<float>(window.getMouseX() / 8), static_cast<float>(window.getMouseY() / 8)));
+		shader.setUniform2f("u_LightPos", Meow::Maths::vec2(static_cast<float>(window.getMouseX() / (window.getWidth() / 100)), static_cast<float>(window.getMouseY() / (window.getHeight() / 100))));
 
 		renderer.end();
 		renderer.flush();
