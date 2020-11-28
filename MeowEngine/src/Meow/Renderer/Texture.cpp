@@ -29,7 +29,6 @@ namespace Meow
 			throw std::exception("Failed to load textures");
 
 		FreeImage_FlipVertical(dib);
-		
 
 		bits = FreeImage_GetBits(dib);
 		m_Width = FreeImage_GetWidth(dib);
@@ -52,6 +51,8 @@ namespace Meow
 		
 		GLCALL(glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, m_Width, m_Height, 0, GL_BGRA, GL_UNSIGNED_BYTE, bits));
 		
+		m_Slot = provideSlotNo++;
+
 		FreeImage_Unload(dib);
 	}
 
@@ -60,9 +61,20 @@ namespace Meow
 		GLCALL(glDeleteTextures(1, &m_TexID));
 	}
 
+	void Texture::setSlot(unsigned int slotNo)
+	{
+		m_Slot = slotNo;
+	}
+
 	void Texture::bind(unsigned int slot) const
 	{
 		GLCALL(glActiveTexture(GL_TEXTURE0 + slot));
+		GLCALL(glBindTexture(GL_TEXTURE_2D, m_TexID));
+	}
+
+	void Texture::bind() const
+	{
+		GLCALL(glActiveTexture(GL_TEXTURE0 + m_Slot));
 		GLCALL(glBindTexture(GL_TEXTURE_2D, m_TexID));
 	}
 
