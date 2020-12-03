@@ -1,7 +1,7 @@
 #include <MeowPCH.h>
 
 #include <Meow/Core.h>
-#include <Meow/Log.h>
+#include <Meow/Utils/Log.h>
 #include <glad/glad.h>
 
 void GlClearError()

@@ -32,7 +32,7 @@
 	#define GLCALL(func) func; 
 #endif 
 
-#define BIT(x) 1 << x
+#define BIT(x) (1 << x)
 
 void GlClearError();
 bool GlLogCall(const char* functionName, const char* file, const int& line);

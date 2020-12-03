@@ -17,16 +17,22 @@
 #define END_LOG		COLOUR_RST << std::endl
 
 namespace Meow {
-	class MEOW_API Printable {
-	public:
-		virtual std::string Print() = 0;
-	};
-
 	class MEOW_API Log {
 	public:
-		static void log(const char* format, const std::vector<Printable*>& printList);
-		static void warn(const char* format, const std::vector<Printable*>& printList);
-		static void error(const char* format, const std::vector<Printable*>& printList);
-		static void fatal_exception(const char* format, const std::exception& e,const std::vector<Printable*>& printList);
+		template<typename ...Vargs>
+		static void log(const char* fmt, Vargs... vargs)
+		{
+			char* s;
+			char* t;
+			char* p;
+			//sscanf(fmt, "%s", s);
+			/*while (sscanf(fmt, "%s %[^\n]%*c", t, s) > 1)
+			{
+				if (strcmp(t, "{}") == 0)
+				{
+					sprintf(p + strlen(p), "%s");
+				}
+			}*/
+		}
 	};
 }

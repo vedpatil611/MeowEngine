@@ -3,7 +3,7 @@
 #include "Shader.h"
 
 #include <glad/glad.h>
-#include <Meow/Log.h>
+#include <Meow/Utils/Log.h>
 #include <Meow/Utils/File.h>
 
 namespace Meow

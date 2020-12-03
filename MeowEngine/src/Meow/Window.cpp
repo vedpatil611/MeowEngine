@@ -4,7 +4,6 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <stdexcept>
-#include <Meow/Log.h>
 
 namespace Meow {
 	Window::Window(const char* title, int width, int height)
@@ -20,13 +19,12 @@ namespace Meow {
 			throw std::runtime_error("Failed to init glfw");
 		}
 		
-
 		glfwSetWindowSizeCallback(m_Window, &Meow::Window::windowResizeCallback);
 		glfwSetKeyCallback(m_Window, &Meow::Window::keyCallback);
 		glfwMakeContextCurrent(m_Window);
 
 		// 0 for vsync off
-		glfwSwapInterval(0);
+		glfwSwapInterval(1);
 
 		if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
 			throw std::runtime_error("Failed to init glad");

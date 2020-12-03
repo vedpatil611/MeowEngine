@@ -44,10 +44,14 @@ MeowApplication::~MeowApplication()
 void MeowApplication::Run()
 {
 	Meow::Window window("Meow", 800, 800);
-	window.setVSyncEnable(false);
+	window.setVSyncEnable(true);
 	window.setBackgrondColor({ 0.0f, 0.0f, 0.0f, 1.0f });
 
 	Meow::BatchRenderer2D renderer;
+
+	Meow::Maths::vec2 temp = { 1.0f, 5.0f };
+
+	LOG << temp << " " << sizeof(Meow::Maths::vec2) << " " << sizeof(float) <<  END_LOG;
 
 	//Meow::Shader shader("shaders/texture2d.vert.glsl", "shaders/texture2d.frag.glsl");
 	Meow::Shader shader("shaders/texture2d_defuse.vert.glsl", "shaders/texture2d_defuse.frag.glsl");
@@ -101,10 +105,10 @@ void MeowApplication::Run()
 		renderer.end();
 		renderer.flush();
 
-		//if (t2.getElapsedTime() - timer.getElapsedTime() > 1000000)
-		//{
-			//t2.reset();
+		if (t2.getElapsedTime() - timer.getElapsedTime() > 1000000)
+		{
+			t2.reset();
 			printf("%d\n", static_cast<int>(1000000 / timer.getElapsedTime()));
-		//}
+		}
 	}
 }

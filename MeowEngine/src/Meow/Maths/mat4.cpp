@@ -215,7 +215,7 @@ namespace Meow {
 				i += r[i];
 			}
 		}
-		
+
 		mat4 operator+(mat4 matA, const mat4& matB)
 		{
 			return matA.add(matB);

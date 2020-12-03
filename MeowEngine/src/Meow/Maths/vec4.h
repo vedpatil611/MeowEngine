@@ -4,13 +4,14 @@
 #include "vec3.h"
 
 #include <Meow/Core.h>
-#include <Meow/Log.h>
+#include <Meow/Utils/Log.h>
 #include <ostream>
 
 namespace Meow { 
 	namespace Maths {
 
-		struct MEOW_API vec4 {
+		struct MEOW_API vec4
+		{
 		
 			// Member
 			union

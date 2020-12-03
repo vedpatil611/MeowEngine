@@ -1,7 +1,6 @@
 #pragma once
 
 #include <Meow/Core.h>
-#include <Meow/Log.h>
 
 #include <ostream>
 

@@ -3,7 +3,6 @@
 #include "vec2.h"
 
 #include <Meow/Core.h>
-#include <Meow/Log.h>
 #include <ostream>
 
 namespace Meow {

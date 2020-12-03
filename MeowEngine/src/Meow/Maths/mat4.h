@@ -5,9 +5,12 @@
 
 #include "vec4.h"
 
-namespace Meow {
-	namespace Maths {
-		struct MEOW_API mat4 {
+namespace Meow 
+{
+	namespace Maths 
+	{
+		struct MEOW_API mat4
+		{
 			// Memeber
 			union 
 			{
