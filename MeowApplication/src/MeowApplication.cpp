@@ -58,11 +58,12 @@ void MeowApplication::Run()
 	//Meow::Shader shader("shaders/renderable2d.vert.glsl", "shaders/renderable2d.frag.glsl");
 	//Meow::Shader shader("shaders/mouse_lighting.vert.glsl", "shaders/mouse_lighting.frag.glsl");
 	
-	auto proj = Meow::Maths::mat4::orthographic(0, 100, 0, 100, -10, 10);
+	auto proj = Meow::Maths::mat4::orthographic(-50, 50, -50, 50, -10, 10);
 	Meow::Maths::mat4 model(1.0f);
 
 	//model = model.translation({ 5.0f, 0.0f, 0.0f });
-	model.translate({ 5.0f, 0.0f, 0.0f });
+	//model.translate({ 5.0f, 0.0f, 0.0f });
+	//model = model.rotation(10.0f, { 1.0f, 0.0f, 0.0f });
 	//auto view = Meow::Maths::mat4::translation({ 10.0f, 0.0f, 0.0f });
 
 	shader.enable();
@@ -82,9 +83,9 @@ void MeowApplication::Run()
 	shader.enable();
 	shader.setUniform1i("u_Texture", 0);
 
-	for (float y = 0; y < 100.0f; ++y)
+	for (float y = -50; y < 50.0f; ++y)
 	{
-		for (float x = 0; x < 100.0f; ++x)
+		for (float x = -50; x < 50.0f; ++x)
 		{
 			sprites.emplace_back(new Meow::StaticSprite(Meow::Maths::vec3(x, y, 0), Meow::Maths::vec2(0.9f, 0.9f),
 				Meow::Maths::vec4(0.0f, rand() % 10 / 10.0f, 0.0f, 1.0f), &shader));
@@ -105,10 +106,11 @@ void MeowApplication::Run()
 		{
 			renderer.submit(sprites[i]);
 		}
-		model.translate({ 1.0f, 0.0f, 0.0f });
+		//model.translate({ 1.0f, 0.0f, 0.0f });
+		model.rotate(1.0f, { 1.0f, 0.0f, 0.0f });
 		shader.setUniformMat4f("u_model_mat", model);
 
-		shader.setUniform2f("u_LightPos", Meow::Maths::vec2(static_cast<float>(window.getMouseX() / (window.getWidth() / 100)), static_cast<float>(window.getMouseY() / (window.getHeight() / 100))));
+		shader.setUniform2f("u_LightPos", Meow::Maths::vec2(static_cast<float>(window.getMouseX() / (window.getWidth() / 100) - 50), static_cast<float>(window.getMouseY() / (window.getHeight() / 100) - 50)));
 
 		renderer.end();
 		renderer.flush();

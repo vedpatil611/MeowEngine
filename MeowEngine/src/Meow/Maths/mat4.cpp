@@ -39,10 +39,10 @@ namespace Meow {
 			return *this;
 		}
 
-		mat4 mat4::mul(const mat4& matrix)
+		mat4& mat4::mul(const mat4& matrix)
 		{
 			mat4 result;
-			float sum = 0;
+			//float sum = 0;
 			for (int i = 0; i < 4; ++i)
 				for (int j = 0; j < 4; ++j)
 					for (int k = 0; k < 4; ++k)
@@ -183,35 +183,69 @@ namespace Meow {
 			const float &z = axis.z;
 
 			rotate[0 + 0 * 4] = x * x * omc + c;
-			rotate[1 + 0 * 4] = y * x * omc - z * s;
-			rotate[2 + 0 * 4] = x * z * omc + y * s;
+			rotate[1 + 0 * 4] = y * x * omc + z * s;
+			rotate[2 + 0 * 4] = x * z * omc - y * s;
 			
-			rotate[0 + 1 * 4] = x * y * omc + z * s;
+			rotate[0 + 1 * 4] = x * y * omc - z * s;
 			rotate[1 + 1 * 4] = y * y * omc + c;
-			rotate[2 + 1 * 4] = y * z * omc - x * s;
+			rotate[2 + 1 * 4] = y * z * omc + x * s;
 			
-			rotate[0 + 2 * 4] = x * z * omc - y * s;
-			rotate[1 + 2 * 4] = y * z * omc + x * s;
+			rotate[0 + 2 * 4] = x * z * omc + y * s;
+			rotate[1 + 2 * 4] = y * z * omc - x * s;
 			rotate[2 + 2 * 4] = z * z * omc + c;
 
-			/*mat4 result;
-			result[0] = cols[0] * rotate[0]*/
-
-			return (*this) * rotate;
+			mat4 result;
+			result.cols[0] = cols[0] * rotate[0 + 0 * 4] + cols[1] * rotate[1 + 0 * 4] + cols[2] * rotate[2 + 0 * 4];
+			result.cols[1] = cols[0] * rotate[0 + 1 * 4] + cols[1] * rotate[1 + 1 * 4] + cols[2] * rotate[2 + 1 * 4];
+			result.cols[2] = cols[0] * rotate[0 + 2 * 4] + cols[1] * rotate[1 + 2 * 4] + cols[2] * rotate[2 + 2 * 4];
+			result.cols[3] = cols[3];
+			return result;
 		}
 
 		mat4 mat4::scaling(const vec3& scale)
 		{
 			mat4 result(*this);
-			result[0 + 0 * 4] = scale.x;
-			result[1 + 1 * 4] = scale.y;
-			result[2 + 2 * 4] = scale.z;
+			result[0 + 0 * 4] += scale.x;
+			result[1 + 1 * 4] += scale.y;
+			result[2 + 2 * 4] += scale.z;
 			return result;
 		}
 
 		mat4 mat4::translate(const vec3& translation)
 		{
 			cols[3] += translation;
+			return *this;
+		}
+
+		mat4 mat4::rotate(const float& angle, const vec3& axis)
+		{
+			mat4 rotate = rotation(angle, axis);
+
+			memcpy(elements, rotate.elements, 16 * sizeof(float));
+
+			return *this;
+		}
+
+		mat4 mat4::rotateX(const float& angle)
+		{
+			return rotate(angle, { 1.0f, 0.0f, 0.0f });
+		}
+
+		mat4 mat4::rotateY(const float& angle)
+		{
+			return rotate(angle, { 0.0f, 1.0f, 0.0f });
+		}
+
+		mat4 mat4::rotateZ(const float& angle)
+		{
+			return rotate(angle, { 0.0f, 0.0f, 1.0f });
+		}
+
+		mat4 mat4::scale(const vec3& scale)
+		{
+			elements[0 + 0 * 4] += scale.x;
+			elements[1 + 1 * 4] += scale.y;
+			elements[2 + 2 * 4] += scale.z;
 			return *this;
 		}
 

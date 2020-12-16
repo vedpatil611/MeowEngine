@@ -28,7 +28,7 @@ namespace Meow
 			//Functions
 			mat4& add(const mat4& matrix);
 			mat4& sub(const mat4& matrix);
-			mat4  mul(const mat4& matrix);
+			mat4& mul(const mat4& matrix);
 			mat4& mul(const float& value);
 			mat4& div(const float& value);
 
@@ -69,6 +69,11 @@ namespace Meow
 			mat4 scaling(const vec3& scale);
 
 			mat4 translate(const vec3& translation);
+			mat4 rotate(const float& angle, const vec3& axis);
+			mat4 rotateX(const float& angle);
+			mat4 rotateY(const float& angle);
+			mat4 rotateZ(const float& angle);
+			mat4 scale(const vec3& scale);
 		};
 	}
 }

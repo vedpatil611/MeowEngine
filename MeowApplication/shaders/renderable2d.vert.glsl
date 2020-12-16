@@ -11,7 +11,7 @@ out vec4 color;
 
 void main()
 {
-    gl_Position = u_model_mat * u_proj_mat * position;
+    gl_Position = u_proj_mat * u_model_mat * position;
     //gl_Position = u_proj_mat * position;
     color = colors;
 }
