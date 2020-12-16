@@ -204,10 +204,11 @@ namespace Meow {
 
 		mat4 mat4::scaling(const vec3& scale)
 		{
-			mat4 result(*this);
-			result[0 + 0 * 4] += scale.x;
-			result[1 + 1 * 4] += scale.y;
-			result[2 + 2 * 4] += scale.z;
+			mat4 result(0.0f);
+			result.cols[0] = cols[0] * scale.x;
+			result.cols[1] = cols[1] * scale.y;
+			result.cols[2] = cols[2] * scale.z;
+			result.cols[3] = cols[3];
 			return result;
 		}
 
@@ -243,9 +244,10 @@ namespace Meow {
 
 		mat4 mat4::scale(const vec3& scale)
 		{
-			elements[0 + 0 * 4] += scale.x;
-			elements[1 + 1 * 4] += scale.y;
-			elements[2 + 2 * 4] += scale.z;
+			cols[0] *= scale.x;
+			cols[1] *= scale.y;
+			cols[2] *= scale.z;
+			cols[3] = cols[3];
 			return *this;
 		}
 
