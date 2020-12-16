@@ -59,11 +59,16 @@ void MeowApplication::Run()
 	//Meow::Shader shader("shaders/mouse_lighting.vert.glsl", "shaders/mouse_lighting.frag.glsl");
 	
 	auto proj = Meow::Maths::mat4::orthographic(0, 100, 0, 100, -10, 10);
-	auto view = Meow::Maths::mat4::translation({ 10.0f, 0.0f, 0.0f });
+	Meow::Maths::mat4 model(1.0f);
+
+	//model = model.translation({ 5.0f, 0.0f, 0.0f });
+	model.translate({ 5.0f, 0.0f, 0.0f });
+	//auto view = Meow::Maths::mat4::translation({ 10.0f, 0.0f, 0.0f });
 
 	shader.enable();
-	view.translate({ 0.0f, 0.0f, 0.0f });
+	//view.translate({ 0.0f, 0.0f, 0.0f });
 	shader.setUniformMat4f("u_proj_mat", proj);
+	shader.setUniformMat4f("u_model_mat", model);
 	//shader.setUniformMat4f("u_view_mat", view);
 	//shader.setUniformMat4f("u_MVP", proj);
 

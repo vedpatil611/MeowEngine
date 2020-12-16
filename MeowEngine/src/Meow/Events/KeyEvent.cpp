@@ -12,4 +12,8 @@ namespace Meow
     {
         return EventType::KeyPressed;
     }
+    EventType KeyReleasedEvent::getEventType() const
+    {
+        return EventType::KeyReleased;
+    }
 }

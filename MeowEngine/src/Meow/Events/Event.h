@@ -1,6 +1,7 @@
 #pragma once
 
 #include <Meow/Core.h>
+
 typedef void (*eventCallback)();
 
 namespace Meow

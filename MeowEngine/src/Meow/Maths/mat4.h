@@ -64,9 +64,9 @@ namespace Meow
 			static mat4 orthographic(const float& left, const float& right, const float& top, const float& bottom, const float& near, const float& far);
 			static mat4 perspective(const float& fov, const float& aspectratio,  const float& near, const float& far);
 
-			static mat4 translation(const vec3& translation);
-			static mat4 rotation(const float& angle, const vec3& axis);
-			static mat4 scaling(const vec3& scale);
+			mat4 translation(const vec3& translation);
+			mat4 rotation(const float& angle, const vec3& axis);
+			mat4 scaling(const vec3& scale);
 
 			void translate(const vec3& translation);
 		};

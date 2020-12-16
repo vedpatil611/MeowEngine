@@ -27,4 +27,13 @@ namespace Meow
 
 		EventType getEventType() const override;
 	};
+
+	class MEOW_API KeyReleasedEvent : public KeyEvent
+	{
+	public:
+		KeyReleasedEvent(int keycode)
+			:KeyEvent(keycode) {}
+
+		EventType getEventType() const override;
+	};
 }
