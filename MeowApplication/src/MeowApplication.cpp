@@ -105,6 +105,9 @@ void MeowApplication::Run()
 		{
 			renderer.submit(sprites[i]);
 		}
+		model.translate({ 1.0f, 0.0f, 0.0f });
+		shader.setUniformMat4f("u_model_mat", model);
+
 		shader.setUniform2f("u_LightPos", Meow::Maths::vec2(static_cast<float>(window.getMouseX() / (window.getWidth() / 100)), static_cast<float>(window.getMouseY() / (window.getHeight() / 100))));
 
 		renderer.end();

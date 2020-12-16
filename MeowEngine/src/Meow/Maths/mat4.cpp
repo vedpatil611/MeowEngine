@@ -164,14 +164,14 @@ namespace Meow {
 		mat4 mat4::translation(const vec3& translation)
 		{
 			mat4 result(*this);
-			vec4 t(translation);
+			//vec4 t(translation);
 			result.cols[3] += translation;
 			return result;
 		}
 
 		mat4 mat4::rotation(const float& angle, const vec3& axis)
 		{
-			mat4 result(1.0f);
+			mat4 rotate;
 
 			float r = toRad(angle);
 			float c = cos(r);
@@ -182,19 +182,22 @@ namespace Meow {
 			const float &y = axis.y;
 			const float &z = axis.z;
 
-			result[0 + 0 * 4] = x * x * omc + c;
-			result[1 + 0 * 4] = y * x * omc - z * s;
-			result[2 + 0 * 4] = x * z * omc + y * s;
+			rotate[0 + 0 * 4] = x * x * omc + c;
+			rotate[1 + 0 * 4] = y * x * omc - z * s;
+			rotate[2 + 0 * 4] = x * z * omc + y * s;
 			
-			result[0 + 1 * 4] = x * y*  omc + z * s;
-			result[1 + 1 * 4] = y * y * omc + c;
-			result[2 + 1 * 4] = y * z * omc - x * s;
+			rotate[0 + 1 * 4] = x * y * omc + z * s;
+			rotate[1 + 1 * 4] = y * y * omc + c;
+			rotate[2 + 1 * 4] = y * z * omc - x * s;
 			
-			result[0 + 2 * 4] = x * z*  omc - y * s;
-			result[1 + 2 * 4] = y * z * omc + x * s;
-			result[2 + 2 * 4] = z * z * omc + c;
+			rotate[0 + 2 * 4] = x * z * omc - y * s;
+			rotate[1 + 2 * 4] = y * z * omc + x * s;
+			rotate[2 + 2 * 4] = z * z * omc + c;
 
-			return result;
+			/*mat4 result;
+			result[0] = cols[0] * rotate[0]*/
+
+			return (*this) * rotate;
 		}
 
 		mat4 mat4::scaling(const vec3& scale)
@@ -206,9 +209,10 @@ namespace Meow {
 			return result;
 		}
 
-		void mat4::translate(const vec3& translation)
+		mat4 mat4::translate(const vec3& translation)
 		{
 			cols[3] += translation;
+			return *this;
 		}
 
 		mat4 operator+(mat4 matA, const mat4& matB)

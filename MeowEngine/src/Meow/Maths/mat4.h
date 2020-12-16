@@ -68,7 +68,7 @@ namespace Meow
 			mat4 rotation(const float& angle, const vec3& axis);
 			mat4 scaling(const vec3& scale);
 
-			void translate(const vec3& translation);
+			mat4 translate(const vec3& translation);
 		};
 	}
 }
