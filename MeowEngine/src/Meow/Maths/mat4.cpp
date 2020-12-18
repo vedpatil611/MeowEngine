@@ -164,8 +164,8 @@ namespace Meow {
 		mat4 mat4::translation(const vec3& translation)
 		{
 			mat4 result(*this);
-			//vec4 t(translation);
-			result.cols[3] += translation;
+			//result.cols[3] += translation;
+			result.cols[3] = cols[0] * translation.x + cols[1] * translation.y + cols[2] * translation.z + cols[3];
 			return result;
 		}
 
@@ -214,7 +214,7 @@ namespace Meow {
 
 		mat4 mat4::translate(const vec3& translation)
 		{
-			cols[3] += translation;
+			cols[3] = cols[0] * translation.x + cols[1] * translation.y + cols[2] * translation.z + cols[3];
 			return *this;
 		}
 
