@@ -3,8 +3,6 @@
 
 #include "glad/glad.h"
 
-#define VERTEX_DATA_OFFSET(offset) (const void*) ((offset) * sizeof(float))
-
 namespace Meow
 {
 	BatchRenderer2D::BatchRenderer2D()
@@ -22,6 +20,7 @@ namespace Meow
 
 	void BatchRenderer2D::begin()
 	{
+		m_IndexCount = 0;
 		GLCALL(glBindBuffer(GL_ARRAY_BUFFER, m_VBO));
 		GLCALL(m_Buffer = (VertexData*) glMapBuffer(GL_ARRAY_BUFFER, GL_WRITE_ONLY));
 	}

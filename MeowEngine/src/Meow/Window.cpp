@@ -24,7 +24,7 @@ namespace Meow {
 		glfwMakeContextCurrent(m_Window);
 
 		// 0 for vsync off
-		glfwSwapInterval(1);
+		glfwSwapInterval(0);
 
 		if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
 			throw std::runtime_error("Failed to init glad");
@@ -34,7 +34,6 @@ namespace Meow {
 		GLCALL(glEnable(GL_BLEND));
 		GLCALL(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));
 		GLCALL(glClearColor(0.0f, 0.0f, 0.0f, 0.0f));
-		//GLCALL(glClear(GL_COLOR_BUFFER_BIT));
 	}
 
 	Window::~Window()

@@ -14,6 +14,8 @@
 #define SHADER_COLOUR_INDEX 1
 #define SHADER_UV_INDEX 2
 
+#define VERTEX_DATA_OFFSET(offset) (const void*) ((offset) * sizeof(float))
+
 namespace Meow {
 	class MEOW_API BatchRenderer2D : public Renderer2D
 	{
