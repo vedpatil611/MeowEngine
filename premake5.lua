@@ -92,6 +92,7 @@ project "MeowEngine"
 	filter "configurations:Release"
 		defines { "RELEASE" }
 		optimize "On"
+		buildoptions "/MD"
 
 
 project "MeowApplication"
@@ -117,9 +118,7 @@ project "MeowApplication"
 	}
 
 	links {
-		"MeowEngine",
-		"GLAD",
-		"FreeImage"
+		"MeowEngine"
 	}
 
 	files { 
@@ -147,3 +146,4 @@ project "MeowApplication"
 	filter "configurations:Release"
 		defines { "RELEASE" }
 		optimize "On"
+		buildoptions "/MD"

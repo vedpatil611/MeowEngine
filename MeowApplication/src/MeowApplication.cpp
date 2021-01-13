@@ -44,7 +44,7 @@ MeowApplication::~MeowApplication()
 void MeowApplication::Run()
 {
 	Meow::Window window("Meow", 800, 800);
-	//window.setVSyncEnable(false);
+	window.setVSyncEnable(false);
 	window.setBackgrondColor({ 0.0f, 0.0f, 0.0f, 1.0f });
 
 	Meow::BatchRenderer2D renderer;
@@ -55,6 +55,7 @@ void MeowApplication::Run()
 	//Meow::Shader shader("shaders/mouse_lighting.vert.glsl", "shaders/mouse_lighting.frag.glsl");
 	
 	auto proj = Meow::Maths::mat4::orthographic(-50, 50, -50, 50, -10, 10);
+	//auto proj = Meow::Maths::mat4::perspective(110, 1.0f, -10, 10);
 	Meow::Maths::mat4 model(1.0f);
 
 	//model = model.translation({ 5.0f, 0.0f, 0.0f });
