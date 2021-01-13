@@ -34,6 +34,8 @@ namespace Meow {
 		GLCALL(glEnable(GL_BLEND));
 		GLCALL(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));
 		GLCALL(glClearColor(0.0f, 0.0f, 0.0f, 0.0f));
+
+		glfwSetWindowUserPointer(m_Window, this);
 	}
 
 	Window::~Window()
@@ -83,9 +85,14 @@ namespace Meow {
 	
 	void Window::keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods)
 	{
-		//if (action == GLFW_PRESS)
-			//m_PressedKey[key] = true;
-		//else if (action == GLFW_RELEASE)
-			//m_PressedKey[key] = false;
+		Window* currentWindow = reinterpret_cast<Window*>(glfwGetWindowUserPointer(window));
+		if (action == GLFW_PRESS)
+		{
+			currentWindow->m_PressedKey[key] = true;
+		}
+		else if (action == GLFW_RELEASE)
+		{
+			currentWindow->m_PressedKey[key] = false;
+		}
 	}
 }

@@ -20,7 +20,7 @@ namespace Meow {
 
 		int m_Height, m_Width;
 		double m_MouseX, m_MouseY;
-		//static bool m_PressedKey[512];
+		bool m_PressedKey[1024] = { false };
 	public:
 		Window(const char* title, int width, int height);
 		~Window();
