@@ -2,8 +2,6 @@
 
 #include <Meow/Core.h>
 
-typedef void (*eventCallback)();
-
 namespace Meow
 {
 	enum class EventType
@@ -19,7 +17,10 @@ namespace Meow
 		MouseButtonClicked = BIT(8),
 		MouseButtonReleased = BIT(9),
 		MouseMoved = BIT(10),
-		MouseScrolled = BIT(11)
+		MouseScrolled = BIT(11),
+		AppTick = BIT(12),
+		AppUpdate = BIT(13),
+		AppRender = BIT(14)
 	};
 
 	enum EventCategory: unsigned int
@@ -34,6 +35,8 @@ namespace Meow
 
 	class MEOW_API Event
 	{
+	protected:
+		bool m_Handled = false;
 	public:
 		virtual EventType getEventType() const = 0;
 		virtual unsigned int getEventCategoryFlags() const = 0;
@@ -41,6 +44,28 @@ namespace Meow
 		bool isInCategory(EventCategory category)
 		{
 			return getEventCategoryFlags() & category;
+		}
+	};
+
+	class MEOW_API EventDispatcher
+	{
+		template <typename T>
+		using EventFn = bool(*)(T&);
+	private:
+		Event& m_Event;
+	public:
+		EventDispatcher(Event& event)
+			:m_Event(event) {}
+
+		template<typename T>
+		bool dispatch(EventFn<T> func)
+		{
+			if (m_Event.getEventType() == T::getStaticType())
+			{
+				m_Event.m_Handled = func((T)m_Event);
+				return true;
+			}
+			return false;
 		}
 	};
 }

@@ -1,8 +1,6 @@
 #include "MeowPCH.h"
 #include "Window.h"
 
-#include <glad/glad.h>
-#include <GLFW/glfw3.h>
 #include <stdexcept>
 
 namespace Meow {
@@ -45,9 +43,9 @@ namespace Meow {
 
 	void Window::update()
 	{
-		//if (m_PressedKey[GLFW_KEY_UP])
-			//LOG << "pressed" << END_LOG;
 		glfwPollEvents();
+		if(isJoystickPresent())
+			glfwGetGamepadState(GLFW_JOYSTICK_1, &gamepadState);
 		glfwSwapBuffers(m_Window);
 		glfwGetWindowSize(m_Window, &m_Width, &m_Height);
 		glfwGetFramebufferSize(m_Window, &m_Width, &m_Height);

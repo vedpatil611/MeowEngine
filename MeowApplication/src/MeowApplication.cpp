@@ -43,9 +43,11 @@ MeowApplication::~MeowApplication()
 
 void MeowApplication::Run()
 {
-	Meow::Window window("Meow", 800, 800);
-	window.setVSyncEnable(false);
-	window.setBackgrondColor({ 0.0f, 0.0f, 0.0f, 1.0f });
+	Application::Run();
+	
+	//Meow::Window window("Meow", 800, 800);
+	window->setVSyncEnable(false);
+	window->setBackgrondColor({ 0.0f, 0.0f, 0.0f, 1.0f });
 
 	Meow::BatchRenderer2D renderer;
 
@@ -92,9 +94,9 @@ void MeowApplication::Run()
 	shader.enable();
 	Meow::Utils::Timer timer, t2;
 	t2.reset();
-	while (!window.closed())
+	while (!window->closed())
 	{
-		window.update();
+		window->update();
 
 		timer.reset();
 		renderer.begin();
@@ -106,7 +108,7 @@ void MeowApplication::Run()
 
 		model.rotateX(1.0f);
 		shader.setUniformMat4f("u_model_mat", model);
-		shader.setUniform2f("u_LightPos", Meow::Maths::vec2(static_cast<float>(window.getMouseX() / (window.getWidth() / 100) - 50), static_cast<float>(window.getMouseY() / (window.getHeight() / 100) - 50)));
+		shader.setUniform2f("u_LightPos", Meow::Maths::vec2(static_cast<float>(window->getMouseX() / (window->getWidth() / 100) - 50), static_cast<float>(window->getMouseY() / (window->getHeight() / 100) - 50)));
 
 		renderer.end();
 		renderer.flush();

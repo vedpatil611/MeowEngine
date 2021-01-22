@@ -5,7 +5,6 @@
 class MeowApplication: public Meow::Application
 {
 private:
-	
 public:
 	MeowApplication();
 	~MeowApplication();

@@ -25,6 +25,7 @@ namespace Meow
 
 		inline unsigned int getRepeatCount() const { return m_RepeatCount; }
 
+		static EventType getStaticType();
 		EventType getEventType() const override;
 	};
 
@@ -34,6 +35,7 @@ namespace Meow
 		KeyReleasedEvent(int keycode)
 			:KeyEvent(keycode) {}
 
+		static EventType getStaticType();
 		EventType getEventType() const override;
 	};
 }
