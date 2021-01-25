@@ -1,6 +1,7 @@
 #include <MeowPCH.h>
 #include "SimpleRenderer2D.h"
-#include "StaticSprite.h"
+#include "Sprite.h"
+
 namespace Meow
 {
     SimpleRenderer2D::SimpleRenderer2D()
@@ -27,21 +28,21 @@ namespace Meow
 	{
         while (!m_RenderQueue->empty())
         {
-            const StaticSprite* renderable = (StaticSprite*)m_RenderQueue->front();
-            renderable->getVAO()->bind();
-            renderable->getIBO()->bind();
+            const Sprite* renderable = (Sprite*)m_RenderQueue->front();
+			auto* vao = renderable->getVAO();
+			auto* ibo = renderable->getIBO();
+
+			vao->bind();
+            ibo->bind();
             renderable->getShader()->enable();
-            //renderable->getShader()->setUniformMat4f("u_model_mat", Maths::mat4::translation(renderable->getPositions()));
-            GLCALL(glDrawElements(GL_TRIANGLES, renderable->getIBO()->getCount(), GL_UNSIGNED_SHORT, nullptr));
-            renderable->getIBO()->unbind();
-            renderable->getVAO()->unbind();
+
+            GLCALL(glDrawElements(GL_TRIANGLES, ibo->getCount(), GL_UNSIGNED_SHORT, nullptr));
+            ibo->unbind();
+            vao->unbind();
 
             m_RenderQueue->pop_front();
         }
 	}
 
-    void SimpleRenderer2D::end()
-    {
-        //m_RenderQueue->clear();
-    }
+    void SimpleRenderer2D::end() {}
 }

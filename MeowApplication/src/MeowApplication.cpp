@@ -12,7 +12,8 @@
 #include <Meow/Maths/Maths.h>
 #include <Meow/Renderer/BatchRenderer2D.h>
 #include <Meow/Renderer/SimpleRenderer2D.h>
-#include <Meow/Renderer/StaticSprite.h>
+#include <Meow/Renderer/Sprite.h>
+#include <Meow/Renderer/TileSprite.h>
 #include <Meow/Renderer/Shader.h>
 #include <Meow/Utils/File.h>
 #include <Meow/Utils/Timer.h>
@@ -20,6 +21,8 @@
 
 #include <Meow/Renderer/Texture.h>
 #include <Meow/Renderer/TextureSprite2D.h>
+
+//#define BATCH_TEST
 
 Meow::Application* Meow::CreateApplication()
 {
@@ -49,8 +52,13 @@ void MeowApplication::Run()
 	window->setVSyncEnable(false);
 	window->setBackgrondColor({ 0.0f, 0.0f, 0.0f, 1.0f });
 
+#ifdef BATCH_TEST
 	Meow::BatchRenderer2D renderer;
-	//Meow::SimpleRenderer2D renderer;
+#else
+	Meow::SimpleRenderer2D renderer;
+#endif
+
+	std::vector<Meow::Renderable2D*> sprites;
 
 	//Meow::Shader shader("shaders/texture2d.vert.glsl", "shaders/texture2d.frag.glsl");
 	Meow::Shader shader("shaders/texture2d_defuse.vert.glsl", "shaders/texture2d_defuse.frag.glsl");
@@ -70,7 +78,6 @@ void MeowApplication::Run()
 	//shader.setUniformMat4f("u_MVP", proj);
 
 	// Vector of square sprites for tile map
-	std::vector<Meow::Renderable2D*> sprites;
 	
 	srand(static_cast<unsigned int>(time(NULL)));
 	
@@ -83,8 +90,13 @@ void MeowApplication::Run()
 	{
 		for (float x = -50; x < 50.0f; ++x)
 		{
-			sprites.emplace_back(new Meow::StaticSprite(Meow::Maths::vec3(x, y, 0), Meow::Maths::vec2(0.9f, 0.9f),
+#ifdef BATCH_TEST
+			sprites.emplace_back(new Meow::TileSprite(Meow::Maths::vec3(x, y, 0), Meow::Maths::vec2(0.9f, 0.9f),
 				Meow::Maths::vec4(0.0f, rand() % 10 / 10.0f, 0.0f, 1.0f), &shader));
+#else
+			sprites.emplace_back(new Meow::Sprite(Meow::Maths::vec3(x, y, 0), Meow::Maths::vec2(0.9f, 0.9f),
+				Meow::Maths::vec4(0.0f, rand() % 10 / 10.0f, 0.0f, 1.0f), &shader));
+#endif 
 		}
 	}
 	

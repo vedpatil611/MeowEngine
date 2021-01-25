@@ -9,18 +9,18 @@
 
 namespace Meow
 {
-	class MEOW_API StaticSprite: public Renderable2D
+	class MEOW_API TileSprite : public Renderable2D
 	{
 	private:
 		Shader* m_Shader;
 		VertexArray* m_VertexArray;
 		IndexBuffer* m_IndexBuffer;
 	public:
-		StaticSprite(const Maths::vec3& position, const Maths::vec2& size, const Maths::vec4& colour, Shader* shader);
-		~StaticSprite() override;
+		TileSprite(const Maths::vec3& position, const Maths::vec2& size, const Maths::vec4& colour, Shader* shader);
+		~TileSprite() override;
 
-		inline const VertexArray* getVAO() const override { return m_VertexArray; }
-		inline const IndexBuffer* getIBO() const override { return m_IndexBuffer; }
+		inline VertexArray* getVAO() const override { return m_VertexArray; }
+		inline IndexBuffer* getIBO() const override { return m_IndexBuffer; }
 		inline Shader* getShader() const override { return m_Shader; }
 	};
 }

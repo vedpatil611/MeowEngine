@@ -25,8 +25,8 @@ namespace Meow
 		Renderable2D(const Maths::vec3& position, const Maths::vec2& size, const Maths::vec4 colour);
 		virtual ~Renderable2D();
 
-		virtual inline const VertexArray* getVAO() const = 0;
-		virtual inline const IndexBuffer* getIBO() const = 0;
+		virtual inline VertexArray* getVAO() const = 0;
+		virtual inline IndexBuffer* getIBO() const = 0;
 		virtual inline Shader* getShader() const = 0;
 
 		inline const Maths::vec3& getPositions() const { return m_Position; }

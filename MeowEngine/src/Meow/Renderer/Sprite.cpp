@@ -1,12 +1,11 @@
 #include "MeowPCH.h"
-#include "StaticSprite.h"
+#include "Sprite.h"
 
 namespace Meow
 {
-	StaticSprite::StaticSprite(const Maths::vec3& position, const Maths::vec2& size, const Maths::vec4& colour, Shader* shader)
+	Sprite::Sprite(const Maths::vec3& position, const Maths::vec2& size, const Maths::vec4& colour, Shader* shader)
 		:Renderable2D(position, size, colour), m_Shader(shader)
 	{
-		m_VertexArray = new VertexArray();
 		float vertices[] =
 		{
 			position.x			, position.y			, position.z,
@@ -28,6 +27,7 @@ namespace Meow
 			1.0f, 1.0f,
 			1.0f, 0.0f,
 		};
+		m_VertexArray = new VertexArray();
 		m_VertexArray->addBuffer(new Buffer(vertices, 4 * 3, 3), 0);
 		m_VertexArray->addBuffer(new Buffer(colours, 4 * 4, 4), 1);
 		m_VertexArray->addBuffer(new Buffer(uv, 4 * 2, 2), 2);
@@ -35,7 +35,7 @@ namespace Meow
 		unsigned short indices[] = { 0, 1, 2, 2, 3, 0 };
 		m_IndexBuffer = new IndexBuffer(indices, 6);
 	}
-	StaticSprite::~StaticSprite()
+	Sprite::~Sprite()
 	{
 		delete m_IndexBuffer;
 		delete m_VertexArray;
