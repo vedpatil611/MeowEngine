@@ -1,6 +1,7 @@
 #pragma once
 
 #include <Meow/Core.h>
+#include <functional>
 
 namespace Meow
 {
@@ -50,7 +51,7 @@ namespace Meow
 	class MEOW_API EventDispatcher
 	{
 		template <typename T>
-		using EventFn = bool(*)(T&);
+		using EventFn = std::function<bool(T&)>;
 	private:
 		Event& m_Event;
 	public:
@@ -62,7 +63,7 @@ namespace Meow
 		{
 			if (m_Event.getEventType() == T::getStaticType())
 			{
-				m_Event.m_Handled = func((T)m_Event);
+				//m_Event.m_Handled = func(*(T*)&m_Event);
 				return true;
 			}
 			return false;

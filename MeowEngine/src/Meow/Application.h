@@ -15,6 +15,7 @@ namespace Meow {
 		virtual void Run();
 
 		void onEvent(Event& event);
+
 		inline Window* getWindow() { return window; }
 	};
 

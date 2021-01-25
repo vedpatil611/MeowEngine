@@ -9,21 +9,16 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
-struct GLFWwindow;
+#include "Events/Event.h"
+
 typedef struct GLFWgamepadstate GamepadState;
 
-//using EventCallbackFn = void(*)(Meow::Event&);
-using EventCallbackFn = std::function<Meow::Event>();
-
 namespace Meow {
-	/*enum KeyActions {
-		KEY_RELEASE = 0,
-		KEY_PRESSES = 1,
-		KEY_REPEAT = 2
-	};*/
 
 	class MEOW_API Window {
 	private:
+		using EventCallbackFn = std::function<void(Event&)>;
+		
 		GLFWwindow* m_Window;
 		const char* m_Title;
 
@@ -32,7 +27,7 @@ namespace Meow {
 		bool m_PressedKey[1024] = { false };
 		GamepadState gamepadState;
 
-		EventCallbackFn m_CallbackFunc;
+		EventCallbackFn eventCallback;
 	public:
 		Window(const char* title, int width, int height);
 		~Window();
@@ -43,7 +38,7 @@ namespace Meow {
 		inline double getMouseY() const { return m_MouseY; }
 		inline GLFWwindow* getWindow() const { return m_Window; }
 
-		inline int isJoystickPresent() const { return glfwJoystickPresent(GLFW_JOYSTICK_1); }
+		int isJoystickPresent() const;
 		inline GamepadState getGamepadState() const { return gamepadState; }
 
 		void update();
@@ -52,9 +47,13 @@ namespace Meow {
 		bool setVSyncEnable(bool b);
 		void setBackgrondColor(const Meow::Maths::vec4& color);
 
-		//inline void setEventCallback(const EventCallbackFn& callback) { m_CallbackFunc = callback; }
+		inline void setEventCallback(const EventCallbackFn& callback) { eventCallback = callback; }
 	private:
 		static void windowResizeCallback(GLFWwindow* window, int width, int height);
+		static void windowCloseCallback(GLFWwindow* window);
 		static void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods);
+		static void mouseCallback(GLFWwindow* window, int button, int action, int mods);
+		static void cursorPosCallback(GLFWwindow* window, double xPos, double yPos);
+		static void scrollCallback(GLFWwindow* window, double xOffset, double yOffset);
 	};
 }

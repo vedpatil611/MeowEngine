@@ -3,6 +3,10 @@
 
 #include <stdexcept>
 
+#include "Events/ApplicationEvent.h"
+#include "Events/KeyEvent.h"
+#include "Events/MouseEvent.h"
+
 namespace Meow {
 	Window::Window(const char* title, int width, int height)
 		:m_Title(title), m_Width(width), m_Height(height)
@@ -18,7 +22,12 @@ namespace Meow {
 		}
 		
 		glfwSetWindowSizeCallback(m_Window, &Meow::Window::windowResizeCallback);
+		glfwSetWindowCloseCallback(m_Window, &Meow::Window::windowCloseCallback);
 		glfwSetKeyCallback(m_Window, &Meow::Window::keyCallback);
+		glfwSetMouseButtonCallback(m_Window, &Meow::Window::mouseCallback);
+		glfwSetCursorPosCallback(m_Window, &Meow::Window::cursorPosCallback);
+		glfwSetScrollCallback(m_Window, &Meow::Window::scrollCallback);
+
 		glfwMakeContextCurrent(m_Window);
 
 		// 0 for vsync off
@@ -41,17 +50,19 @@ namespace Meow {
 		glfwTerminate();
 	}
 
+	int Window::isJoystickPresent() const
+	{
+		return glfwJoystickPresent(GLFW_JOYSTICK_1);
+	}
+
 	void Window::update()
 	{
 		glfwPollEvents();
 		if(isJoystickPresent())
 			glfwGetGamepadState(GLFW_JOYSTICK_1, &gamepadState);
 		glfwSwapBuffers(m_Window);
-		glfwGetWindowSize(m_Window, &m_Width, &m_Height);
-		glfwGetFramebufferSize(m_Window, &m_Width, &m_Height);
 		glfwGetCursorPos(m_Window, &m_MouseX, &m_MouseY);
 		GLCALL(glClear(GL_COLOR_BUFFER_BIT));
-
 	}
 
 	bool Window::closed() const
@@ -73,24 +84,91 @@ namespace Meow {
 	void Window::setBackgrondColor(const Meow::Maths::vec4& color)
 	{
 		GLCALL(glClearColor(color.r, color.g, color.b, color.a));
-		//GLCALL(glClear(GL_COLOR_BUFFER_BIT));
 	}
 
 	void Window::windowResizeCallback(GLFWwindow* window, int width, int height)
 	{
+		Window* currentWindow = reinterpret_cast<Window*>(glfwGetWindowUserPointer(window));
 		glViewport(0, 0, width, height);
+		currentWindow->m_Width = width;
+		currentWindow->m_Height = height;
+
+		WindowResizeEvent windowResizeEvent(width, height);
+		currentWindow->eventCallback(windowResizeEvent);
 	}
 	
 	void Window::keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods)
 	{
 		Window* currentWindow = reinterpret_cast<Window*>(glfwGetWindowUserPointer(window));
-		if (action == GLFW_PRESS)
+
+		switch (action)
 		{
-			currentWindow->m_PressedKey[key] = true;
+			case GLFW_PRESS:
+			{
+				currentWindow->m_PressedKey[key] = true;
+
+				KeyPressedEvent keyEvent(key, 0);
+				currentWindow->eventCallback(keyEvent);
+				break;
+			}
+			case GLFW_REPEAT:
+			{
+				KeyPressedEvent keyEvent(key, 1);
+				currentWindow->eventCallback(keyEvent);
+				break;
+			}
+			case GLFW_RELEASE:
+			{
+				currentWindow->m_PressedKey[key] = false;
+
+				KeyReleasedEvent keyEvent(key);
+				currentWindow->eventCallback(keyEvent);
+				break;
+			}
+			default:
+				break;
 		}
-		else if (action == GLFW_RELEASE)
+	}
+
+	void Window::mouseCallback(GLFWwindow* window, int button, int action, int mods)
+	{
+		Window* currentWindow = reinterpret_cast<Window*>(glfwGetWindowUserPointer(window));
+
+		switch (action)
 		{
-			currentWindow->m_PressedKey[key] = false;
+			case GLFW_PRESS:
+			{
+				MouseButtonPressedEvent event(button);
+				currentWindow->eventCallback(event);
+				break;
+			}
+			case GLFW_RELEASE:
+			{
+				MouseButtonReleasedEvent event(button);
+				currentWindow->eventCallback(event);
+				break;
+			}
+			default:
+				break;
 		}
+	}
+
+	void Window::cursorPosCallback(GLFWwindow* window, double xPos, double yPos)
+	{
+		Window* currentWindow = reinterpret_cast<Window*>(glfwGetWindowUserPointer(window));
+		MouseMovedEvent event(xPos, yPos);
+		currentWindow->eventCallback(event);
+	}
+
+	void Window::scrollCallback(GLFWwindow* window, double xOffset, double yOffset)
+	{
+	}
+	
+	void Window::windowCloseCallback(GLFWwindow* window)
+	{
+		Window* currentWindow = reinterpret_cast<Window*>(glfwGetWindowUserPointer(window));
+
+		WindowCloseEvent windowCloseEvent;
+		currentWindow->eventCallback(windowCloseEvent);
 	}
 }
