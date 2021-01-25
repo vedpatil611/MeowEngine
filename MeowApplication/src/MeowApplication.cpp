@@ -1,6 +1,8 @@
 #include "MeowPCH.h"
 #include "MeowApplication.h"
 
+#define BATCH_TEST
+
 #ifdef MEOW_PLATFORM_WINDOWS
 #include <Windows.h>
 #endif 
@@ -10,19 +12,20 @@
 #include <GLFW/glfw3.h>
 #include <math.h>
 #include <Meow/Maths/Maths.h>
-#include <Meow/Renderer/BatchRenderer2D.h>
-#include <Meow/Renderer/SimpleRenderer2D.h>
-#include <Meow/Renderer/Sprite.h>
-#include <Meow/Renderer/TileSprite.h>
 #include <Meow/Renderer/Shader.h>
 #include <Meow/Utils/File.h>
 #include <Meow/Utils/Timer.h>
 #include <Meow.h>
 
 #include <Meow/Renderer/Texture.h>
-#include <Meow/Renderer/TextureSprite2D.h>
 
-//#define BATCH_TEST
+#ifdef BATCH_TEST
+#include <Meow/Renderer/BatchRenderer2D.h>
+#include <Meow/Renderer/TileSprite.h>
+#else
+#include <Meow/Renderer/SimpleRenderer2D.h>
+#include <Meow/Renderer/Sprite.h>
+#endif // BATCH_TEST
 
 Meow::Application* Meow::CreateApplication()
 {
