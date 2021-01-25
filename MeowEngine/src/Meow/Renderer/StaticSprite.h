@@ -22,9 +22,5 @@ namespace Meow
 		inline const VertexArray* getVAO() const override { return m_VertexArray; }
 		inline const IndexBuffer* getIBO() const override { return m_IndexBuffer; }
 		inline Shader* getShader() const override { return m_Shader; }
-
-		//inline const Maths::vec3& getPositions() const { return m_Position; }
-		//inline const Maths::vec2& getSize() const { return m_Size; }
-		//inline const Maths::vec4& getColor() const  { return m_Color; }
 	};
 }

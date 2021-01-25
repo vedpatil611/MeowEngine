@@ -15,7 +15,9 @@ namespace Meow
 		SimpleRenderer2D();
 		~SimpleRenderer2D();
 
+		void begin();
 		void submit(const Renderable2D* renderable) override;
 		void flush() override;
+		void end();
 	};
 }

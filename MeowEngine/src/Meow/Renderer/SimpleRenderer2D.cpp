@@ -7,14 +7,22 @@ namespace Meow
     {
         m_RenderQueue = new std::deque<const Renderable2D*>();
     }
+
     SimpleRenderer2D::~SimpleRenderer2D()
     {
         delete m_RenderQueue;
     }
+
+    void SimpleRenderer2D::begin()
+    {
+        m_RenderQueue->clear();
+    }
+
     void SimpleRenderer2D::submit(const Renderable2D* renderable)
 	{
 		m_RenderQueue->push_back(renderable);
 	}
+
 	void SimpleRenderer2D::flush()
 	{
         while (!m_RenderQueue->empty())
@@ -31,4 +39,9 @@ namespace Meow
             m_RenderQueue->pop_front();
         }
 	}
+
+    void SimpleRenderer2D::end()
+    {
+        //m_RenderQueue->clear();
+    }
 }

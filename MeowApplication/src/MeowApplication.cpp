@@ -11,6 +11,7 @@
 #include <math.h>
 #include <Meow/Maths/Maths.h>
 #include <Meow/Renderer/BatchRenderer2D.h>
+#include <Meow/Renderer/SimpleRenderer2D.h>
 #include <Meow/Renderer/StaticSprite.h>
 #include <Meow/Renderer/Shader.h>
 #include <Meow/Utils/File.h>
@@ -45,11 +46,11 @@ void MeowApplication::Run()
 {
 	Application::Run();
 	
-	//Meow::Window window("Meow", 800, 800);
 	window->setVSyncEnable(false);
 	window->setBackgrondColor({ 0.0f, 0.0f, 0.0f, 1.0f });
 
 	Meow::BatchRenderer2D renderer;
+	//Meow::SimpleRenderer2D renderer;
 
 	//Meow::Shader shader("shaders/texture2d.vert.glsl", "shaders/texture2d.frag.glsl");
 	Meow::Shader shader("shaders/texture2d_defuse.vert.glsl", "shaders/texture2d_defuse.frag.glsl");
@@ -60,10 +61,6 @@ void MeowApplication::Run()
 	//auto proj = Meow::Maths::mat4::perspective(110, 1.0f, -10, 10);
 	Meow::Maths::mat4 model(1.0f);
 
-	//model = model.translation({ 5.0f, 0.0f, 0.0f });
-	//model.translate({ 5.0f, 0.0f, 0.0f });
-	//model = model.rotation(10.0f, { 1.0f, 0.0f, 0.0f });
-	//auto view = Meow::Maths::mat4::translation({ 10.0f, 0.0f, 0.0f });
 
 	shader.enable();
 	//view.translate({ 0.0f, 0.0f, 0.0f });
