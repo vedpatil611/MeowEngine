@@ -15,6 +15,13 @@ namespace Meow
 		Maths::vec2 UV;
 	};
 
+	struct Transformations2D
+	{
+		Maths::vec3 translation = { 0.0f, 0.0f, 0.0f };
+		Maths::vec2 scale = { 1.0f, 1.0f};
+		float rotation = 0.0f;
+	};
+
 	class MEOW_API Renderable2D
 	{
 	protected:

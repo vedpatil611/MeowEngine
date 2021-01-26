@@ -19,11 +19,12 @@ namespace Meow
 
 		inline unsigned int getTextureId() const { return m_TexID; }
 		inline unsigned int getSlot() const { return m_Slot; }
+		inline int getWidth() const { return m_Width; }
+		inline int getHeight() const { return m_Height; }
 
 		void setSlot(unsigned int slotNo);
 
-		void bind(unsigned int slot) const;
-		void bind() const;
+		void bind(unsigned int slot = 0) const;
 		void unbind() const;
 	};
 }

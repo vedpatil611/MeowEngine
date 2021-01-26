@@ -5,7 +5,7 @@ namespace Meow {
 	namespace Maths {
 		vec3::vec3() :x(0.0f), y(0.0f), z(0.0f) {}
 
-		vec3::vec3(const vec2& vec) : x(vec.x), y(vec.y), z(0) {}
+		vec3::vec3(const vec2& vec) : x(vec.x), y(vec.y), z(1.0f) {}
 
 		vec3::vec3(const vec2& vec, const float& z) : x(vec.x), y(vec.y), z(z) {}
 

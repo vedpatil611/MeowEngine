@@ -212,13 +212,13 @@ namespace Meow {
 			return result;
 		}
 
-		mat4 mat4::translate(const vec3& translation)
+		mat4& mat4::translate(const vec3& translation)
 		{
 			cols[3] = cols[0] * translation.x + cols[1] * translation.y + cols[2] * translation.z + cols[3];
 			return *this;
 		}
 
-		mat4 mat4::rotate(const float& angle, const vec3& axis)
+		mat4& mat4::rotate(const float& angle, const vec3& axis)
 		{
 			mat4 rotate = rotation(angle, axis);
 
@@ -227,22 +227,22 @@ namespace Meow {
 			return *this;
 		}
 
-		mat4 mat4::rotateX(const float& angle)
+		mat4& mat4::rotateX(const float& angle)
 		{
 			return rotate(angle, { 1.0f, 0.0f, 0.0f });
 		}
 
-		mat4 mat4::rotateY(const float& angle)
+		mat4& mat4::rotateY(const float& angle)
 		{
 			return rotate(angle, { 0.0f, 1.0f, 0.0f });
 		}
 
-		mat4 mat4::rotateZ(const float& angle)
+		mat4& mat4::rotateZ(const float& angle)
 		{
 			return rotate(angle, { 0.0f, 0.0f, 1.0f });
 		}
 
-		mat4 mat4::scale(const vec3& scale)
+		mat4& mat4::scale(const vec3& scale)
 		{
 			cols[0] *= scale.x;
 			cols[1] *= scale.y;

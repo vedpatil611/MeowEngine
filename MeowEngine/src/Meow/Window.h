@@ -46,6 +46,7 @@ namespace Meow {
 		void setCurrentContext() const;
 		bool setVSyncEnable(bool b);
 		void setBackgrondColor(const Meow::Maths::vec4& color);
+		double getWindowTimeNow();
 
 		inline void setEventCallback(const EventCallbackFn& callback) { eventCallback = callback; }
 	private:

@@ -36,8 +36,6 @@ namespace Meow {
 		if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
 			throw std::runtime_error("Failed to init glad");
 		
-		//GLCALL(glEnable(GL_TEXTURE_2D));
-		//GLCALL(glEnable(GL_DEPTH_TEST));
 		GLCALL(glEnable(GL_BLEND));
 		GLCALL(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));
 		GLCALL(glClearColor(0.0f, 0.0f, 0.0f, 0.0f));
@@ -84,6 +82,11 @@ namespace Meow {
 	void Window::setBackgrondColor(const Meow::Maths::vec4& color)
 	{
 		GLCALL(glClearColor(color.r, color.g, color.b, color.a));
+	}
+
+	double Window::getWindowTimeNow()
+	{
+		return glfwGetTime();
 	}
 
 	void Window::windowResizeCallback(GLFWwindow* window, int width, int height)

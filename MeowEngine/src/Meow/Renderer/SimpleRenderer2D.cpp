@@ -35,8 +35,12 @@ namespace Meow
 			vao->bind();
             ibo->bind();
             renderable->getShader()->enable();
+            renderable->updateUniforms();
+            renderable->getTexture()->bind();
 
             GLCALL(glDrawElements(GL_TRIANGLES, ibo->getCount(), GL_UNSIGNED_SHORT, nullptr));
+            
+            renderable->getTexture()->unbind();
             ibo->unbind();
             vao->unbind();
 

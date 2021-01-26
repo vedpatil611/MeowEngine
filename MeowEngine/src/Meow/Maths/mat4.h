@@ -68,12 +68,12 @@ namespace Meow
 			mat4 rotation(const float& angle, const vec3& axis);
 			mat4 scaling(const vec3& scale);
 
-			mat4 translate(const vec3& translation);
-			mat4 rotate(const float& angle, const vec3& axis);
-			mat4 rotateX(const float& angle);
-			mat4 rotateY(const float& angle);
-			mat4 rotateZ(const float& angle);
-			mat4 scale(const vec3& scale);
+			mat4& translate(const vec3& translation);
+			mat4& rotate(const float& angle, const vec3& axis);
+			mat4& rotateX(const float& angle);
+			mat4& rotateY(const float& angle);
+			mat4& rotateZ(const float& angle);
+			mat4& scale(const vec3& scale);
 		};
 	}
 }

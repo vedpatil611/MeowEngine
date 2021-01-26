@@ -72,12 +72,6 @@ namespace Meow
 		GLCALL(glBindTexture(GL_TEXTURE_2D, m_TexID));
 	}
 
-	void Texture::bind() const
-	{
-		GLCALL(glActiveTexture(GL_TEXTURE0 + m_Slot));
-		GLCALL(glBindTexture(GL_TEXTURE_2D, m_TexID));
-	}
-
 	void Texture::unbind() const
 	{
 		GLCALL(glBindTexture(GL_TEXTURE_2D, 0));

@@ -63,13 +63,9 @@ void MeowApplication::Run()
 
 	std::vector<Meow::Renderable2D*> sprites;
 
-	//Meow::Shader shader("shaders/texture2d.vert.glsl", "shaders/texture2d.frag.glsl");
-	Meow::Shader shader("shaders/texture2d_defuse.vert.glsl", "shaders/texture2d_defuse.frag.glsl");
-	//Meow::Shader shader("shaders/renderable2d.vert.glsl", "shaders/renderable2d.frag.glsl");
-	//Meow::Shader shader("shaders/mouse_lighting.vert.glsl", "shaders/mouse_lighting.frag.glsl");
+	Meow::Shader shader("shaders/texture2d.vert.glsl", "shaders/texture2d.frag.glsl");
 	
 	auto proj = Meow::Maths::mat4::orthographic(-50, 50, -50, 50, -10, 10);
-	//auto proj = Meow::Maths::mat4::perspective(110, 1.0f, -10, 10);
 	Meow::Maths::mat4 model(1.0f);
 
 
@@ -80,8 +76,6 @@ void MeowApplication::Run()
 	//shader.setUniformMat4f("u_view_mat", view);
 	//shader.setUniformMat4f("u_MVP", proj);
 
-	// Vector of square sprites for tile map
-	
 	srand(static_cast<unsigned int>(time(NULL)));
 	
 	Meow::Texture texture("assets/Circle.png");
@@ -97,17 +91,23 @@ void MeowApplication::Run()
 			sprites.emplace_back(new Meow::TileSprite(Meow::Maths::vec3(x, y, 0), Meow::Maths::vec2(0.9f, 0.9f),
 				Meow::Maths::vec4(0.0f, rand() % 10 / 10.0f, 0.0f, 1.0f), &shader));
 #else
-			sprites.emplace_back(new Meow::Sprite(Meow::Maths::vec3(x, y, 0), Meow::Maths::vec2(0.9f, 0.9f),
-				Meow::Maths::vec4(0.0f, rand() % 10 / 10.0f, 0.0f, 1.0f), &shader));
+			sprites.emplace_back(new Meow::Sprite(Meow::Maths::vec3(x + 0.5f, y + 0.5f, 0), Meow::Maths::vec2(0.9f, 0.9f),
+				Meow::Maths::vec4(0.0f, rand() % 10 / 10.0f, 0.0f, 1.0f), &shader, &texture));
 #endif 
 		}
 	}
 	
-	shader.enable();
 	Meow::Utils::Timer timer, t2;
+	
+	float lastTime = 0.0f;
+
 	t2.reset();
 	while (!window->closed())
 	{
+		float now = window->getWindowTimeNow();
+		float deltaTime = now - lastTime;
+		lastTime = now;
+
 		window->update();
 
 		timer.reset();
@@ -115,12 +115,12 @@ void MeowApplication::Run()
 		
 		for (unsigned int i = 0; i < sprites.size(); ++i)
 		{
+			#ifndef BATCH_TEST
+				((Meow::Sprite*)(sprites[i]))->addRotation(1.0f);
+			#endif // !BATCH_TEST
+
 			renderer.submit(sprites[i]);
 		}
-
-		model.rotateX(1.0f);
-		shader.setUniformMat4f("u_model_mat", model);
-		shader.setUniform2f("u_LightPos", Meow::Maths::vec2(static_cast<float>(window->getMouseX() / (window->getWidth() / 100) - 50), static_cast<float>(window->getMouseY() / (window->getHeight() / 100) - 50)));
 
 		renderer.end();
 		renderer.flush();
