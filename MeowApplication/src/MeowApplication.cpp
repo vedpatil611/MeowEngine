@@ -72,7 +72,7 @@ void MeowApplication::Run()
 	shader.enable();
 	//view.translate({ 0.0f, 0.0f, 0.0f });
 	shader.setUniformMat4f("u_proj_mat", proj);
-	shader.setUniformMat4f("u_model_mat", model);
+	//shader.setUniformMat4f("u_model_mat", model);
 	//shader.setUniformMat4f("u_view_mat", view);
 	//shader.setUniformMat4f("u_MVP", proj);
 
