@@ -9,11 +9,11 @@ uniform mat4 u_view_mat = mat4(1.0f);
 uniform mat4 u_model_mat = mat4(1.0f);
 
 out vec2 texCoords;
-out vec4 outColor;
+//out vec4 outColor;
 
 void main()
 {
 	gl_Position = u_proj_mat * u_view_mat * u_model_mat * position;
 	texCoords = texcoords;
-	outColor = color;
+	//outColor = color;
 }

@@ -1,7 +1,7 @@
 #include "MeowPCH.h"
 #include "MeowApplication.h"
 
-#define BATCH_TEST
+//#define BATCH_TEST
 
 #ifdef MEOW_PLATFORM_WINDOWS
 #include <Windows.h>
@@ -25,6 +25,7 @@
 #else
 #include <Meow/Renderer/SimpleRenderer2D.h>
 #include <Meow/Renderer/Sprite.h>
+#include <Meow/Renderer/AnimatedSprite.h>
 #endif // BATCH_TEST
 
 Meow::Application* Meow::CreateApplication()
@@ -52,7 +53,7 @@ void MeowApplication::Run()
 {
 	Application::Run();
 	
-	window->setVSyncEnable(false);
+	window->setVSyncEnable(true);
 	window->setBackgrondColor({ 0.0f, 0.0f, 0.0f, 1.0f });
 
 #ifdef BATCH_TEST
@@ -64,26 +65,27 @@ void MeowApplication::Run()
 	std::vector<Meow::Renderable2D*> sprites;
 
 	Meow::Shader shader("shaders/texture2d.vert.glsl", "shaders/texture2d.frag.glsl");
-	
+	Meow::Shader animatedSpriteShader("shaders/animated_sprites.vert.glsl", "shaders/animated_sprites.frag.glsl");
+
 	auto proj = Meow::Maths::mat4::orthographic(-50, 50, -50, 50, -10, 10);
 	Meow::Maths::mat4 model(1.0f);
 
-
 	shader.enable();
-	//view.translate({ 0.0f, 0.0f, 0.0f });
 	shader.setUniformMat4f("u_proj_mat", proj);
-	//shader.setUniformMat4f("u_model_mat", model);
+
+	animatedSpriteShader.enable();
+	animatedSpriteShader.setUniformMat4f("u_proj_mat", proj);
 	//shader.setUniformMat4f("u_view_mat", view);
-	//shader.setUniformMat4f("u_MVP", proj);
 
 	srand(static_cast<unsigned int>(time(NULL)));
 	
 	Meow::Texture texture("assets/Circle.png");
-	texture.bind();
-	shader.enable();
-	shader.setUniform1i("u_Texture", 0);
+	Meow::Texture animatedSprite("assets/Run.png");
+	//texture.bind();
+	//shader.enable();
+	//shader.setUniform1i("u_Texture", 0);
 
-	for (float y = -50; y < 50.0f; ++y)
+	/*for (float y = -50; y < 50.0f; ++y)
 	{
 		for (float x = -50; x < 50.0f; ++x)
 		{
@@ -95,7 +97,12 @@ void MeowApplication::Run()
 				Meow::Maths::vec4(0.0f, rand() % 10 / 10.0f, 0.0f, 1.0f), &shader, &texture));
 #endif 
 		}
-	}
+	}*/
+	
+	sprites.emplace_back(new Meow::AnimatedSprite(Meow::Maths::vec3(0.0f, 0.0f, 0.0f), Meow::Maths::vec2(40.0f, 40.0f), Meow::Maths::vec4(1.0f, 1.0f, 1.0f, 1.0f), &animatedSpriteShader,
+		&animatedSprite, 8, 1, 5));
+
+	//sprites.emplace_back(new Meow::Sprite(Meow::Maths::vec3(0.0f, 0.0f, 0.0f), Meow::Maths::vec2(40.0f, 40.0f), Meow::Maths::vec4(1.0f, 1.0f, 1.0f, 1.0f), &animatedSpriteShader, &animatedSprite));
 	
 	Meow::Utils::Timer timer, t2;
 	
@@ -108,27 +115,29 @@ void MeowApplication::Run()
 		float deltaTime = now - lastTime;
 		lastTime = now;
 
-		window->update();
 
 		timer.reset();
-		renderer.begin();
-		
-		for (unsigned int i = 0; i < sprites.size(); ++i)
-		{
-			#ifndef BATCH_TEST
-				((Meow::Sprite*)(sprites[i]))->addRotation(1.0f);
-			#endif // !BATCH_TEST
-
-			renderer.submit(sprites[i]);
-		}
-
-		renderer.end();
-		renderer.flush();
+	
 
 		if (t2.getElapsedTime() > 1000000)
 		{
+			window->update();
+			
 			t2.reset();
 			printf("%d\n", static_cast<int>(1000000 / timer.getElapsedTime()));
+			renderer.begin();
+
+			for (unsigned int i = 0; i < sprites.size(); ++i)
+			{
+#ifndef BATCH_TEST
+				//((Meow::Sprite*)(sprites[i]))->addRotation(1.0f);
+#endif // !BATCH_TEST
+
+				renderer.submit(sprites[i]);
+			}
+
+			renderer.end();
+			renderer.flush();
 		}
 	}
 }

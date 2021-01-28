@@ -26,7 +26,7 @@ namespace Meow
 			0.0f, 0.0f,
 			0.0f, 1.0f,
 			1.0f, 1.0f,
-			1.0f, 0.0f,
+			1.0f, 0.0f
 		};
 		m_VertexArray = new VertexArray();
 		m_VertexArray->addBuffer(new Buffer(vertices, 4 * 3, 3), 0);
@@ -77,5 +77,6 @@ namespace Meow
 		Maths::mat4 transforms(1.0f);
 		transforms.translate(m_TransformData.translation).scale(m_TransformData.scale).rotateZ(m_TransformData.rotation);
 		m_Shader->setUniformMat4f("u_model_mat", transforms);
+		m_Shader->setUniform1i("u_Texture", 0);
 	}
 }

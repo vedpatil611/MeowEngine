@@ -1,6 +1,6 @@
 #include <MeowPCH.h>
 #include "SimpleRenderer2D.h"
-#include "Sprite.h"
+#include "AnimatedSprite.h"
 
 namespace Meow
 {
@@ -28,23 +28,52 @@ namespace Meow
 	{
         while (!m_RenderQueue->empty())
         {
-            const Sprite* renderable = (Sprite*)m_RenderQueue->front();
-			auto* vao = renderable->getVAO();
-			auto* ibo = renderable->getIBO();
+            if (dynamic_cast<const AnimatedSprite*>(m_RenderQueue->front()) == nullptr)
+            {
+                const Sprite* renderable = (Sprite*)m_RenderQueue->front();
 
-			vao->bind();
-            ibo->bind();
-            renderable->getShader()->enable();
-            renderable->updateUniforms();
-            renderable->getTexture()->bind();
+                renderable->getShader()->enable();
+                renderable->getTexture()->bind();
 
-            GLCALL(glDrawElements(GL_TRIANGLES, ibo->getCount(), GL_UNSIGNED_SHORT, nullptr));
-            
-            renderable->getTexture()->unbind();
-            ibo->unbind();
-            vao->unbind();
+			    auto* vao = renderable->getVAO();
+			    auto* ibo = renderable->getIBO();
 
-            m_RenderQueue->pop_front();
+			    vao->bind();
+                ibo->bind();
+
+                renderable->updateUniforms();
+
+                GLCALL(glDrawElements(GL_TRIANGLES, ibo->getCount(), GL_UNSIGNED_SHORT, nullptr));
+                
+                renderable->getTexture()->unbind();
+                ibo->unbind();
+                vao->unbind();
+
+                m_RenderQueue->pop_front();
+            }
+            else
+            {
+                const AnimatedSprite* renderable = (AnimatedSprite*)m_RenderQueue->front();
+
+                renderable->getShader()->enable();
+                renderable->getTexture()->bind();
+
+                auto* vao = renderable->getVAO();
+                auto* ibo = renderable->getIBO();
+
+                vao->bind();
+                ibo->bind();
+
+                renderable->updateUniforms();
+
+                GLCALL(glDrawElements(GL_TRIANGLES, ibo->getCount(), GL_UNSIGNED_SHORT, nullptr));
+
+                renderable->getTexture()->unbind();
+                ibo->unbind();
+                vao->unbind();
+
+                m_RenderQueue->pop_front();
+            }
         }
 	}
 
