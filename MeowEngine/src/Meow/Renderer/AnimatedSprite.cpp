@@ -3,8 +3,8 @@
 
 namespace Meow
 {
-	AnimatedSprite::AnimatedSprite(const Maths::vec3& position, const Maths::vec2& size, const Maths::vec4 colour, Shader* shader, Texture* texture, int spriteCountX, int spriteCountY, float fps)
-		:Sprite(position, size, colour, shader, texture), m_fps(fps), m_SpriteCountX(spriteCountX), m_SpriteCountY(spriteCountY)
+	AnimatedSprite::AnimatedSprite(const Maths::vec3& position, const Maths::vec2& size, const Maths::vec4 colour, Shader* shader, Texture* texture, int spriteCountX, int spriteCountY, int startIndex, float fps)
+		:Sprite(position, size, colour, shader, texture), m_fps(fps), m_SpriteCountX(spriteCountX), m_SpriteCountY(spriteCountY), m_StartIndex(startIndex)
 	{
 		
 	}
@@ -13,15 +13,20 @@ namespace Meow
 	{
 	}
 
-	void AnimatedSprite::updateUniforms() const
+	void AnimatedSprite::updateUniforms(float delta)
 	{
-		Sprite::updateUniforms();
-		static int spriteIndex = 0;
+		Sprite::updateUniforms(delta);
 		int maxSpriteCount = m_SpriteCountX * m_SpriteCountY;
 		m_Shader->setUniform1i("spritesCountX", m_SpriteCountX);
 		m_Shader->setUniform1i("spritesCountY", m_SpriteCountY);
-		m_Shader->setUniform1i("currentIndex", spriteIndex);
+		m_Shader->setUniform1i("currentIndex", m_StartIndex);
 
-		spriteIndex = (spriteIndex + 1) % maxSpriteCount;
+		float updateTime = 1 / m_fps;
+		lastTime += delta;
+		if (lastTime > updateTime)
+		{
+			m_StartIndex = (m_StartIndex + 1) % maxSpriteCount;
+			lastTime = 0.0;
+		}
 	}
 }

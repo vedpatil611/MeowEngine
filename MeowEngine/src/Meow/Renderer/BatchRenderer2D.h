@@ -33,7 +33,7 @@ namespace Meow {
 		void begin();
 		void end();	
 		void submit(const Renderable2D* renderable) override;
-		void flush() override;
+		void flush(float delta) override;
 	private:
 		void init();
 	};

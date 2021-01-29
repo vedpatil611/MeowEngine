@@ -17,7 +17,7 @@ namespace Meow
 
 		void begin();
 		void submit(const Renderable2D* renderable) override;
-		void flush() override;
+		void flush(float delta) override;
 		void end();
 	};
 }

@@ -24,13 +24,13 @@ namespace Meow
 		m_RenderQueue->push_back(renderable);
 	}
 
-	void SimpleRenderer2D::flush()
+	void SimpleRenderer2D::flush(float delta)
 	{
         while (!m_RenderQueue->empty())
         {
             if (dynamic_cast<const AnimatedSprite*>(m_RenderQueue->front()) == nullptr)
             {
-                const Sprite* renderable = (Sprite*)m_RenderQueue->front();
+                Sprite* renderable = (Sprite*)m_RenderQueue->front();
 
                 renderable->getShader()->enable();
                 renderable->getTexture()->bind();
@@ -41,7 +41,7 @@ namespace Meow
 			    vao->bind();
                 ibo->bind();
 
-                renderable->updateUniforms();
+                renderable->updateUniforms(delta);
 
                 GLCALL(glDrawElements(GL_TRIANGLES, ibo->getCount(), GL_UNSIGNED_SHORT, nullptr));
                 
@@ -53,7 +53,7 @@ namespace Meow
             }
             else
             {
-                const AnimatedSprite* renderable = (AnimatedSprite*)m_RenderQueue->front();
+                AnimatedSprite* renderable = (AnimatedSprite*)m_RenderQueue->front();
 
                 renderable->getShader()->enable();
                 renderable->getTexture()->bind();
@@ -64,7 +64,7 @@ namespace Meow
                 vao->bind();
                 ibo->bind();
 
-                renderable->updateUniforms();
+                renderable->updateUniforms(delta);
 
                 GLCALL(glDrawElements(GL_TRIANGLES, ibo->getCount(), GL_UNSIGNED_SHORT, nullptr));
 

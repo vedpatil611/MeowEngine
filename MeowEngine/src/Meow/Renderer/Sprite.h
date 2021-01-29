@@ -37,6 +37,6 @@ namespace Meow
 		void setScaling(Maths::vec2 scale);
 		void setRotation(float rotate);
 
-		virtual void updateUniforms() const;
+		virtual void updateUniforms(float delta);
 	};
 }

@@ -15,12 +15,13 @@ namespace Meow
 	{
 	private:
 		float m_fps;
-		int m_SpriteCountX;
-		int m_SpriteCountY;
+		int m_SpriteCountX, m_SpriteCountY;
+		int m_StartIndex;
+		float lastTime = 0.0f;
 	public:
-		AnimatedSprite(const Maths::vec3& position, const Maths::vec2& size, const Maths::vec4 colour, Shader* shader, Texture* texture, int spriteCountX, int spriteCountY, float fps);
+		AnimatedSprite(const Maths::vec3& position, const Maths::vec2& size, const Maths::vec4 colour, Shader* shader, Texture* texture, int spriteCountX, int spriteCountY, int startIndex, float fps);
 		~AnimatedSprite() override;
 
-		void updateUniforms() const override;
+		void updateUniforms(float delta) override;
 	};
 }

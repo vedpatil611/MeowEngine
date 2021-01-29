@@ -100,7 +100,7 @@ void MeowApplication::Run()
 	}*/
 	
 	sprites.emplace_back(new Meow::AnimatedSprite(Meow::Maths::vec3(0.0f, 0.0f, 0.0f), Meow::Maths::vec2(40.0f, 40.0f), Meow::Maths::vec4(1.0f, 1.0f, 1.0f, 1.0f), &animatedSpriteShader,
-		&animatedSprite, 8, 1, 5));
+		&animatedSprite, 8, 1, 0, 10));
 
 	//sprites.emplace_back(new Meow::Sprite(Meow::Maths::vec3(0.0f, 0.0f, 0.0f), Meow::Maths::vec2(40.0f, 40.0f), Meow::Maths::vec4(1.0f, 1.0f, 1.0f, 1.0f), &animatedSpriteShader, &animatedSprite));
 	
@@ -114,30 +114,28 @@ void MeowApplication::Run()
 		float now = window->getWindowTimeNow();
 		float deltaTime = now - lastTime;
 		lastTime = now;
-
-
+		
+		window->update();
 		timer.reset();
-	
+
+		renderer.begin();
+
+		for (unsigned int i = 0; i < sprites.size(); ++i)
+		{
+#ifndef BATCH_TEST
+			//((Meow::Sprite*)(sprites[i]))->addRotation(1.0f);
+#endif // !BATCH_TEST
+
+			renderer.submit(sprites[i]);
+		}
+
+		renderer.end();
+		renderer.flush(deltaTime);
 
 		if (t2.getElapsedTime() > 1000000)
 		{
-			window->update();
-			
 			t2.reset();
 			printf("%d\n", static_cast<int>(1000000 / timer.getElapsedTime()));
-			renderer.begin();
-
-			for (unsigned int i = 0; i < sprites.size(); ++i)
-			{
-#ifndef BATCH_TEST
-				//((Meow::Sprite*)(sprites[i]))->addRotation(1.0f);
-#endif // !BATCH_TEST
-
-				renderer.submit(sprites[i]);
-			}
-
-			renderer.end();
-			renderer.flush();
 		}
 	}
 }

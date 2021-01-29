@@ -61,7 +61,7 @@ namespace Meow
 		//GLCALL(glBindBuffer(GL_ARRAY_BUFFER, 0));
 	}
 
-	void BatchRenderer2D::flush()
+	void BatchRenderer2D::flush(float delta)
 	{
 		GLCALL(glBindVertexArray(m_VAO));
 		m_IBO->bind();
