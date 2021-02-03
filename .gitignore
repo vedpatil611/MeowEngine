@@ -8,3 +8,5 @@ intermediate/
 *.vcxproj
 *.user
 *.filters
+
+Makefile

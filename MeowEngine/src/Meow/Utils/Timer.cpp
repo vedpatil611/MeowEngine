@@ -6,16 +6,16 @@ namespace Meow
 	namespace Utils
 	{
 		Timer::Timer()
-			: start(std::chrono::high_resolution_clock::now()) {}
+			: start(std::chrono::time_point_cast<std::chrono::microseconds>(std::chrono::system_clock::now())) {}
 
 		void Timer::reset()
 		{
-			start = std::chrono::high_resolution_clock::now();
+			start = std::chrono::time_point_cast<std::chrono::microseconds>(std::chrono::system_clock::now());
 		}
 		
 		long long Timer::getElapsedTime()
 		{
-			end = std::chrono::high_resolution_clock::now();
+			auto end = std::chrono::time_point_cast<std::chrono::microseconds>(std::chrono::system_clock::now());
 			return std::chrono::duration_cast<std::chrono::microseconds>(end - start).count();
 		}
 	}

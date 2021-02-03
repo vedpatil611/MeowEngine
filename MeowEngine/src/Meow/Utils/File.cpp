@@ -1,6 +1,7 @@
 #include "MeowPCH.h"
 #include "File.h"
 
+#include <cstring>
 #include <fstream>
 
 namespace Meow {

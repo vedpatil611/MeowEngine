@@ -3,7 +3,7 @@
 
 #include <glad/glad.h>
 #include <iostream>
-
+#include <stdexcept>
 #include "FreeImage/FreeImage.h"
 
 namespace Meow
@@ -20,13 +20,13 @@ namespace Meow
 			fif = FreeImage_GetFIFFromFilename(texPath);
 
 		if (fif == FIF_UNKNOWN)
-			throw std::exception("File type not supported");
+			throw std::runtime_error("File type not supported");
 
 		if (FreeImage_FIFSupportsReading(fif))
 			dib = FreeImage_Load(fif, texPath);
 
 		if (!dib)
-			throw std::exception("Failed to load textures");
+			throw std::runtime_error("Failed to load textures");
 
 		FreeImage_FlipVertical(dib);
 
@@ -35,7 +35,7 @@ namespace Meow
 		m_Height = FreeImage_GetHeight(dib);
 
 		if (bits == 0 || m_Width == 0 || m_Height == 0)
-			throw std::exception("Failed to load textures");
+			throw std::runtime_error("Failed to load textures");
 
 		GLCALL(glGenTextures(1, &m_TexID));
 		GLCALL(glBindTexture(GL_TEXTURE_2D, m_TexID));

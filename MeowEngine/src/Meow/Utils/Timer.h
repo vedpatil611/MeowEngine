@@ -10,7 +10,7 @@ namespace Meow
 		class MEOW_API Timer
 		{
 		private:
-			std::chrono::steady_clock::time_point start, end;
+			std::chrono::time_point<std::chrono::system_clock, std::chrono::microseconds> start, end;
 		public:
 			Timer();
 			~Timer() = default;
