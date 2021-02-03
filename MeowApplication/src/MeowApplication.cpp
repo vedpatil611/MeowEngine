@@ -53,7 +53,7 @@ void MeowApplication::Run()
 {
 	Application::Run();
 	
-	window->setVSyncEnable(true);
+	window->setVSyncEnable(false);
 	window->setBackgrondColor({ 0.0f, 0.0f, 0.0f, 1.0f });
 
 #ifdef BATCH_TEST
@@ -77,13 +77,10 @@ void MeowApplication::Run()
 	animatedSpriteShader.setUniformMat4f("u_proj_mat", proj);
 	//shader.setUniformMat4f("u_view_mat", view);
 
-	srand(static_cast<unsigned int>(time(NULL)));
-	
 	Meow::Texture texture("assets/Circle.png");
 	Meow::Texture animatedSprite("assets/Run.png");
-	//texture.bind();
-	//shader.enable();
-	//shader.setUniform1i("u_Texture", 0);
+	
+	//srand(static_cast<unsigned int>(time(NULL)));
 
 	/*for (float y = -50; y < 50.0f; ++y)
 	{
@@ -100,10 +97,8 @@ void MeowApplication::Run()
 	}*/
 	
 	sprites.emplace_back(new Meow::AnimatedSprite(Meow::Maths::vec3(0.0f, 0.0f, 0.0f), Meow::Maths::vec2(40.0f, 40.0f), Meow::Maths::vec4(1.0f, 1.0f, 1.0f, 1.0f), &animatedSpriteShader,
-		&animatedSprite, 8, 1, 0, 10));
+		&animatedSprite, 8, 1, 0, 32));
 
-	//sprites.emplace_back(new Meow::Sprite(Meow::Maths::vec3(0.0f, 0.0f, 0.0f), Meow::Maths::vec2(40.0f, 40.0f), Meow::Maths::vec4(1.0f, 1.0f, 1.0f, 1.0f), &animatedSpriteShader, &animatedSprite));
-	
 	Meow::Utils::Timer timer, t2;
 	
 	float lastTime = 0.0f;
@@ -125,7 +120,6 @@ void MeowApplication::Run()
 #ifndef BATCH_TEST
 			//((Meow::Sprite*)(sprites[i]))->addRotation(1.0f);
 #endif // !BATCH_TEST
-
 			renderer.submit(sprites[i]);
 		}
 

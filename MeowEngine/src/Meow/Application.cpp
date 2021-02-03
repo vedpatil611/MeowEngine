@@ -17,7 +17,7 @@ namespace Meow {
 
 	Application::~Application()
 	{
-		delete window;
+		DELETE(window);
 	}
 
 	void Application::Run()

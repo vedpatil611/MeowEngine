@@ -71,6 +71,7 @@ project "MeowEngine"
 	filter "system:windows"
 		cppdialect "C++17"
 		systemversion "latest"
+
 		defines {
 			"MEOW_PLATFORM_WINDOWS",
 			"_CRT_SECURE_NO_WARNINGS"
@@ -81,6 +82,15 @@ project "MeowEngine"
 		}
 
 	filter "system:linux"
+		pic "On"
+		staticruntime "On"
+		cppdialect "C++17"
+		systemversion "latest"
+		
+		links {
+			"dl",
+			"pthread"
+		}
 		defines {
 			"MEOW_PLATFORM_LINUX"
 		}

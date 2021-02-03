@@ -15,6 +15,18 @@ project "GLAD"
 		"src/glad.c"
 	}
 
+	filter "system:windows"
+		defines {
+			"_GLAD_WIN32"
+		}
+
+	filter "system:linux"
+		pic "On"
+		staticruntime "On"
+		defines {
+			"_GLAD_X11"
+		}
+
 	filter "configurations:Debug"
 		defines { "DEBUG" }
 		symbols "on"

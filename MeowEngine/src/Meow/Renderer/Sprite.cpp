@@ -38,8 +38,8 @@ namespace Meow
 	}
 	Sprite::~Sprite()
 	{
-		delete m_IndexBuffer;
-		delete m_VertexArray;
+		DELETE(m_IndexBuffer);
+		DELETE(m_VertexArray);
 	}
 
 	void Sprite::addTranslation(Maths::vec3 translation)
