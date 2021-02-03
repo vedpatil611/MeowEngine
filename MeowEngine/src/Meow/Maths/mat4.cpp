@@ -40,7 +40,7 @@ namespace Meow {
 			return *this;
 		}
 
-		mat4& mat4::mul(const mat4& matrix)
+		mat4 mat4::mul(const mat4& matrix)
 		{
 			mat4 result;
 			//float sum = 0;

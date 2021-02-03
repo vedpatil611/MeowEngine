@@ -28,7 +28,7 @@ namespace Meow
 			//Functions
 			mat4& add(const mat4& matrix);
 			mat4& sub(const mat4& matrix);
-			mat4& mul(const mat4& matrix);
+			mat4  mul(const mat4& matrix);
 			mat4& mul(const float& value);
 			mat4& div(const float& value);
 
