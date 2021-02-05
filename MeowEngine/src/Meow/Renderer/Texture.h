@@ -7,7 +7,7 @@ namespace Meow
 {
 	class MEOW_API Texture
 	{
-	private:
+	protected:
 		unsigned int m_TexID;
 		const char* m_TexPath;
 		int m_Width, m_Height, m_BPP;
@@ -15,7 +15,7 @@ namespace Meow
 		static inline unsigned int provideSlotNo = 0;
 	public:
 		Texture(const char* texPath);
-		~Texture();
+		virtual ~Texture();
 
 		inline unsigned int getTextureId() const { return m_TexID; }
 		inline unsigned int getSlot() const { return m_Slot; }
@@ -27,6 +27,4 @@ namespace Meow
 		void bind(unsigned int slot = 0) const;
 		void unbind() const;
 	};
-
-	typedef Texture SpriteSheet;
 }

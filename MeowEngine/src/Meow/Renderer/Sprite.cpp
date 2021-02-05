@@ -72,7 +72,7 @@ namespace Meow
 		m_TransformData.rotation = rotate;
 	}
 
-	void Sprite::updateUniforms(float delta)
+	void Sprite::updateUniforms(float delta) const
 	{
 		Maths::mat4 transforms(1.0f);
 		transforms.translate(m_TransformData.translation).scale(m_TransformData.scale).rotateZ(m_TransformData.rotation);

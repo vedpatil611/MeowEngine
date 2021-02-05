@@ -1,31 +1,36 @@
 #include "MeowPCH.h"
 #include "AnimatedSprite.h"
 
+#include "SpriteSheet.h"
+
 namespace Meow
 {
-	AnimatedSprite::AnimatedSprite(const Maths::vec3& position, const Maths::vec2& size, const Maths::vec4 colour, Shader* shader, Texture* texture, int spriteCountX, int spriteCountY, int startIndex, float fps)
-		:Sprite(position, size, colour, shader, texture), m_fps(fps), m_SpriteCountX(spriteCountX), m_SpriteCountY(spriteCountY), m_StartIndex(startIndex)
+	AnimatedSprite::AnimatedSprite(const Maths::vec3& position, const Maths::vec2& size, const Maths::vec4 colour, Shader* shader, Texture* texture)
+		:Sprite(position, size, colour, shader, texture)
 	{
-		
+		auto* tex = static_cast<SpriteSheet*>(m_Texture);
+		m_CurrentIndex = tex->getStartIndex();
 	}
 
 	AnimatedSprite::~AnimatedSprite()
 	{
 	}
 
-	void AnimatedSprite::updateUniforms(float delta)
+	void AnimatedSprite::updateUniforms(float delta) const
 	{
-		Sprite::updateUniforms(delta);
-		int maxSpriteCount = m_SpriteCountX * m_SpriteCountY;
-		m_Shader->setUniform1i("spritesCountX", m_SpriteCountX);
-		m_Shader->setUniform1i("spritesCountY", m_SpriteCountY);
-		m_Shader->setUniform1i("currentIndex", m_StartIndex);
+		auto* tex = static_cast<SpriteSheet*>(m_Texture);
 
-		float updateTime = 1 / m_fps;
+		Sprite::updateUniforms(delta);
+		int maxSpriteCount = tex->getSpriteCountX() * tex->getSpriteCountY();
+		m_Shader->setUniform1i("spritesCountX", tex->getSpriteCountX());
+		m_Shader->setUniform1i("spritesCountY", tex->getSpriteCountY());
+		m_Shader->setUniform1i("currentIndex", m_CurrentIndex);
+
+		float updateTime = 1 / tex->getFps();
 		lastTime += delta;
 		if (lastTime > updateTime)
 		{
-			m_StartIndex = (m_StartIndex + 1) % maxSpriteCount;
+			m_CurrentIndex = (m_CurrentIndex + 1) % maxSpriteCount;
 			lastTime = 0.0;
 		}
 	}

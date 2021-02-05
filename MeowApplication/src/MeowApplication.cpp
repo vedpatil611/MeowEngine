@@ -18,6 +18,7 @@
 #include <Meow.h>
 
 #include <Meow/Renderer/Texture.h>
+#include <Meow/Renderer/SpriteSheet.h>
 
 #ifdef BATCH_TEST
 #include <Meow/Renderer/BatchRenderer2D.h>
@@ -78,7 +79,7 @@ void MeowApplication::Run()
 	//shader.setUniformMat4f("u_view_mat", view);
 
 	Meow::Texture texture("assets/Circle.png");
-	Meow::Texture animatedSprite("assets/Run.png");
+	Meow::SpriteSheet animatedSprite("assets/Run.png", 8, 1, 0, 32);
 	
 	//srand(static_cast<unsigned int>(time(NULL)));
 
@@ -97,7 +98,7 @@ void MeowApplication::Run()
 	}*/
 	
 	sprites.emplace_back(new Meow::AnimatedSprite(Meow::Maths::vec3(0.0f, 0.0f, 0.0f), Meow::Maths::vec2(40.0f, 40.0f), Meow::Maths::vec4(1.0f, 1.0f, 1.0f, 1.0f), &animatedSpriteShader,
-		&animatedSprite, 8, 1, 0, 32));
+		&animatedSprite));
 
 	Meow::Utils::Timer timer, t2;
 	

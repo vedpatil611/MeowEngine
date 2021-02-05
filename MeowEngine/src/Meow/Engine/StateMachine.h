@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Meow/Core.h>
-#include <Meow/Renderer/Texture.h>
+#include <Meow/Renderer/SpriteSheet.h>
 #include <unordered_map>
 
 typedef bool(*StateChangeFn)();
@@ -11,7 +11,7 @@ namespace Meow
 	struct StateData
 	{
 		int state;
-		Meow::SpriteSheet* spriteSheet;
+		SpriteSheet* spriteSheet;
 		StateChangeFn fn;
 	};
 	

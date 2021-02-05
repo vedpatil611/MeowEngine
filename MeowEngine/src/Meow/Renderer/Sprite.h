@@ -21,7 +21,7 @@ namespace Meow
 		Transformations2D m_TransformData;
 	public:
 		Sprite(const Maths::vec3& position, const Maths::vec2& size, const Maths::vec4& colour, Shader* shader, Texture* texture);
-		~Sprite() override;
+		virtual ~Sprite();
 
 		inline VertexArray* getVAO() const override { return m_VertexArray; }
 		inline IndexBuffer* getIBO() const override { return m_IndexBuffer; }
@@ -37,6 +37,6 @@ namespace Meow
 		void setScaling(Maths::vec2 scale);
 		void setRotation(float rotate);
 
-		virtual void updateUniforms(float delta);
+		virtual void updateUniforms(float delta) const;
 	};
 }
