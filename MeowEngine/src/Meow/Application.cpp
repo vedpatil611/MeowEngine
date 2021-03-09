@@ -40,7 +40,7 @@ namespace Meow {
 	{
 		EventDispatcher dispatcher(event);
 		dispatcher.dispatch<KeyPressedEvent>(onkeypressed);
-		//dispatcher.dispatch<MouseMovedEvent>(onmousemoved);
+		dispatcher.dispatch<MouseMovedEvent>(onmousemoved);
 	}
 
 }

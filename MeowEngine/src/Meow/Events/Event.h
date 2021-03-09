@@ -36,6 +36,7 @@ namespace Meow
 
 	class MEOW_API Event
 	{
+		friend class EventDispatcher;
 	protected:
 		bool m_Handled = false;
 	public:
@@ -63,7 +64,7 @@ namespace Meow
 		{
 			if (m_Event.getEventType() == T::getStaticType())
 			{
-				//m_Event.m_Handled = func(*(T*)&m_Event);
+				m_Event.m_Handled = func(*(T*)&m_Event);
 				return true;
 			}
 			return false;
