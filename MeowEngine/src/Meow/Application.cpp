@@ -5,6 +5,7 @@
 
 #include "Events/KeyEvent.h"
 #include "Events/MouseEvent.h"
+#include "Events/ApplicationEvent.h"
 
 #define BIND_EVENT_FN(x) std::bind(x, this, std::placeholders::_1)
 
@@ -36,11 +37,18 @@ namespace Meow {
 		return true;
 	}
 
+	static bool onWindowResize(WindowResizeEvent& e)
+	{
+		printf("Window resize\n");
+		return true;
+	}
+
 	void Application::onEvent(Event& event)
 	{
 		EventDispatcher dispatcher(event);
 		dispatcher.dispatch<KeyPressedEvent>(onkeypressed);
 		dispatcher.dispatch<MouseMovedEvent>(onmousemoved);
+		dispatcher.dispatch<WindowResizeEvent>(onWindowResize);
 	}
 
 }

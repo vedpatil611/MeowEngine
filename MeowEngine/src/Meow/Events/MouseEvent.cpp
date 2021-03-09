@@ -44,4 +44,19 @@ namespace Meow
     {
         return EventType::MouseMoved;
     }
+
+    unsigned int MouseScrolledEvent::getEventCategoryFlags() const
+    {
+        return EventCategory::EventCategoryMouse | EventCategory::EventCategoryInput;
+    }
+
+    EventType MouseScrolledEvent::getStaticType()
+    {
+        return EventType::MouseScrolled;
+    }
+
+    EventType MouseScrolledEvent::getEventType() const
+    {
+        return EventType::MouseScrolled;
+    }
 }

@@ -52,4 +52,21 @@ namespace Meow
 		static EventType getStaticType();
 		EventType getEventType() const override;
 	};
+
+	class MEOW_API MouseScrolledEvent :public Event
+	{
+	private:
+		double m_MouseX, m_MouseY;
+	public:
+		MouseScrolledEvent(double x, double y) :
+			m_MouseX(x), m_MouseY(y) {}
+
+		inline float getX() const { return static_cast<float>(m_MouseX); }
+		inline float getY() const { return static_cast<float>(m_MouseY); }
+
+		unsigned int getEventCategoryFlags() const override;
+
+		static EventType getStaticType();
+		EventType getEventType() const override;
+	};
 }

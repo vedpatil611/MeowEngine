@@ -165,6 +165,10 @@ namespace Meow {
 
 	void Window::scrollCallback(GLFWwindow* window, double xOffset, double yOffset)
 	{
+		Window* currentWindow = reinterpret_cast<Window*>(glfwGetWindowUserPointer(window));
+
+		MouseScrolledEvent event(xOffset, yOffset);
+		currentWindow->eventCallback(event);
 	}
 	
 	void Window::windowCloseCallback(GLFWwindow* window)
