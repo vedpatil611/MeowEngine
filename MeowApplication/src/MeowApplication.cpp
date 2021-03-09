@@ -1,7 +1,7 @@
 #include "MeowPCH.h"
 #include "MeowApplication.h"
 
-//#define BATCH_TEST
+#define BATCH_TEST
 
 #ifdef MEOW_PLATFORM_WINDOWS
 #include <Windows.h>
@@ -74,16 +74,16 @@ void MeowApplication::Run()
 	shader.enable();
 	shader.setUniformMat4f("u_proj_mat", proj);
 
-	animatedSpriteShader.enable();
-	animatedSpriteShader.setUniformMat4f("u_proj_mat", proj);
+	//animatedSpriteShader.enable();
+	//animatedSpriteShader.setUniformMat4f("u_proj_mat", proj);
 	//shader.setUniformMat4f("u_view_mat", view);
 
 	Meow::Texture texture("assets/Circle.png");
-	Meow::SpriteSheet animatedSprite("assets/Run.png", 8, 1, 0, 32);
+	//Meow::SpriteSheet animatedSprite("assets/Run.png", 8, 1, 0, 32);
 	
-	//srand(static_cast<unsigned int>(time(NULL)));
+	srand(static_cast<unsigned int>(time(NULL)));
 
-	/*for (float y = -50; y < 50.0f; ++y)
+	for (float y = -50; y < 50.0f; ++y)
 	{
 		for (float x = -50; x < 50.0f; ++x)
 		{
@@ -95,10 +95,10 @@ void MeowApplication::Run()
 				Meow::Maths::vec4(0.0f, rand() % 10 / 10.0f, 0.0f, 1.0f), &shader, &texture));
 #endif 
 		}
-	}*/
+	}
 	
-	sprites.emplace_back(new Meow::AnimatedSprite(Meow::Maths::vec3(0.0f, 0.0f, 0.0f), Meow::Maths::vec2(40.0f, 40.0f), Meow::Maths::vec4(1.0f, 1.0f, 1.0f, 1.0f), &animatedSpriteShader,
-		&animatedSprite));
+	//sprites.emplace_back(new Meow::AnimatedSprite(Meow::Maths::vec3(0.0f, 0.0f, 0.0f), Meow::Maths::vec2(40.0f, 40.0f), Meow::Maths::vec4(1.0f, 1.0f, 1.0f, 1.0f), &animatedSpriteShader,
+		//&animatedSprite));
 
 	Meow::Utils::Timer timer, t2;
 	
@@ -107,7 +107,7 @@ void MeowApplication::Run()
 	t2.reset();
 	while (!window->closed())
 	{
-		float now = window->getWindowTimeNow();
+		float now = static_cast<float>(window->getWindowTimeNow());
 		float deltaTime = now - lastTime;
 		lastTime = now;
 		
@@ -119,10 +119,12 @@ void MeowApplication::Run()
 		for (unsigned int i = 0; i < sprites.size(); ++i)
 		{
 #ifndef BATCH_TEST
-			//((Meow::Sprite*)(sprites[i]))->addRotation(1.0f);
+			((Meow::Sprite*)(sprites[i]))->addRotation(1.0f);
 #endif // !BATCH_TEST
 			renderer.submit(sprites[i]);
 		}
+
+		texture.bind();
 
 		renderer.end();
 		renderer.flush(deltaTime);

@@ -71,7 +71,7 @@ project "MeowEngine"
 	filter "system:windows"
 		cppdialect "C++17"
 		systemversion "latest"
-
+		
 		defines {
 			"MEOW_PLATFORM_WINDOWS",
 			"_CRT_SECURE_NO_WARNINGS"

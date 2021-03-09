@@ -34,7 +34,7 @@
 
 #define BIT(x) (1 << x)
 
-#define DELETE(x) delete x; x = nullptr;
+#define SAFE_DELETE(x) delete x; x = nullptr;
 
 void GlClearError();
 bool GlLogCall(const char* functionName, const char* file, const int& line);

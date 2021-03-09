@@ -44,8 +44,8 @@ namespace Meow
 		MouseMovedEvent(double x, double y) :
 			m_MouseX(x), m_MouseY(y) {}
 
-		inline float getX() const { return m_MouseX; }
-		inline float getY() const { return m_MouseY; }
+		inline float getX() const { return static_cast<float>(m_MouseX); }
+		inline float getY() const { return static_cast<float>(m_MouseY); }
 
 		unsigned int getEventCategoryFlags() const override;
 
