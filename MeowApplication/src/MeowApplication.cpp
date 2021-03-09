@@ -19,6 +19,7 @@
 
 #include <Meow/Renderer/Texture.h>
 #include <Meow/Renderer/SpriteSheet.h>
+#include <Meow/Renderer/Layer.h>
 
 #ifdef BATCH_TEST
 #include <Meow/Renderer/BatchRenderer2D.h>
@@ -113,6 +114,9 @@ void MeowApplication::Run()
 		
 		window->update();
 		timer.reset();
+
+		for (auto* layer : m_LayerStack)
+			layer->onUpdate();
 
 		renderer.begin();
 

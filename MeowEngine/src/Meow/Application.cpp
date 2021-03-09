@@ -49,6 +49,11 @@ namespace Meow {
 		dispatcher.dispatch<KeyPressedEvent>(onkeypressed);
 		dispatcher.dispatch<MouseMovedEvent>(onmousemoved);
 		dispatcher.dispatch<WindowResizeEvent>(onWindowResize);
-	}
 
+		for (auto it = m_LayerStack.rbegin(); it != m_LayerStack.rend(); )
+		{
+			(*it++)->onEvent(event);
+			//if (event.handeled) break;
+		}
+	}
 }

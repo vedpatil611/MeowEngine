@@ -2,12 +2,14 @@
 
 #include "Window.h"
 #include "Events/Event.h"
+#include "Renderer/LayerStack.h"
 
 namespace Meow {
 	class MEOW_API Application
 	{
 	protected:
 		Window* window;
+		LayerStack m_LayerStack;
 	public:
 		Application();
 		~Application();

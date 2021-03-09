@@ -3,5 +3,16 @@
 
 namespace Meow 
 {
-
+	void Layer::onAttach()
+	{
+	}
+	void Layer::onDettach()
+	{
+	}
+	void Layer::onUpdate()
+	{
+	}
+	void Layer::onEvent(Event& e)
+	{
+	}
 }
