@@ -5,11 +5,6 @@ project "ImGui"
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("intermediate/" .. outputdir .. "/%{prj.name}")
 
-	includedirs {
-		"../../%{IncludeDirs.GLFW}",
-		"../../%{IncludeDirs.GLAD}"
-	}
-
 	files {
 		"src/**.h",
 		"src/**.cpp"

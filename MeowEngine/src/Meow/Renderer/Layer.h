@@ -11,9 +11,9 @@ namespace Meow
 		Layer() = default;
 		~Layer() = default;
 
-		void onAttach();
-		void onDettach();
-		void onUpdate();
-		void onEvent(Event& e);
+		virtual void onAttach();
+		virtual void onUpdate();
+		virtual void onDettach();
+		virtual void onEvent(Event& e);
 	};
 }

@@ -53,7 +53,7 @@ namespace Meow {
 		for (auto it = m_LayerStack.rbegin(); it != m_LayerStack.rend(); )
 		{
 			(*it++)->onEvent(event);
-			//if (event.handeled) break;
+			if (event.handled) break;
 		}
 	}
 }
