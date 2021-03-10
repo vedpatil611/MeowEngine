@@ -10,3 +10,5 @@ intermediate/
 *.filters
 
 Makefile
+
+imgui.ini

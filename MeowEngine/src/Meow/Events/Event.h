@@ -15,13 +15,14 @@ namespace Meow
 		WindowFocusLost = BIT(5),
 		KeyPressed = BIT(6),
 		KeyReleased = BIT(7),
-		MouseButtonClicked = BIT(8),
-		MouseButtonReleased = BIT(9),
-		MouseMoved = BIT(10),
-		MouseScrolled = BIT(11),
-		AppTick = BIT(12),
-		AppUpdate = BIT(13),
-		AppRender = BIT(14)
+		KeyTyped = BIT(8),
+		MouseButtonClicked = BIT(9),
+		MouseButtonReleased = BIT(10),
+		MouseMoved = BIT(11),
+		MouseScrolled = BIT(12),
+		AppTick = BIT(13),
+		AppUpdate = BIT(14),
+		AppRender = BIT(15)
 	};
 
 	enum EventCategory: unsigned int

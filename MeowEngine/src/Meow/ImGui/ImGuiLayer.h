@@ -2,6 +2,9 @@
 
 #include "Meow/Core.h"
 #include "Meow/Renderer/Layer.h"
+#include "Meow/Events/ApplicationEvent.h"
+#include "Meow/Events/KeyEvent.h"
+#include "Meow/Events/MouseEvent.h"
 
 namespace Meow
 {
@@ -17,5 +20,14 @@ namespace Meow
 		void onUpdate() override;
 		void onDettach() override;
 		void onEvent(Event& e) override;
+	private:
+		bool windowResizeCallback(WindowResizeEvent& e);
+		bool mouseButtonPressedCallback(MouseButtonPressedEvent& e);
+		bool mouseButtonReleasedCallback(MouseButtonReleasedEvent& e);
+		bool mouseMovedCallback(MouseMovedEvent& e);
+		bool mouseScrollCallback(MouseScrolledEvent& e);
+		bool keyPressedCallback(KeyPressedEvent& e);
+		bool keyReleasedCallback(KeyReleasedEvent& e);
+		bool keyTypedCallback(KeyTypedEvent& e);
 	};
 }

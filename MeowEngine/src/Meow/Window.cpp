@@ -24,7 +24,8 @@ namespace Meow {
 		glfwSetWindowSizeCallback(m_Window, &Meow::Window::windowResizeCallback);
 		glfwSetWindowCloseCallback(m_Window, &Meow::Window::windowCloseCallback);
 		glfwSetKeyCallback(m_Window, &Meow::Window::keyCallback);
-		glfwSetMouseButtonCallback(m_Window, &Meow::Window::mouseCallback);
+		glfwSetCharCallback(m_Window, &Meow::Window::charCallback);
+		glfwSetMouseButtonCallback(m_Window, &Meow::Window::mouseButtonCallback);
 		glfwSetCursorPosCallback(m_Window, &Meow::Window::cursorPosCallback);
 		glfwSetScrollCallback(m_Window, &Meow::Window::scrollCallback);
 
@@ -133,7 +134,7 @@ namespace Meow {
 		}
 	}
 
-	void Window::mouseCallback(GLFWwindow* window, int button, int action, int mods)
+	void Window::mouseButtonCallback(GLFWwindow* window, int button, int action, int mods)
 	{
 		Window* currentWindow = reinterpret_cast<Window*>(glfwGetWindowUserPointer(window));
 
@@ -168,6 +169,14 @@ namespace Meow {
 		Window* currentWindow = reinterpret_cast<Window*>(glfwGetWindowUserPointer(window));
 
 		MouseScrolledEvent event(xOffset, yOffset);
+		currentWindow->eventCallback(event);
+	}
+
+	void Window::charCallback(GLFWwindow* window, unsigned int code)
+	{
+		Window* currentWindow = reinterpret_cast<Window*>(glfwGetWindowUserPointer(window));
+
+		KeyTypedEvent event(code);
 		currentWindow->eventCallback(event);
 	}
 	

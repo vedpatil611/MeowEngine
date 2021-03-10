@@ -12,6 +12,7 @@ namespace Meow
 			:m_KeyCode(keycode) {}
 
 	public:
+		inline int getKeyCode() const { return m_KeyCode; }
 		virtual unsigned int getEventCategoryFlags() const override;
 	};
 
@@ -34,6 +35,20 @@ namespace Meow
 	public:
 		KeyReleasedEvent(int keycode)
 			:KeyEvent(keycode) {}
+
+		static EventType getStaticType();
+		EventType getEventType() const override;
+	};
+
+	class MEOW_API KeyTypedEvent : public KeyEvent
+	{
+	private:
+		unsigned int m_RepeatCount;
+	public:
+		KeyTypedEvent(int keycode)
+			:KeyEvent(keycode) {}
+
+		inline unsigned int getRepeatCount() const { return m_RepeatCount; }
 
 		static EventType getStaticType();
 		EventType getEventType() const override;

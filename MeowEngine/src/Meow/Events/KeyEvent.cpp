@@ -28,4 +28,14 @@ namespace Meow
     {
         return EventType::KeyReleased;
     }
+
+    EventType KeyTypedEvent::getStaticType()
+    {
+        return EventType::KeyTyped;
+    }
+
+    EventType KeyTypedEvent::getEventType() const
+    {
+        return EventType::KeyTyped;
+    }
 }
