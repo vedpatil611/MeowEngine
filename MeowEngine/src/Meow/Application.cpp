@@ -59,4 +59,10 @@ namespace Meow {
 			if (event.handled) break;
 		}
 	}
+
+	void Application::pushLayer(Layer* layer)
+	{
+		m_LayerStack.pushLayer(layer);
+		layer->onAttach();
+	}
 }

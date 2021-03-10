@@ -19,6 +19,7 @@ namespace Meow {
 		virtual void Run();
 
 		void onEvent(Event& event);
+		void pushLayer(Layer* layer);
 
 		static inline Application& getApplication() { return *s_Instance; }
 		inline Window* getWindow() { return window; }

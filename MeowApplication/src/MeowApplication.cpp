@@ -12,15 +12,10 @@
 #include <GLFW/glfw3.h>
 #include <math.h>
 #include <Meow/Maths/Maths.h>
-#include <Meow/Renderer/Shader.h>
-#include <Meow/Utils/File.h>
 #include <Meow/Utils/Timer.h>
 #include <Meow.h>
 
-#include <Meow/Renderer/Texture.h>
-#include <Meow/Renderer/SpriteSheet.h>
 #include <Meow/Renderer/Layer.h>
-#include <Meow/Renderer/LayerStack.h>
 #include <Meow/ImGui/ImGuiLayer.h>
 
 Meow::Application* Meow::CreateApplication()
@@ -51,13 +46,8 @@ void MeowApplication::Run()
 	window->setVSyncEnable(false);
 	window->setBackgrondColor({ 0.0f, 0.0f, 0.0f, 1.0f });
 
-	auto* l1 = new Meow::Layer();
-	m_LayerStack.pushLayer(l1);
-	l1->onAttach();
-
-	auto* l2 = new Meow::ImGuiLayer();
-	m_LayerStack.pushLayer(l2);
-	l2->onAttach();
+	pushLayer(new Meow::Layer());
+	pushLayer(new Meow::ImGuiLayer());
 
 	Meow::Utils::Timer timer, t2;
 	
