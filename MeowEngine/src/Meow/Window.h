@@ -6,7 +6,10 @@
 
 #include <functional>
 
+#ifndef __glad_h_
 #include <glad/glad.h>
+#endif
+
 #include <GLFW/glfw3.h>
 
 #include "Events/Event.h"

@@ -7,6 +7,8 @@ namespace Meow
 {
 	class MEOW_API ImGuiLayer : public Layer
 	{
+	private:
+		float m_Time = 0;
 	public:
 		ImGuiLayer();
 		~ImGuiLayer();

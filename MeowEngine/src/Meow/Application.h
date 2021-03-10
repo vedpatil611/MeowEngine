@@ -10,6 +10,8 @@ namespace Meow {
 	protected:
 		Window* window;
 		LayerStack m_LayerStack;
+
+		inline static Application* s_Instance = nullptr;
 	public:
 		Application();
 		~Application();
@@ -18,6 +20,7 @@ namespace Meow {
 
 		void onEvent(Event& event);
 
+		static inline Application& getApplication() { return *s_Instance; }
 		inline Window* getWindow() { return window; }
 	};
 

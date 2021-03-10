@@ -12,6 +12,9 @@
 namespace Meow {
 	Application::Application()
 	{
+		ASSERT(!s_Instance, "Application is already running");
+		s_Instance = this;
+
 		window = new Window("Meow", 800, 800);
 		window->setEventCallback(BIND_EVENT_FN(&Application::onEvent));
 	}
