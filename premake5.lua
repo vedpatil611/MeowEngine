@@ -12,11 +12,13 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 include "Dependencies/GLFW"
 include "Dependencies/GLAD"
+include "Dependencies/ImGui"
 
 IncludeDirs = {}
 IncludeDirs["GLFW"] = "Dependencies/GLFW/include"
 IncludeDirs["GLAD"] = "Dependencies/GLAD/include"
 IncludeDirs["FreeImage"] = "Dependencies/FreeImage/include"
+IncludeDirs["ImGui"] = "Dependencies/Imgui/src"
 
 project "MeowEngine"
 	location "MeowEngine"
@@ -40,7 +42,8 @@ project "MeowEngine"
 		"%{prj.name}/src/",
 		"%{IncludeDirs.GLFW}",
 		"%{IncludeDirs.GLAD}",
-		"%{IncludeDirs.FreeImage}"
+		"%{IncludeDirs.FreeImage}",
+		"%{IncludeDirs.ImGui}"
 	}
 
 	libdirs {
@@ -50,7 +53,8 @@ project "MeowEngine"
 	links {
 		"GLFW",
 		"GLAD",
-		"FreeImage"
+		"FreeImage",
+		"ImGui"
 	}
 
 	files { 
@@ -120,7 +124,8 @@ project "MeowApplication"
 		"MeowEngine/src",
 		"%{IncludeDirs.GLFW}",
 		"%{IncludeDirs.GLAD}",
-		"%{IncludeDirs.FreeImage}"
+		"%{IncludeDirs.FreeImage}",
+		"%{IncludeDirs.ImGui}"
 	}
 	
 	libdirs {
