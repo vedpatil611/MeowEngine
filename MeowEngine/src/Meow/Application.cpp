@@ -34,19 +34,16 @@ namespace Meow {
 
 	static bool onkeypressed(KeyPressedEvent& e)
 	{
-		printf("key pressed\n");
 		return true;
 	}
 
 	static bool onmousemoved(MouseMovedEvent& e)
 	{
-		printf("mouse moved\n");
 		return true;
 	}
 
 	static bool onWindowResize(WindowResizeEvent& e)
 	{
-		printf("Window resize\n");
 		return true;
 	}
 
