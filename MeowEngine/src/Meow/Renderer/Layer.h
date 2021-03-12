@@ -15,5 +15,9 @@ namespace Meow
 		virtual void onUpdate();
 		virtual void onDettach();
 		virtual void onEvent(Event& e);
+
+		virtual void begin();
+		virtual void onRender();
+		virtual void end();
 	};
 }

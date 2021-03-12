@@ -6,6 +6,7 @@
 #include "Events/KeyEvent.h"
 #include "Events/MouseEvent.h"
 #include "Events/ApplicationEvent.h"
+#include "ImGui/ExampleLayer.h"
 
 #define BIND_EVENT_FN(x) std::bind(x, this, std::placeholders::_1)
 
@@ -17,6 +18,8 @@ namespace Meow {
 
 		window = new Window("Meow", 800, 800);
 		window->setEventCallback(BIND_EVENT_FN(&Application::onEvent));
+
+		m_ImGuiLayer = new ExampleLayer();
 	}
 
 	Application::~Application()
@@ -26,6 +29,7 @@ namespace Meow {
 
 	void Application::Run()
 	{
+
 	}
 
 	static bool onkeypressed(KeyPressedEvent& e)

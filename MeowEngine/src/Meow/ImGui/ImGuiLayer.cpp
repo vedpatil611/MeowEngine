@@ -4,7 +4,11 @@
 #include "glad/glad.h"
 #include "GLFW/glfw3.h"
 #include "Meow/Application.h"
+
+#define IMGUI_IMPL_OPENGL_LOADER_GLAD
+#include "imgui.h"
 #include "Meow/ImGui/openGL/imgui_impl_opengl3.h"
+#include "Meow/ImGui/openGL/imgui_impl_glfw.h"
 
 #define BIND_EVENT_FN(fn) std::bind(&fn, this, std::placeholders::_1)
 
@@ -18,11 +22,29 @@ namespace Meow {
 	
 	void ImGuiLayer::onAttach()
 	{
+		IMGUI_CHECKVERSION();
 		ImGui::CreateContext();
+		ImGuiIO& io = ImGui::GetIO(); (void)io;
+		io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;       // Enable Keyboard Controls
+		//io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;      // Enable Gamepad Controls
+		io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;           // Enable Docking
+		io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;         // Enable Multi-Viewport / Platform Windows
+		//io.ConfigViewportsNoAutoMerge = true;
+		//io.ConfigViewportsNoTaskBarIcon = true;
+
 		ImGui::StyleColorsDark();
 
-		ImGuiIO& io = ImGui::GetIO();
-		io.BackendFlags |= ImGuiBackendFlags_HasMouseCursors;
+		ImGuiStyle& style = ImGui::GetStyle();
+		if (io.ConfigFlags & ImGuiConfigFlags_ViewportsEnable)
+		{
+			style.WindowRounding = 0.0f;
+			style.Colors[ImGuiCol_WindowBg].w = 1.0f;
+		}
+
+		auto* window = Application::getApplication().getWindow();
+		ImGui_ImplGlfw_InitForOpenGL(window->getWindow(), true);
+
+		/*io.BackendFlags |= ImGuiBackendFlags_HasMouseCursors;
 		io.BackendFlags |= ImGuiBackendFlags_HasSetMousePos;
 
 		io.BackendPlatformName = "imgui_impl_glfw";
@@ -48,50 +70,82 @@ namespace Meow {
 		io.KeyMap[ImGuiKey_V] = GLFW_KEY_V;
 		io.KeyMap[ImGuiKey_X] = GLFW_KEY_X;
 		io.KeyMap[ImGuiKey_Y] = GLFW_KEY_Y;
-		io.KeyMap[ImGuiKey_Z] = GLFW_KEY_Z;
+		io.KeyMap[ImGuiKey_Z] = GLFW_KEY_Z;*/
 
 		ImGui_ImplOpenGL3_Init("#version 450");
 	}
 	
 	void ImGuiLayer::onUpdate()
 	{
+		//auto* window = Application::getApplication().getWindow();
+		//ImGuiIO& io = ImGui::GetIO();
+		//io.DisplaySize = ImVec2(window->getWidth(), window->getHeight());
 
-		auto* window = Application::getApplication().getWindow();
-		ImGuiIO& io = ImGui::GetIO();
-		io.DisplaySize = ImVec2(window->getWidth(), window->getHeight());
+		//ImGui_ImplOpenGL3_NewFrame();
+		//ImGui::NewFrame();
 
-		ImGui_ImplOpenGL3_NewFrame();
-		ImGui::NewFrame();
+		//float time = static_cast<float>(glfwGetTime());
+		//io.DeltaTime = m_Time > 0.0 ? (time - m_Time) : (1.0 / 60.0);
+		//m_Time = time;
 
-		float time = static_cast<float>(glfwGetTime());
-		io.DeltaTime = m_Time > 0.0 ? (time - m_Time) : (1.0 / 60.0);
-		m_Time = time;
+		//static bool showDemo = true;
+		//ImGui::ShowDemoWindow(&showDemo);
 
-		static bool showDemo = true;
-		ImGui::ShowDemoWindow(&showDemo);
-
-		ImGui::Render();
-		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
-
+		//ImGui::Render();
+		//ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 	}
 	
 	void ImGuiLayer::onDettach()
 	{
+		ImGui_ImplOpenGL3_Shutdown();
+		ImGui_ImplGlfw_Shutdown();
+		ImGui::DestroyContext();
 	}
 	
 	void ImGuiLayer::onEvent(Event& e)
 	{
-		EventDispatcher dispatcher(e);
+	/*	EventDispatcher dispatcher(e);
 		dispatcher.dispatch<MouseButtonPressedEvent>(BIND_EVENT_FN(ImGuiLayer::mouseButtonPressedCallback));
 		dispatcher.dispatch<MouseButtonReleasedEvent>(BIND_EVENT_FN(ImGuiLayer::mouseButtonReleasedCallback));
 		dispatcher.dispatch<MouseMovedEvent>(BIND_EVENT_FN(ImGuiLayer::mouseMovedCallback));
 		dispatcher.dispatch<MouseScrolledEvent>(BIND_EVENT_FN(ImGuiLayer::mouseScrollCallback));
 		dispatcher.dispatch<KeyPressedEvent>(BIND_EVENT_FN(ImGuiLayer::keyPressedCallback));
 		dispatcher.dispatch<KeyReleasedEvent>(BIND_EVENT_FN(ImGuiLayer::keyReleasedCallback));
-		dispatcher.dispatch<KeyTypedEvent>(BIND_EVENT_FN(ImGuiLayer::keyTypedCallback));
+		dispatcher.dispatch<KeyTypedEvent>(BIND_EVENT_FN(ImGuiLayer::keyTypedCallback));*/
 	}
 
-	bool ImGuiLayer::windowResizeCallback(WindowResizeEvent& e)
+	void ImGuiLayer::begin()
+	{
+		ImGui_ImplOpenGL3_NewFrame();
+		ImGui_ImplGlfw_NewFrame();
+		ImGui::NewFrame();
+	}
+
+	void ImGuiLayer::onRender()
+	{
+		//static bool showDemo = true;
+		//ImGui::ShowDemoWindow(&showDemo);
+	}
+
+	void ImGuiLayer::end()
+	{
+		ImGuiIO& io = ImGui::GetIO();
+		Window* window = Application::getApplication().getWindow();
+		io.DisplaySize = ImVec2(window->getWidth(), window->getHeight());
+
+		ImGui::Render();
+		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+
+		if (io.ConfigFlags & ImGuiConfigFlags_ViewportsEnable)
+		{
+			GLFWwindow* backup_current_context = glfwGetCurrentContext();
+			ImGui::UpdatePlatformWindows();
+			ImGui::RenderPlatformWindowsDefault();
+			glfwMakeContextCurrent(backup_current_context);
+		}
+	}
+
+	/*bool ImGuiLayer::windowResizeCallback(WindowResizeEvent& e)
 	{
 		ImGuiIO& io = ImGui::GetIO();
 		io.DisplaySize = ImVec2(e.getWidth(), e.getHeight());
@@ -155,5 +209,5 @@ namespace Meow {
 			io.AddInputCharacter(static_cast<unsigned char>(keycode));
 
 		return true;
-	}
+	}*/
 }

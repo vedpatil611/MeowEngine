@@ -16,18 +16,22 @@ namespace Meow
 		ImGuiLayer();
 		~ImGuiLayer();
 
-		void onAttach() override;
-		void onUpdate() override;
-		void onDettach() override;
-		void onEvent(Event& e) override;
+		virtual void onAttach() override;
+		virtual void onUpdate() override;
+		virtual void onDettach() override;
+		virtual void onEvent(Event& e) override;
+
+		virtual void begin() override;
+		virtual void onRender() override;
+		virtual void end() override;
 	private:
-		bool windowResizeCallback(WindowResizeEvent& e);
+		/*bool windowResizeCallback(WindowResizeEvent& e);
 		bool mouseButtonPressedCallback(MouseButtonPressedEvent& e);
 		bool mouseButtonReleasedCallback(MouseButtonReleasedEvent& e);
 		bool mouseMovedCallback(MouseMovedEvent& e);
 		bool mouseScrollCallback(MouseScrolledEvent& e);
 		bool keyPressedCallback(KeyPressedEvent& e);
 		bool keyReleasedCallback(KeyReleasedEvent& e);
-		bool keyTypedCallback(KeyTypedEvent& e);
+		bool keyTypedCallback(KeyTypedEvent& e);*/
 	};
 }
