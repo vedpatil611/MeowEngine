@@ -18,7 +18,7 @@ IncludeDirs = {}
 IncludeDirs["GLFW"] = "Dependencies/GLFW/include"
 IncludeDirs["GLAD"] = "Dependencies/GLAD/include"
 IncludeDirs["FreeImage"] = "Dependencies/FreeImage/include"
-IncludeDirs["ImGui"] = "Dependencies/Imgui/src"
+IncludeDirs["ImGui"] = "Dependencies/ImGui/src"
 
 project "MeowEngine"
 	location "MeowEngine"
@@ -64,6 +64,8 @@ project "MeowEngine"
 		"%{prj.name}/src/Meow/**.cpp",
 		"%{prj.name}/src/Meow/Events/**.h",
 		"%{prj.name}/src/Meow/Events/**.cpp",
+        "%{prj.name}/src/Meow/ImGui/**.h",
+		"%{prj.name}/src/Meow/ImGui/**.cpp",
 		"%{prj.name}/src/Meow/ImGui/openGL/**.h",
 		"%{prj.name}/src/Meow/ImGui/openGL/**.cpp",
 		"%{prj.name}/src/Meow/Maths/**.h",

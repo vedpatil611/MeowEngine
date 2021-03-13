@@ -12,7 +12,7 @@
 namespace Meow {
 	Application::Application()
 	{
-		ASSERT(!s_Instance, "Application is already running");
+		ASSERT(!s_Instance);
 		s_Instance = this;
 
 		window = new Window("Meow", 800, 800);
