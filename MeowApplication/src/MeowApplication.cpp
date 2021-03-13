@@ -17,6 +17,7 @@
 
 #include <Meow/Renderer/Layer.h>
 #include <Meow/ImGui/ImGuiLayer.h>
+#include <Meow/ImGui/ExampleLayer.h>
 
 Meow::Application* Meow::CreateApplication()
 {
@@ -47,7 +48,7 @@ void MeowApplication::Run()
 	window->setBackgrondColor({ 0.0f, 0.0f, 0.0f, 1.0f });
 
 	pushLayer(new Meow::Layer());
-	pushLayer(new Meow::ImGuiLayer());
+	pushLayer(m_ImGuiLayer);
 
 	Meow::Utils::Timer timer, t2;
 	
@@ -65,6 +66,13 @@ void MeowApplication::Run()
 
 		for (auto* layer : m_LayerStack)
 			layer->onUpdate();
+
+		for (auto* layer : m_LayerStack)
+		{
+			layer->begin();
+			layer->onRender();
+			layer->end();
+		}
 
 		if (t2.getElapsedTime() > 1000000)
 		{

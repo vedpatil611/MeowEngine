@@ -15,4 +15,13 @@ namespace Meow
 	void Layer::onEvent(Event& e)
 	{
 	}
+	void Layer::begin()
+	{
+	}
+	void Layer::onRender()
+	{
+	}
+	void Layer::end()
+	{
+	}
 }
