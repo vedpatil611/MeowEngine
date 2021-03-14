@@ -6,6 +6,7 @@
 #include "Events/ApplicationEvent.h"
 #include "Events/KeyEvent.h"
 #include "Events/MouseEvent.h"
+#include "Renderer/openGL/OpenGLContext.h"
 
 namespace Meow {
 	Window::Window(const char* title, int width, int height)
@@ -29,13 +30,12 @@ namespace Meow {
 		glfwSetCursorPosCallback(m_Window, &Meow::Window::cursorPosCallback);
 		glfwSetScrollCallback(m_Window, &Meow::Window::scrollCallback);
 
-		glfwMakeContextCurrent(m_Window);
 
 		// 0 for vsync off
 		glfwSwapInterval(0);
 
-		if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
-			throw std::runtime_error("Failed to init glad");
+		m_Context = new OpenGLContext(m_Window);
+		m_Context->init();
 		
 		GLCALL(glEnable(GL_BLEND));
 		GLCALL(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));
@@ -59,8 +59,8 @@ namespace Meow {
 		glfwPollEvents();
 		if(isJoystickPresent())
 			glfwGetGamepadState(GLFW_JOYSTICK_1, &gamepadState);
-		glfwSwapBuffers(m_Window);
-		glfwGetCursorPos(m_Window, &m_MouseX, &m_MouseY);
+
+		m_Context->swapBuffers();
 		GLCALL(glClear(GL_COLOR_BUFFER_BIT));
 	}
 

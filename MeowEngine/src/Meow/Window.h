@@ -12,17 +12,18 @@
 
 #include <GLFW/glfw3.h>
 
-#include "Events/Event.h"
+#include <Meow/Renderer/GraphicsContext.h>
+#include <Meow/Events/Event.h>
 
 typedef struct GLFWgamepadstate GamepadState;
 
 namespace Meow {
-
 	class MEOW_API Window {
 	private:
 		using EventCallbackFn = std::function<void(Event&)>;
 		
 		GLFWwindow* m_Window;
+		GraphicsContext* m_Context;
 		const char* m_Title;
 
 		int m_Height, m_Width;
