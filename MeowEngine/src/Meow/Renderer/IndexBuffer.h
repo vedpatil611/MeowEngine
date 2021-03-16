@@ -11,13 +11,11 @@ namespace Meow
 		unsigned int m_BufferID;
 		unsigned int m_Count;
 	public:
-		IndexBuffer(const unsigned short* data, unsigned int count);
-		~IndexBuffer();
+		virtual ~IndexBuffer();
 
-		inline unsigned int getBufferId() const { return m_BufferID; }
-		inline unsigned short int getCount() const { return m_Count; }
+		static IndexBuffer* create(const unsigned short* data, unsigned int count);
 
-		void bind() const;
-		void unbind() const;
+		virtual void bind() const = 0;
+		virtual void unbind() const = 0;
 	};
 }

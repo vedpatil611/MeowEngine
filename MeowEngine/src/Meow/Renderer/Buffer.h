@@ -6,19 +6,14 @@ namespace Meow
 {
 	class MEOW_API Buffer
 	{
-	private:
-		unsigned int m_BufferId;
+	
 		unsigned int m_ComponentCount;
 	public:
-		Buffer(unsigned int buffer);
-		Buffer(const void* data, unsigned int count, unsigned int componentCount);
-		~Buffer();
+		virtual ~Buffer() {}
 
-		inline unsigned int getBufferId() const { return m_BufferId; }
-		inline unsigned int getComponentCount() const { return m_ComponentCount; }
+		static Buffer* create(const void* data, unsigned int count);
 
-		void updateBufferData(const void* data, unsigned int count, unsigned int componentCount);
-		void bind() const;
-		void unbind() const;
+		virtual void bind() const = 0;
+		virtual void unbind() const = 0;
 	};
 }
