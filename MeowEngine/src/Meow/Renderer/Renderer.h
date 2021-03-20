@@ -14,7 +14,7 @@ namespace Meow
 	class MEOW_API Renderer 
 	{
 	private:
-		static RendererAPI s_RendererAPI;
+		inline static RendererAPI s_RendererAPI = RendererAPI::OpenGL;
 	public:
 		static void setRendererAPI(RendererAPI api) { s_RendererAPI = api; };
 		inline static RendererAPI getRendererAPI() { return s_RendererAPI; };

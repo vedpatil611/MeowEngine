@@ -9,9 +9,12 @@ namespace Meow
 	{
 	private:
 		unsigned int m_BufferId;
+		unsigned int m_Count;
 	public:
 		OpenGLBuffer(const void* data, unsigned int count);
 		~OpenGLBuffer();
+
+		inline unsigned int getCount() const override { return m_Count; }
 
 		void bind() const override;
 		void unbind() const override;

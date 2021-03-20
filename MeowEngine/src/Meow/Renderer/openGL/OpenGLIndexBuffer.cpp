@@ -6,6 +6,7 @@
 namespace Meow
 {
 	OpenGLIndexBuffer::OpenGLIndexBuffer(const unsigned short* data, unsigned int count)
+		:m_Count(count)
 	{
 		GLCALL(glGenBuffers(1, &m_BufferID));
 		GLCALL(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_BufferID));

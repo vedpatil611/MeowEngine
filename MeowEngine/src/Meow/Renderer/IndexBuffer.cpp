@@ -1,6 +1,7 @@
 #include "MeowPCH.h"
 #include "IndexBuffer.h"
 
+#include <stdexcept>
 #include <Meow/Renderer/Renderer.h>
 #include <Meow/Renderer/openGL/OpenGLIndexBuffer.h>
 
@@ -15,6 +16,8 @@ namespace Meow {
 		{
 		case RendererAPI::OpenGL:
 			return new OpenGLIndexBuffer(data, count);
+		default:
+			throw std::runtime_error("Invalid renderer api");
 		}
 	}
 }

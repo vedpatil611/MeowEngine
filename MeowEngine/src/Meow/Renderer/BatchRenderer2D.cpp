@@ -103,7 +103,7 @@ namespace Meow
 			indices[i + 5] = offset + 0;
 		}
 
-		m_IBO = new IndexBuffer(indices, RENDERER_INDICES_SIZE);
+		m_IBO = IndexBuffer::create(indices, RENDERER_INDICES_SIZE);
 		//GLCALL(glBindVertexArray(0));
 	}
 }

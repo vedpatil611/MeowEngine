@@ -6,6 +6,7 @@
 namespace Meow
 {
 	OpenGLBuffer::OpenGLBuffer(const void* data, unsigned int count)
+		:m_Count(count)
 	{
 		GLCALL(glCreateBuffers(1, &m_BufferId));
 		GLCALL(glBufferData(GL_ARRAY_BUFFER, count * sizeof(float), data, GL_DYNAMIC_DRAW));

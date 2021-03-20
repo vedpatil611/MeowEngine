@@ -27,7 +27,7 @@ namespace Meow
 		buffer->bind();
 
 		GLCALL(glEnableVertexAttribArray(index));
-		GLCALL(glVertexAttribPointer(index, buffer->getComponentCount(), GL_FLOAT, false, 0, nullptr));
+		GLCALL(glVertexAttribPointer(index, buffer->getCount(), GL_FLOAT, false, 0, nullptr));
 		m_Buffers->emplace_back(buffer);
 
 		buffer->unbind();

@@ -29,12 +29,12 @@ namespace Meow
 			1.0f, 0.0f
 		};
 		m_VertexArray = new VertexArray();
-		m_VertexArray->addBuffer(new Buffer(vertices, 4 * 3, 3), 0);
-		m_VertexArray->addBuffer(new Buffer(colours, 4 * 4, 4), 1);
-		m_VertexArray->addBuffer(new Buffer(uv, 4 * 2, 2), 2);
+		m_VertexArray->addBuffer(Buffer::create(vertices, 3), 0);
+		m_VertexArray->addBuffer(Buffer::create(colours, 4), 1);
+		m_VertexArray->addBuffer(Buffer::create(uv, 2), 2);
 
 		unsigned short indices[] = { 0, 1, 2, 2, 3, 0 };
-		m_IndexBuffer = new IndexBuffer(indices, 6);
+		m_IndexBuffer = IndexBuffer::create(indices, 6);
 	}
 	Sprite::~Sprite()
 	{
