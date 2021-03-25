@@ -7,16 +7,14 @@
 namespace Meow {
 	class MEOW_API VertexArray
 	{
-	private:
-		unsigned int m_ArrayId;
-		std::vector<Buffer*> *m_Buffers;
 	public:
-		VertexArray();
-		~VertexArray();
+		virtual ~VertexArray() = default;
 
-		void addBuffer(Buffer* buffer, unsigned int index);
+		static VertexArray* create();
 
-		void bind() const;
-		void unbind() const;
+		virtual void addBuffer(Buffer* buffer, unsigned int index) = 0;
+
+		virtual void bind() const = 0;
+		virtual void unbind() const = 0;
 	};
 }

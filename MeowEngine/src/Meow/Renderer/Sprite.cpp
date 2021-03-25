@@ -28,7 +28,7 @@ namespace Meow
 			1.0f, 1.0f,
 			1.0f, 0.0f
 		};
-		m_VertexArray = new VertexArray();
+		m_VertexArray = VertexArray::create();
 		m_VertexArray->addBuffer(Buffer::create(vertices, 3), 0);
 		m_VertexArray->addBuffer(Buffer::create(colours, 4), 1);
 		m_VertexArray->addBuffer(Buffer::create(uv, 2), 2);
