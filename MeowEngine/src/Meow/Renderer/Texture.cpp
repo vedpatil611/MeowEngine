@@ -13,7 +13,7 @@ namespace Meow
 	{
 		FREE_IMAGE_FORMAT fif = FIF_UNKNOWN;
 		FIBITMAP* dib(0);
-		BYTE* bits(0);
+		m_Bits = 0;
 
 		fif = FreeImage_GetFileType(texPath, 0);
 		if (fif == FIF_UNKNOWN)
@@ -30,11 +30,11 @@ namespace Meow
 
 		FreeImage_FlipVertical(dib);
 
-		bits = FreeImage_GetBits(dib);
+		m_Bits = FreeImage_GetBits(dib);
 		m_Width = FreeImage_GetWidth(dib);
 		m_Height = FreeImage_GetHeight(dib);
 
-		if (bits == 0 || m_Width == 0 || m_Height == 0)
+		if (m_Bits == 0 || m_Width == 0 || m_Height == 0)
 			throw std::runtime_error("Failed to load textures");
 
 		GLCALL(glGenTextures(1, &m_TexID));
@@ -49,7 +49,7 @@ namespace Meow
 
 		//std::cout << FreeImage_GetBPP(dib) << std::endl << FreeImage_GetColorType(dib) << std::endl;
 		
-		GLCALL(glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, m_Width, m_Height, 0, GL_RGBA, GL_UNSIGNED_BYTE, bits));
+		GLCALL(glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, m_Width, m_Height, 0, GL_RGBA, GL_UNSIGNED_BYTE, m_Bits));
 		
 		m_Slot = provideSlotNo++;
 

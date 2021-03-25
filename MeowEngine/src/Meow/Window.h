@@ -50,6 +50,7 @@ namespace Meow {
 		void setCurrentContext() const;
 		bool setVSyncEnable(bool b);
 		void setBackgrondColor(const Meow::Maths::vec4& color);
+		void setIcon(const char* iconPath);
 		double getWindowTimeNow();
 
 		inline void setEventCallback(const EventCallbackFn& callback) { eventCallback = callback; }

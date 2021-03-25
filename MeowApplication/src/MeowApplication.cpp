@@ -46,6 +46,7 @@ void MeowApplication::Run()
 	
 	window->setVSyncEnable(false);
 	window->setBackgrondColor({ 0.0f, 0.0f, 0.0f, 1.0f });
+	window->setIcon("assets/icon/Meow.png");
 
 	pushLayer(new Meow::Layer());
 	pushLayer(m_ImGuiLayer);

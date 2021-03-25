@@ -6,6 +6,7 @@
 #include "Events/ApplicationEvent.h"
 #include "Events/KeyEvent.h"
 #include "Events/MouseEvent.h"
+#include "Renderer/Texture.h"
 #include "Renderer/openGL/OpenGLContext.h"
 
 namespace Meow {
@@ -29,7 +30,6 @@ namespace Meow {
 		glfwSetMouseButtonCallback(m_Window, &Meow::Window::mouseButtonCallback);
 		glfwSetCursorPosCallback(m_Window, &Meow::Window::cursorPosCallback);
 		glfwSetScrollCallback(m_Window, &Meow::Window::scrollCallback);
-
 
 		// 0 for vsync off
 		glfwSwapInterval(0);
@@ -83,6 +83,15 @@ namespace Meow {
 	void Window::setBackgrondColor(const Meow::Maths::vec4& color)
 	{
 		GLCALL(glClearColor(color.r, color.g, color.b, color.a));
+	}
+
+	void Window::setIcon(const char* iconPath)
+	{
+		GLFWimage images[1];
+		Texture icon(iconPath);
+		images[0] = { icon.getWidth(), icon.getHeight(), icon.getPixels() };
+
+		glfwSetWindowIcon(m_Window, 1, images);
 	}
 
 	double Window::getWindowTimeNow()
