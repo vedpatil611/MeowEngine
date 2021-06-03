@@ -30,25 +30,26 @@ namespace Meow
 		const Maths::vec3& position = renderable->getPositions();
 		const Maths::vec2& size = renderable->getSize();
 		const Maths::vec4& colour = renderable->getColor();
+		const std::vector<Maths::vec2>& uvs = renderable->getUVs();
 
 		m_Buffer->vertex = position;
 		m_Buffer->colour = colour;
-		m_Buffer->UV = { 0.0f, 0.0f };
+		m_Buffer->UV = uvs[0];
 		m_Buffer++;
 
 		m_Buffer->vertex = { position.x, position.y + size.y, position.z };
 		m_Buffer->colour = colour;
-		m_Buffer->UV = { 0.0f, 1.0f };
+		m_Buffer->UV = uvs[1];
 		m_Buffer++;
 
 		m_Buffer->vertex = { position.x + size.x, position.y + size.y, position.z };
 		m_Buffer->colour = colour;
-		m_Buffer->UV = { 1.0f, 1.0f };
+		m_Buffer->UV = uvs[2];
 		m_Buffer++;
 
 		m_Buffer->vertex = { position.x + size.x, position.y, position.z };
 		m_Buffer->colour = colour;
-		m_Buffer->UV = { 1.0f, 0.0f };
+		m_Buffer->UV = uvs[3];
 		m_Buffer++;
 		
 		++submitCount;
@@ -81,9 +82,10 @@ namespace Meow
 		GLCALL(glBindBuffer(GL_ARRAY_BUFFER, m_VBO));
 		GLCALL(glBufferData(GL_ARRAY_BUFFER, RENDERER_BUFFER_SIZE, nullptr, GL_DYNAMIC_DRAW));
 		
-		GLCALL(glVertexAttribPointer(SHADER_VERTEX_INDEX, 3, GL_FLOAT, false, RENDERER_VERTEX_SIZE, VERTEX_DATA_OFFSET(0)));
-		GLCALL(glVertexAttribPointer(SHADER_COLOUR_INDEX, 4, GL_FLOAT, false, RENDERER_VERTEX_SIZE, VERTEX_DATA_OFFSET(3)));
-		GLCALL(glVertexAttribPointer(SHADER_UV_INDEX, 2, GL_FLOAT, false, RENDERER_VERTEX_SIZE, VERTEX_DATA_OFFSET(3 + 4)));
+		GLCALL(glVertexAttribPointer(SHADER_VERTEX_INDEX, 3, GL_FLOAT, false, RENDERER_VERTEX_SIZE, (const void*) offsetof(VertexData, VertexData::vertex)));
+		GLCALL(glVertexAttribPointer(SHADER_COLOUR_INDEX, 4, GL_FLOAT, false, RENDERER_VERTEX_SIZE, (const void*) offsetof(VertexData, VertexData::colour)));
+		GLCALL(glVertexAttribPointer(SHADER_UV_INDEX, 2, GL_FLOAT, false, RENDERER_VERTEX_SIZE, (const void*) offsetof(VertexData, VertexData::UV)));
+
 		GLCALL(glEnableVertexAttribArray(SHADER_VERTEX_INDEX));
 		GLCALL(glEnableVertexAttribArray(SHADER_COLOUR_INDEX));
 		GLCALL(glEnableVertexAttribArray(SHADER_UV_INDEX));

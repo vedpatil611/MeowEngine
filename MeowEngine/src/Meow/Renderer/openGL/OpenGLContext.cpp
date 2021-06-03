@@ -15,6 +15,7 @@ namespace Meow
 		glfwMakeContextCurrent(m_Window);
 		if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
 			throw std::runtime_error("Failed to init glad");
+
 	}
 
 	void OpenGLContext::swapBuffers()

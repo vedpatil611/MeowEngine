@@ -41,6 +41,8 @@ namespace Meow {
 			style.Colors[ImGuiCol_WindowBg].w = 1.0f;
 		}
 
+		int verMax, verMin;
+		char temp;
 		auto* window = Application::getApplication().getWindow();
 		ImGui_ImplGlfw_InitForOpenGL(window->getWindow(), true);
 		ImGui_ImplOpenGL3_Init("#version 450");
@@ -114,7 +116,7 @@ namespace Meow {
 		ImGui::End();
 	}
 
-	void ImGuiLayer::onRender()
+	void ImGuiLayer::onRender(float delta)
 	{
 		//static bool showDemo = true;
 		//ImGui::ShowDemoWindow(&showDemo);

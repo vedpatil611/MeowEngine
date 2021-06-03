@@ -40,6 +40,9 @@ namespace Meow
 		GLCALL(int location = glGetUniformLocation(m_ShaderID, uniformName));
 		if (location == -1)
 			LOG_WARN << "Warning: uniform '" << uniformName << "' not found" << END_LOG;
+		else
+			(*m_UniformLocationCache)[uniformName] = location;
+
 		return location;
 	}
 

@@ -22,7 +22,7 @@ namespace Meow
 		virtual void onEvent(Event& e) override;
 
 		virtual void begin() override;
-		virtual void onRender() override;
+		virtual void onRender(float delta) override;
 		virtual void end() override;
 	private:
 		/*bool windowResizeCallback(WindowResizeEvent& e);

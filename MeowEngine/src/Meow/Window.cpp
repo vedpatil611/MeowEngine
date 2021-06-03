@@ -41,6 +41,7 @@ namespace Meow {
 		GLCALL(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));
 		GLCALL(glClearColor(0.0f, 0.0f, 0.0f, 0.0f));
 
+		printf("%s\n", glGetString(GL_VERSION));
 		glfwSetWindowUserPointer(m_Window, this);
 	}
 

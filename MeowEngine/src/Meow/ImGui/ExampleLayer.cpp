@@ -37,13 +37,25 @@ namespace Meow
 		ImGuiLayer::onEvent(e);
 	}
 
+	void ExampleLayer::submit(const std::vector<Renderable2D*>& sprites)
+	{
+		renderer.begin();
+
+		for (auto* s : sprites)
+			renderer.submit(s);
+
+		renderer.end();
+	}
+
 	void ExampleLayer::begin()
 	{
 		ImGuiLayer::begin();
 	}
 
-	void ExampleLayer::onRender()
+	void ExampleLayer::onRender(float delta)
 	{
+		renderer.flush(delta);
+
 		ImGui::Begin("Test");
 		ImGui::Text("Hello");
 		ImGui::End();

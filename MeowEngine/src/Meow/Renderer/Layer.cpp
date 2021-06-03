@@ -18,7 +18,10 @@ namespace Meow
 	void Layer::begin()
 	{
 	}
-	void Layer::onRender()
+	void Layer::submit(const std::vector<Renderable2D*>& sprites)
+	{
+	}
+	void Layer::onRender(float delta)
 	{
 	}
 	void Layer::end()

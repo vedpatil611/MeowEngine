@@ -16,8 +16,10 @@ namespace Meow
 		void onDettach() override;
 		void onEvent(Event& e) override;
 
+		void submit(const std::vector<Renderable2D*>& sprites) override;
+		
 		void begin() override;
-		void onRender() override;
+		void onRender(float delta) override;
 		void end() override;
 	};
 }

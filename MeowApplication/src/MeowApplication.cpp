@@ -11,13 +11,17 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <math.h>
-#include <Meow/Maths/Maths.h>
-#include <Meow/Utils/Timer.h>
-#include <Meow.h>
+#include <vector>
 
-#include <Meow/Renderer/Layer.h>
+#include <Meow.h>
 #include <Meow/ImGui/ImGuiLayer.h>
 #include <Meow/ImGui/ExampleLayer.h>
+#include <Meow/Maths/Maths.h>
+#include <Meow/Renderer/Layer.h>
+#include <Meow/Renderer/Shader.h>
+#include <Meow/Renderer/TileSprite.h>
+#include <Meow/Renderer/Texture.h>
+#include <Meow/Utils/Timer.h>
 
 Meow::Application* Meow::CreateApplication()
 {
@@ -48,8 +52,29 @@ void MeowApplication::Run()
 	window->setBackgrondColor({ 0.0f, 0.0f, 0.0f, 1.0f });
 	window->setIcon("assets/icon/Meow.png");
 
-	pushLayer(new Meow::Layer());
+	Meow::Layer* layer = new Meow::ExampleLayer();
+	pushLayer(layer);
 	pushLayer(m_ImGuiLayer);
+
+	std::vector<Meow::Renderable2D*> sprites;
+
+	auto proj = Meow::Maths::mat4::orthographic(-50, 50, -50, 50, -10, 10);
+	Meow::Maths::mat4 model(1.0f);
+
+	Meow::Shader shader("shaders/renderable2d.vert.glsl", "shaders/renderable2d.frag.glsl");
+	shader.enable();
+	shader.setUniformMat4f("u_proj_mat", proj);
+	//Meow::Texture tex("assets/Circle.png");
+	//tex.bind(1);
+	//shader.setUniform1i("u_Texture", 1);
+
+	for (float i = -50.0; i < 50.0; i += 1.0f)
+	{
+		for (float j = -50.0; j < 50.0; j += 1.0f)
+		{
+			sprites.emplace_back(new Meow::TileSprite({ i, j, 0.0f }, { 0.9f, 0.9f }, { 1.0f, 0.0f, 0.0f, 1.0f }, &shader));
+		}
+	}
 
 	Meow::Utils::Timer timer, t2;
 	
@@ -65,13 +90,15 @@ void MeowApplication::Run()
 		window->update();
 		timer.reset();
 
+		layer->submit(sprites);
+
 		for (auto* layer : m_LayerStack)
 			layer->onUpdate();
 
 		for (auto* layer : m_LayerStack)
 		{
 			layer->begin();
-			layer->onRender();
+			layer->onRender(deltaTime);
 			layer->end();
 		}
 
