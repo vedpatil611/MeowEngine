@@ -2,13 +2,23 @@
 
 layout(location = 0) out vec4 fragColor;
 
-uniform sampler2D u_Texture;
+uniform sampler2D u_Texture[32];
 
-in vec2 texCoords;
-//in vec4 outColor;
+in DATA {
+	vec4 colour;
+	vec2 uv;
+	float tid;
+} fs_data;
 
 void main()
 {
-	vec4 texColor = texture(u_Texture, texCoords);
-	fragColor = texColor;
+	vec4 texColour = fs_data.colour;
+
+	if (fs_data.tid > 0.0f)
+	{
+		int tid = int(fs_data.tid + 0.5);
+		texColour = texture(u_Texture[tid], fs_data.uv);
+	}
+
+	fragColor = texColour;
 }

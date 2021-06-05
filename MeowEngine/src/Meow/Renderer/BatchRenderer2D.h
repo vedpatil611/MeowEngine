@@ -3,6 +3,7 @@
 #include "Renderer2D.h"
 #include "Renderable2D.h"
 #include "IndexBuffer.h"
+#include <vector>
 
 #define RENDERER_MAX_SPRITES	10000
 #define RENDERER_VERTEX_SIZE	sizeof(VertexData)
@@ -10,9 +11,10 @@
 #define RENDERER_BUFFER_SIZE	RENDERER_SPRITE_SIZE * RENDERER_MAX_SPRITES
 #define RENDERER_INDICES_SIZE	RENDERER_MAX_SPRITES * 6
 
-#define SHADER_VERTEX_INDEX 0
-#define SHADER_COLOUR_INDEX 1
-#define SHADER_UV_INDEX 2
+#define SHADER_VERTEX_INDEX	0
+#define SHADER_COLOUR_INDEX	1
+#define SHADER_UV_INDEX		2
+#define SHADER_TID_INDEX	3
 
 #define VERTEX_DATA_OFFSET(offset) (const void*) ((offset) * sizeof(float))
 
@@ -26,6 +28,7 @@ namespace Meow {
 		unsigned int m_VBO;
 		VertexData* m_Buffer;
 		unsigned int submitCount = 0;
+		std::vector<unsigned int> m_TexturesSlots;
 	public:
 		BatchRenderer2D();
 		~BatchRenderer2D();

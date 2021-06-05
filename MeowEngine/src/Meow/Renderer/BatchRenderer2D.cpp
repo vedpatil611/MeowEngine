@@ -31,31 +31,64 @@ namespace Meow
 		const Maths::vec2& size = renderable->getSize();
 		const Maths::vec4& colour = renderable->getColor();
 		const std::vector<Maths::vec2>& uvs = renderable->getUVs();
+		const unsigned tid = renderable->getTID();
 
+		float textureSlot = 0.0f;
+	
+		if (tid > 0)
+		{
+			bool found = false;
+			auto it = std::find(m_TexturesSlots.begin(), m_TexturesSlots.end(), tid);
+			if (it != m_TexturesSlots.end())
+			{
+				textureSlot = static_cast<float>(*it);
+				found = true;
+			}
+			else
+			{
+				if (m_TexturesSlots.size() >= 32)
+				{
+					end();
+					flush(0.0f);
+
+					begin();
+				}
+				m_TexturesSlots.emplace_back(tid);
+				textureSlot = static_cast<float>(m_TexturesSlots.size() - 1);
+			}
+		}
+		else
+		{
+
+		}
 		m_Buffer->vertex = position;
 		m_Buffer->colour = colour;
 		m_Buffer->UV = uvs[0];
+		m_Buffer->tid = textureSlot;
 		m_Buffer++;
 
 		m_Buffer->vertex = { position.x, position.y + size.y, position.z };
 		m_Buffer->colour = colour;
 		m_Buffer->UV = uvs[1];
+		m_Buffer->tid = textureSlot;
 		m_Buffer++;
 
 		m_Buffer->vertex = { position.x + size.x, position.y + size.y, position.z };
 		m_Buffer->colour = colour;
 		m_Buffer->UV = uvs[2];
+		m_Buffer->tid = textureSlot;
 		m_Buffer++;
 
 		m_Buffer->vertex = { position.x + size.x, position.y, position.z };
 		m_Buffer->colour = colour;
 		m_Buffer->UV = uvs[3];
+		m_Buffer->tid = textureSlot;
 		m_Buffer++;
 		
 		++submitCount;
 		m_IndexCount += 6;
 	}
-
+		
 	void BatchRenderer2D::end()
 	{
 		GLCALL(glUnmapBuffer(GL_ARRAY_BUFFER));
@@ -64,13 +97,19 @@ namespace Meow
 
 	void BatchRenderer2D::flush(float delta)
 	{
+		for (int i = 0; i < m_TexturesSlots.size(); ++i)
+		{
+			glActiveTexture(GL_TEXTURE0 + i);
+			glBindTexture(GL_TEXTURE_2D, m_TexturesSlots[i]);
+		}
+
 		GLCALL(glBindVertexArray(m_VAO));
-		m_IBO->bind();
+		//m_IBO->bind();
 
 		GLCALL(glDrawElements(GL_TRIANGLES, m_IndexCount, GL_UNSIGNED_SHORT, nullptr));
 
 		//m_IBO->unbind();
-		//GLCALL(glBindVertexArray(0));
+		GLCALL(glBindVertexArray(0));
 	}
 
 	void BatchRenderer2D::init() 
@@ -85,10 +124,12 @@ namespace Meow
 		GLCALL(glVertexAttribPointer(SHADER_VERTEX_INDEX, 3, GL_FLOAT, false, RENDERER_VERTEX_SIZE, (const void*) offsetof(VertexData, VertexData::vertex)));
 		GLCALL(glVertexAttribPointer(SHADER_COLOUR_INDEX, 4, GL_FLOAT, false, RENDERER_VERTEX_SIZE, (const void*) offsetof(VertexData, VertexData::colour)));
 		GLCALL(glVertexAttribPointer(SHADER_UV_INDEX, 2, GL_FLOAT, false, RENDERER_VERTEX_SIZE, (const void*) offsetof(VertexData, VertexData::UV)));
+		GLCALL(glVertexAttribPointer(SHADER_TID_INDEX, 1, GL_FLOAT, false, RENDERER_VERTEX_SIZE, (const void*) offsetof(VertexData, VertexData::tid)));
 
 		GLCALL(glEnableVertexAttribArray(SHADER_VERTEX_INDEX));
 		GLCALL(glEnableVertexAttribArray(SHADER_COLOUR_INDEX));
 		GLCALL(glEnableVertexAttribArray(SHADER_UV_INDEX));
+		GLCALL(glEnableVertexAttribArray(SHADER_TID_INDEX));
 		
 		//GLCALL(glBindBuffer(GL_ARRAY_BUFFER, 0));
 		

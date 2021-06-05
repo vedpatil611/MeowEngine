@@ -5,6 +5,7 @@
 #include "IndexBuffer.h"
 #include "VertexArray.h"
 #include "Shader.h"
+#include "Texture.h"
 #include "Renderable2D.h"
 
 namespace Meow
@@ -17,6 +18,7 @@ namespace Meow
 		IndexBuffer* m_IndexBuffer;
 	public:
 		TileSprite(const Maths::vec3& position, const Maths::vec2& size, const Maths::vec4& colour, Shader* shader);
+		TileSprite(const Maths::vec3& position, const Maths::vec2& size, Texture* texture, Shader* shader);
 		~TileSprite() override;
 
 		inline VertexArray* getVAO() const override { return m_VertexArray; }

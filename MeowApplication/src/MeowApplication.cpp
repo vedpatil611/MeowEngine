@@ -50,7 +50,7 @@ void MeowApplication::Run()
 	
 	window->setVSyncEnable(false);
 	window->setBackgrondColor({ 0.0f, 0.0f, 0.0f, 1.0f });
-	window->setIcon("assets/icon/Meow.png");
+	//window->setIcon("assets/icon/Meow.png");
 
 	Meow::Layer* layer = new Meow::ExampleLayer();
 	pushLayer(layer);
@@ -61,18 +61,33 @@ void MeowApplication::Run()
 	auto proj = Meow::Maths::mat4::orthographic(-50, 50, -50, 50, -10, 10);
 	Meow::Maths::mat4 model(1.0f);
 
-	Meow::Shader shader("shaders/renderable2d.vert.glsl", "shaders/renderable2d.frag.glsl");
+	Meow::Shader shader("shaders/texture2d.vert.glsl", "shaders/texture2d.frag.glsl");
+	
+	int texIDs[32] = { 0 };
+	texIDs[1] = 1;
 	shader.enable();
 	shader.setUniformMat4f("u_proj_mat", proj);
-	//Meow::Texture tex("assets/Circle.png");
-	//tex.bind(1);
-	//shader.setUniform1i("u_Texture", 1);
+	Meow::Texture tex("assets/Circle.png");
+	Meow::Texture tex2("assets/icon/Meow.png");
+	
+	shader.setUniform1iv("u_Texture", 32, texIDs);
 
-	for (float i = -50.0; i < 50.0; i += 1.0f)
+	int s = 1;
+
+	for (float i = -50.0; i < 50.0; i += 5.0f)
 	{
-		for (float j = -50.0; j < 50.0; j += 1.0f)
+		for (float j = -50.0; j < 50.0; j += 5.0f)
 		{
-			sprites.emplace_back(new Meow::TileSprite({ i, j, 0.0f }, { 0.9f, 0.9f }, { 1.0f, 0.0f, 0.0f, 1.0f }, &shader));
+			if (s == 1)
+			{
+				sprites.emplace_back(new Meow::TileSprite({ i, j, 0.0f }, { 4.9f, 4.9f }, &tex, &shader));
+				s = 2;
+			}
+			else
+			{
+				sprites.emplace_back(new Meow::TileSprite({ i, j, 0.0f }, { 4.9f, 4.9f }, &tex2, &shader));
+				s = 1;
+			}
 		}
 	}
 
