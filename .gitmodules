@@ -1,6 +1,3 @@
 [submodule "Dependencies/GLFW"]
 	path = Dependencies/GLFW
 	url = https://github.com/vedpatil611/glfw
-[submodule "Dependencies/imgui-node-editor"]
-	path = Dependencies/imgui-node-editor
-	url = https://github.com/thedmd/imgui-node-editor

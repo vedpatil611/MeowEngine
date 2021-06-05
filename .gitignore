@@ -10,3 +10,7 @@ intermediate/
 *.filters
 
 Makefile
+
+.ccls
+compile_commands.json
+

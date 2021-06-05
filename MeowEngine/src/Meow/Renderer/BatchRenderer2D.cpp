@@ -1,6 +1,7 @@
 #include "MeowPCH.h"
 #include "BatchRenderer2D.h"
 
+#include <algorithm>
 #include "glad/glad.h"
 
 namespace Meow

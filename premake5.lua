@@ -13,21 +13,19 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 include "Dependencies/GLFW"
 include "Dependencies/GLAD"
 include "Dependencies/ImGui"
-include "Dependencies/ImGuiNodeEditor"
 
 IncludeDirs = {}
 IncludeDirs["GLFW"] = "Dependencies/GLFW/include"
 IncludeDirs["GLAD"] = "Dependencies/GLAD/include"
 IncludeDirs["FreeImage"] = "Dependencies/FreeImage/include"
 IncludeDirs["ImGui"] = "Dependencies/ImGui/src"
-IncludeDirs["ImGuiNodeEditor"] = "Dependencies/imgui-node-editor"
 
 project "MeowEngine"
 	location "MeowEngine"
 	kind "SharedLib"
 	language "C++"
 	cppdialect "C++17"
-
+	systemversion "latest"
 	inlining "Auto"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
@@ -37,7 +35,8 @@ project "MeowEngine"
 	pchsource "MeowEngine/src/MeowPCH.cpp"
 
 	defines {
-		"MEOW_BUILD_DLL"
+		"MEOW_BUILD_DLL",
+        "IMGUI_IMPL_OPENGL_LOADER_GLAD"
 	}
 
 	includedirs {
@@ -46,7 +45,6 @@ project "MeowEngine"
 		"%{IncludeDirs.GLAD}",
 		"%{IncludeDirs.FreeImage}",
 		"%{IncludeDirs.ImGui}",
-		"%{IncludeDirs.ImGuiNodeEditor}"
 	}
 
 	libdirs {
@@ -58,7 +56,6 @@ project "MeowEngine"
 		"GLAD",
 		"FreeImage",
 		"ImGui",
-		"ImGuiNodeEditor"
 	}
 
 	files { 
@@ -82,10 +79,7 @@ project "MeowEngine"
 		"%{prj.name}/src/Meow/Utils/**.cpp"
 	}
 
-	filter "system:windows"
-		cppdialect "C++17"
-		systemversion "latest"
-		
+	filter "system:windows"		
 		defines {
 			"MEOW_PLATFORM_WINDOWS",
 			"_CRT_SECURE_NO_WARNINGS"
@@ -98,13 +92,10 @@ project "MeowEngine"
 	filter "system:linux"
 		pic "On"
 		staticruntime "On"
-		cppdialect "C++17"
-		systemversion "latest"
-		
 		links {
 			"dl",
-			"pthread"
-		}
+			"pthread",
+        }
 		defines {
 			"MEOW_PLATFORM_LINUX"
 		}
@@ -124,7 +115,7 @@ project "MeowApplication"
 	kind "ConsoleApp"
 	language "C++"
 	cppdialect "C++17"
-
+    systemversion "latest"
 	inlining "Auto"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
@@ -153,8 +144,6 @@ project "MeowApplication"
 	}
 
 	filter "system:windows"
-		cppdialect "C++17"
-		systemversion "latest"
 		defines {
 			"MEOW_PLATFORM_WINDOWS"
 		}
@@ -163,6 +152,10 @@ project "MeowApplication"
 		defines {
 			"MEOW_PLATFORM_LINUX"
 		}
+        links {
+            "GLAD",
+            "GL"
+        }
 
 	filter "configurations:Debug"
 		defines { "DEBUG" }
