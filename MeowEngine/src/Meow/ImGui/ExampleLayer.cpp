@@ -54,7 +54,9 @@ namespace Meow
 
 	void ExampleLayer::onRender(float delta)
 	{
-		renderer.flush(delta);
+		ImGuiLayer::onRender(delta);
+		
+		//renderer.flush(delta);
 
 		ImGui::Begin("Test");
 		ImGui::Text("Hello");

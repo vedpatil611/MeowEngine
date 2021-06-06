@@ -14,7 +14,7 @@ namespace Meow
 		BatchRenderer2D renderer;
 	public:
 		Layer() = default;
-		~Layer() = default;
+		virtual ~Layer() = default;
 
 		virtual void onAttach();
 		virtual void onUpdate();

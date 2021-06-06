@@ -44,8 +44,8 @@ namespace Meow {
 		int verMax, verMin;
 		char temp;
 		auto* window = Application::getApplication().getWindow();
-		ImGui_ImplGlfw_InitForOpenGL(window->getWindow(), true);
 		ImGui_ImplOpenGL3_Init("#version 450");
+		ImGui_ImplGlfw_InitForOpenGL(window->getWindow(), false);
 	}
 	
 	void ImGuiLayer::onUpdate()
@@ -77,14 +77,14 @@ namespace Meow {
 	
 	void ImGuiLayer::onEvent(Event& e)
 	{
-	/*	EventDispatcher dispatcher(e);
+		EventDispatcher dispatcher(e);
 		dispatcher.dispatch<MouseButtonPressedEvent>(BIND_EVENT_FN(ImGuiLayer::mouseButtonPressedCallback));
 		dispatcher.dispatch<MouseButtonReleasedEvent>(BIND_EVENT_FN(ImGuiLayer::mouseButtonReleasedCallback));
 		dispatcher.dispatch<MouseMovedEvent>(BIND_EVENT_FN(ImGuiLayer::mouseMovedCallback));
 		dispatcher.dispatch<MouseScrolledEvent>(BIND_EVENT_FN(ImGuiLayer::mouseScrollCallback));
 		dispatcher.dispatch<KeyPressedEvent>(BIND_EVENT_FN(ImGuiLayer::keyPressedCallback));
 		dispatcher.dispatch<KeyReleasedEvent>(BIND_EVENT_FN(ImGuiLayer::keyReleasedCallback));
-		dispatcher.dispatch<KeyTypedEvent>(BIND_EVENT_FN(ImGuiLayer::keyTypedCallback));*/
+		dispatcher.dispatch<KeyTypedEvent>(BIND_EVENT_FN(ImGuiLayer::keyTypedCallback));
 	}
 
 	void ImGuiLayer::begin()
@@ -140,7 +140,7 @@ namespace Meow {
 		}
 	}
 
-	/*bool ImGuiLayer::windowResizeCallback(WindowResizeEvent& e)
+	bool ImGuiLayer::windowResizeCallback(WindowResizeEvent& e)
 	{
 		ImGuiIO& io = ImGui::GetIO();
 		io.DisplaySize = ImVec2(e.getWidth(), e.getHeight());
@@ -204,5 +204,5 @@ namespace Meow {
 			io.AddInputCharacter(static_cast<unsigned char>(keycode));
 
 		return true;
-	}*/
+	}
 }
