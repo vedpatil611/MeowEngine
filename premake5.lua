@@ -75,6 +75,8 @@ project "MeowEngine"
 		"%{prj.name}/src/Meow/Renderer/**.cpp",
 		"%{prj.name}/src/Meow/Renderer/openGL/**.h",
 		"%{prj.name}/src/Meow/Renderer/openGL/**.cpp",
+		"%{prj.name}/src/Meow/Scene/**.h",
+		"%{prj.name}/src/Meow/Scene/**.cpp",
 		"%{prj.name}/src/Meow/Utils/**.h",
 		"%{prj.name}/src/Meow/Utils/**.cpp"
 	}
