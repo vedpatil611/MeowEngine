@@ -32,7 +32,7 @@ namespace Meow
             {
                 Sprite* renderable = (Sprite*)m_RenderQueue->front();
 
-                renderable->getShader()->enable();
+                renderable->getShader()->bind();
                 renderable->getTexture()->bind();
 
 			    auto* vao = renderable->getVAO();
@@ -55,7 +55,7 @@ namespace Meow
             {
                 AnimatedSprite* renderable = (AnimatedSprite*)m_RenderQueue->front();
 
-                renderable->getShader()->enable();
+                renderable->getShader()->bind();
                 renderable->getTexture()->bind();
 
                 auto* vao = renderable->getVAO();

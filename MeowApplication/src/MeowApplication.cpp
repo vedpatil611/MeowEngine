@@ -61,16 +61,16 @@ void MeowApplication::Run()
 	auto proj = Meow::Maths::mat4::orthographic(-50, 50, -50, 50, -10, 10);
 	Meow::Maths::mat4 model(1.0f);
 
-	Meow::Shader shader("shaders/texture2d.vert.glsl", "shaders/texture2d.frag.glsl");
+	Meow::Shader* shader = Meow::Shader::create("shaders/texture2d.vert.glsl", "shaders/texture2d.frag.glsl");
 	
 	int texIDs[32] = { 0 };
 	texIDs[1] = 1;
-	shader.enable();
-	shader.setUniformMat4f("u_proj_mat", proj);
+	shader->bind();
+	shader->setUniformMat4f("u_proj_mat", proj);
 	Meow::Texture tex("assets/Circle.png");
 	Meow::Texture tex2("assets/icon/Meow.png");
 	
-	shader.setUniform1iv("u_Texture", 32, texIDs);
+	shader->setUniform1iv("u_Texture", 32, texIDs);
 
 	int s = 1;
 
@@ -80,12 +80,12 @@ void MeowApplication::Run()
 		{
 			if (s == 1)
 			{
-				sprites.emplace_back(new Meow::TileSprite({ i, j, 0.0f }, { 4.9f, 4.9f }, &tex, &shader));
+				sprites.emplace_back(new Meow::TileSprite({ i, j, 0.0f }, { 4.9f, 4.9f }, &tex, shader));
 				s = 2;
 			}
 			else
 			{
-				sprites.emplace_back(new Meow::TileSprite({ i, j, 0.0f }, { 4.9f, 4.9f }, &tex2, &shader));
+				sprites.emplace_back(new Meow::TileSprite({ i, j, 0.0f }, { 4.9f, 4.9f }, &tex2, shader));
 				s = 1;
 			}
 		}
@@ -123,4 +123,6 @@ void MeowApplication::Run()
 			printf("%d\n", static_cast<int>(1000000 / timer.getElapsedTime()));
 		}
 	}
+
+	delete shader;
 }
