@@ -158,7 +158,10 @@ project "MeowApplication"
             "GLAD",
             "GL"
         }
-
+		postbuildcommands {
+			("cp -r ./shaders/ ../bin/" .. outputdir .. "/%{prj.name}"),
+			("cp -r ./assets/ ../bin/" .. outputdir .. "/%{prj.name}")
+		}
 	filter "configurations:Debug"
 		defines { "DEBUG" }
 		symbols "On"
