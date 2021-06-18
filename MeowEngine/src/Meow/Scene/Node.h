@@ -4,7 +4,7 @@
 #include <Meow/Maths/Maths.h>
 #include <string>
 
-namespace Meow
+namespace Meow::Scene
 {
 	class MEOW_API Node
 	{
@@ -16,8 +16,9 @@ namespace Meow
 	public:
 		Node() = default;
 
-		void addChildren(Node* node);
+		void addChild(Node* node);
+		inline std::vector<Node*>& getChildren() { return m_Childs; }
 
-		virtual void update(float delta) = 0;
+		virtual void update(float delta);
 	};
 }
