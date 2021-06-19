@@ -42,6 +42,7 @@ MeowApplication::MeowApplication()
 
 MeowApplication::~MeowApplication()
 {
+	
 }
 
 void MeowApplication::Run()
@@ -52,9 +53,8 @@ void MeowApplication::Run()
 	window->setBackgrondColor({ 0.0f, 0.0f, 0.0f, 1.0f });
 	//window->setIcon("assets/icon/Meow.png");
 
-	Meow::Layer* layer = new Meow::ExampleLayer();
+	Meow::Layer* layer = new Meow::Layer();
 	pushLayer(layer);
-	pushLayer(m_ImGuiLayer);
 
 	std::vector<Meow::Renderable2D*> sprites;
 
@@ -121,8 +121,12 @@ void MeowApplication::Run()
 		{
 			t2.reset();
 			printf("%d\n", static_cast<int>(1000000 / timer.getElapsedTime()));
+			printf("%d\n", window->closed());
 		}
 	}
+
+	for (auto*& x : sprites)
+		delete x;
 
 	delete shader;
 }

@@ -6,9 +6,12 @@
 #include "Events/KeyEvent.h"
 #include "Events/MouseEvent.h"
 #include "Events/ApplicationEvent.h"
+#include <Meow/ImGui/openGL/imgui_impl_glfw.h>
+#include <Meow/ImGui/openGL/imgui_impl_opengl3.h>
 #include "ImGui/ExampleLayer.h"
+#include <imgui.h>
 
-#define BIND_EVENT_FN(x) std::bind(x, this, std::placeholders::_1)
+#define BIND_EVENT_FN(x) std::bind(&x, this, std::placeholders::_1)
 
 namespace Meow {
 	Application::Application()
@@ -17,14 +20,26 @@ namespace Meow {
 		s_Instance = this;
 
 		window = new Window("Meow", 800, 800);
-		window->setEventCallback(BIND_EVENT_FN(&Application::onEvent));
+		window->setEventCallback(BIND_EVENT_FN(Application::onEvent));
 
 		m_ImGuiLayer = new ExampleLayer();
+		pushLayer(m_ImGuiLayer);
 	}
 
 	Application::~Application()
 	{
+		for (auto layer : m_LayerStack)
+		{
+			layer->onDettach();
+		}
+
+		ImGui_ImplOpenGL3_Shutdown();
+		ImGui_ImplGlfw_Shutdown();
+		ImGui::DestroyContext();
+
 		SAFE_DELETE(window);
+
+		if(s_Instance = this) s_Instance = nullptr;
 	}
 
 	void Application::Run()

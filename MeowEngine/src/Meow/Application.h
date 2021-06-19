@@ -16,7 +16,7 @@ namespace Meow {
 		inline static Application* s_Instance = nullptr;
 	public:
 		Application();
-		~Application();
+		virtual ~Application();
 
 		virtual void Run();
 

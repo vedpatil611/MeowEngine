@@ -32,7 +32,7 @@ namespace Meow {
 		glfwSetScrollCallback(m_Window, &Meow::Window::scrollCallback);
 
 		// 0 for vsync off
-		glfwSwapInterval(0);
+		//glfwSwapInterval(0);
 
 		m_Context = new OpenGLContext(m_Window);
 		m_Context->init();
@@ -47,6 +47,9 @@ namespace Meow {
 
 	Window::~Window()
 	{
+		delete m_Context;
+
+		glfwDestroyWindow(m_Window);
 		glfwTerminate();
 	}
 
