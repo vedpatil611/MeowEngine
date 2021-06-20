@@ -93,7 +93,7 @@ namespace Meow
 	void BatchRenderer2D::end()
 	{
 		GLCALL(glUnmapBuffer(GL_ARRAY_BUFFER));
-		//GLCALL(glBindBuffer(GL_ARRAY_BUFFER, 0));
+		GLCALL(glBindBuffer(GL_ARRAY_BUFFER, 0));
 	}
 
 	void BatchRenderer2D::flush(float delta)
@@ -132,9 +132,9 @@ namespace Meow
 		GLCALL(glEnableVertexAttribArray(SHADER_UV_INDEX));
 		GLCALL(glEnableVertexAttribArray(SHADER_TID_INDEX));
 		
-		//GLCALL(glBindBuffer(GL_ARRAY_BUFFER, 0));
+		GLCALL(glBindBuffer(GL_ARRAY_BUFFER, 0));
 		
-		unsigned short indices[RENDERER_INDICES_SIZE];
+		unsigned short indices[RENDERER_INDICES_SIZE] = { 0 };
 		
 		for (int i = 0, offset = 0; i < RENDERER_INDICES_SIZE; i += 6, offset += 4)
 		{
@@ -148,6 +148,6 @@ namespace Meow
 		}
 
 		m_IBO = IndexBuffer::create(indices, RENDERER_INDICES_SIZE);
-		//GLCALL(glBindVertexArray(0));
+		GLCALL(glBindVertexArray(0));
 	}
 }

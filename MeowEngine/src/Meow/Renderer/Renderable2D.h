@@ -1,5 +1,11 @@
 #pragma once
 
+#ifdef MEOW_PLATFORM_WINDOWS
+#pragma warning(push)
+#pragma warning(disable : 4251)
+#pragma warning(pop)
+#endif
+
 #include <Meow/Core.h>
 #include <Meow/Maths/Maths.h>
 #include "IndexBuffer.h"
@@ -7,6 +13,8 @@
 #include "Texture.h"
 #include "VertexArray.h"
 #include <vector>
+
+DISABLE_WARNINGS()
 
 namespace Meow 
 { 

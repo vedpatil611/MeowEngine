@@ -5,6 +5,8 @@
 #include <Meow/Renderer/VertexArray.h>
 #include <vector>
 
+DISABLE_WARNINGS()
+
 namespace Meow
 {
 	class MEOW_API OpenGLVertexArray : public VertexArray

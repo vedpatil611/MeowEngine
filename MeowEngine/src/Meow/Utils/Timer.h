@@ -3,6 +3,8 @@
 #include <Meow/Core.h>
 #include <chrono>
 
+DISABLE_WARNINGS()
+
 namespace Meow
 {
 	namespace Utils

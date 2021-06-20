@@ -32,6 +32,15 @@
 	#define GLCALL(func) func; 
 #endif 
 
+#ifdef MEOW_PLATFORM_WINDOWS
+	#define DISABLE_WARNINGS()				\
+		__pragma(warning(disable : 4251))			
+#elif MEOW_PLATFORM_LINUX
+	#define DISABLE_WARNINGS()
+#else
+	#define DISABLE_WARNINGS()
+#endif
+
 #define BIT(x) (1 << x)
 
 #define SAFE_DELETE(x) delete x; x = nullptr;

@@ -8,5 +8,6 @@ namespace Meow::Scene {
 	}
 
 	void Node::update(float delta) {}
+	void Node::render(float delta) {}
 }
 

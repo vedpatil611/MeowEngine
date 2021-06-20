@@ -4,6 +4,8 @@
 #include <Meow/Renderer/SpriteSheet.h>
 #include <unordered_map>
 
+DISABLE_WARNINGS()
+
 typedef bool(*StateChangeFn)();
 
 namespace Meow 

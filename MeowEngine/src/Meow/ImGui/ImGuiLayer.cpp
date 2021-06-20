@@ -5,7 +5,6 @@
 #include "GLFW/glfw3.h"
 #include "Meow/Application.h"
 
-#define IMGUI_IMPL_OPENGL_LOADER_GLAD
 #include "imgui.h"
 #include "Meow/ImGui/openGL/imgui_impl_opengl3.h"
 #include "Meow/ImGui/openGL/imgui_impl_glfw.h"
@@ -41,8 +40,8 @@ namespace Meow {
 			style.Colors[ImGuiCol_WindowBg].w = 1.0f;
 		}
 
-		int verMax, verMin;
-		char temp;
+		//int verMax, verMin;
+		//char temp;
 		auto* window = Application::getApplication().getWindow();
 		ImGui_ImplOpenGL3_Init("#version 450");
 		ImGui_ImplGlfw_InitForOpenGL(window->getWindow(), false);
@@ -122,7 +121,7 @@ namespace Meow {
 	{
 		ImGuiIO& io = ImGui::GetIO();
 		Window* window = Application::getApplication().getWindow();
-		io.DisplaySize = ImVec2(window->getWidth(), window->getHeight());
+		io.DisplaySize = ImVec2(static_cast<float>(window->getWidth()), static_cast<float>(window->getHeight()));
 
 		ImGui::Render();
 		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
@@ -139,7 +138,7 @@ namespace Meow {
 	bool ImGuiLayer::windowResizeCallback(WindowResizeEvent& e)
 	{
 		ImGuiIO& io = ImGui::GetIO();
-		io.DisplaySize = ImVec2(e.getWidth(), e.getHeight());
+		io.DisplaySize = ImVec2(static_cast<float>(e.getWidth()), static_cast<float>(e.getHeight()));
 		io.DisplayFramebufferScale = ImVec2(1.0f, 1.0f);
 		glViewport(0, 0, e.getWidth(), e.getHeight());
 		return false;

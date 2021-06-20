@@ -1,7 +1,6 @@
 #include "MeowPCH.h"
 #include "ExampleLayer.h"
 
-#define IMGUI_IMPL_OPENGL_LOADER_GLAD
 #include "imgui.h"
 
 namespace Meow

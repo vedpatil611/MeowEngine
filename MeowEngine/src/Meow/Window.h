@@ -15,6 +15,8 @@
 #include <Meow/Renderer/GraphicsContext.h>
 #include <Meow/Events/Event.h>
 
+DISABLE_WARNINGS()
+
 typedef struct GLFWgamepadstate GamepadState;
 
 namespace Meow {
