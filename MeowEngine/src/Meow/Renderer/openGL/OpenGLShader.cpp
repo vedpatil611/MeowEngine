@@ -12,14 +12,12 @@ namespace Meow
 		:m_VertPath(vertPath), m_FragPath(fragPath)
 	{
 		unsigned int program = glCreateProgram();
-		m_UniformLocationCache = new std::unordered_map<const char*, int>();
 		m_ShaderID = createShaderProgram(Utils::readFile(vertPath), Utils::readFile(fragPath));
 	}
 
 	OpenGLShader::~OpenGLShader()
 	{
 		GLCALL(glDeleteProgram(m_ShaderID));
-		delete m_UniformLocationCache;
 	}
 
 	void OpenGLShader::bind() const
@@ -34,14 +32,14 @@ namespace Meow
 
 	int OpenGLShader::getUniformLocation(const char* uniformName)
 	{
-		if (m_UniformLocationCache->find(uniformName) != m_UniformLocationCache->end())
-			return (*m_UniformLocationCache)[uniformName];
+		if (m_UniformLocationCache.find(uniformName) != m_UniformLocationCache.end())
+			return m_UniformLocationCache[uniformName];
 
 		GLCALL(int location = glGetUniformLocation(m_ShaderID, uniformName));
 		if (location == -1)
 			LOG_WARN << "Warning: uniform '" << uniformName << "' not found" << END_LOG;
 		else
-			(*m_UniformLocationCache)[uniformName] = location;
+			m_UniformLocationCache[uniformName] = location;
 
 		return location;
 	}

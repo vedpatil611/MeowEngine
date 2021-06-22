@@ -5,6 +5,8 @@
 #include <Meow/Maths/Maths.h>
 #include <Meow/Renderer/Shader.h>
 
+DISABLE_WARNINGS()
+
 namespace Meow
 {
 	class MEOW_API OpenGLShader : public Shader
@@ -13,7 +15,7 @@ namespace Meow
 		unsigned int m_ShaderID;
 		const char* m_VertPath;
 		const char* m_FragPath;
-		std::unordered_map<const char*, int>* m_UniformLocationCache;
+		std::unordered_map<const char*, int> m_UniformLocationCache;
 	public:
 		OpenGLShader(const char* vertPath, const char* fragPath);
 		~OpenGLShader();
