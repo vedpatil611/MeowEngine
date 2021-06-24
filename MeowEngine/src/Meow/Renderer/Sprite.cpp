@@ -36,6 +36,7 @@ namespace Meow
 		unsigned short indices[] = { 0, 1, 2, 2, 3, 0 };
 		m_IndexBuffer = IndexBuffer::create(indices, 6);
 	}
+	
 	Sprite::~Sprite()
 	{
 		SAFE_DELETE(m_IndexBuffer);
