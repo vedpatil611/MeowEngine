@@ -28,7 +28,7 @@ namespace Meow {
 		unsigned int m_VBO;
 		VertexData* m_Buffer;
 		unsigned int submitCount = 0;
-		std::vector<unsigned int> m_TexturesSlots;
+		std::vector<int> m_TexturesSlots;
 	public:
 		BatchRenderer2D();
 		~BatchRenderer2D();

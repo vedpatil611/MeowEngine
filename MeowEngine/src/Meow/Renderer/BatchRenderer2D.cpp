@@ -38,12 +38,10 @@ namespace Meow
 	
 		if (tid > 0)
 		{
-			bool found = false;
 			auto it = std::find(m_TexturesSlots.begin(), m_TexturesSlots.end(), tid);
 			if (it != m_TexturesSlots.end())
 			{
 				textureSlot = static_cast<float>(*it);
-				found = true;
 			}
 			else
 			{
@@ -58,10 +56,7 @@ namespace Meow
 				textureSlot = static_cast<float>(m_TexturesSlots.size() - 1);
 			}
 		}
-		else
-		{
-
-		}
+		
 		m_Buffer->vertex = position;
 		m_Buffer->colour = colour;
 		m_Buffer->UV = uvs[0];
@@ -100,9 +95,12 @@ namespace Meow
 	{
 		for (int i = 0; i < m_TexturesSlots.size(); ++i)
 		{
-			glActiveTexture(GL_TEXTURE0 + i);
-			glBindTexture(GL_TEXTURE_2D, m_TexturesSlots[i]);
+			GLCALL(glActiveTexture(GL_TEXTURE0 + i));
+			GLCALL(glBindTexture(GL_TEXTURE_2D, m_TexturesSlots[i]));
+			
 		}
+		//Shader* shader = getActiveShader();
+		//shader->setUniform1iv("u_Texture", m_TexturesSlots.size(), m_TexturesSlots.data());
 
 		GLCALL(glBindVertexArray(m_VAO));
 		//m_IBO->bind();

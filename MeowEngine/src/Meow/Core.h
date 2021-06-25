@@ -47,3 +47,10 @@
 
 void GlClearError();
 bool GlLogCall(const char* functionName, const char* file, const int& line);
+
+namespace Meow{
+	static class Shader* g_ActiveShader = nullptr;
+	
+	class Shader* getActiveShader();
+	void setActiveShader(class Shader* shader);
+}

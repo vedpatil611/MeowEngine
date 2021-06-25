@@ -1,6 +1,7 @@
 #include "MeowPCH.h"
 #include "TextureArray.h"
 
+#include <algorithm>
 #include <filesystem>
 #include <string.h>
 #include <Meow/Renderer/Texture.h>
@@ -13,7 +14,8 @@ namespace Meow
 		{
 			if(!entry.is_directory() && strcmp(entry.path().extension().c_str(), ".png") == 0)
 			{
-				m_Array.push_back(new Texture(entry.path().c_str()));
+				m_Keys.push_back(entry.path().stem().c_str());
+				m_Texs.emplace(entry.path().stem().c_str(), new Texture(entry.path().c_str()));
 			}
 		}
 	}
@@ -23,35 +25,36 @@ namespace Meow
 		for(auto& entry: std::filesystem::recursive_directory_iterator(path))
 		{
 			if(!entry.is_directory() && strcmp(entry.path().extension().c_str(), ".png") == 0)
-			{
-				m_Array.push_back(new Texture(entry.path().c_str()));
+			{	
+				m_Keys.push_back(entry.path().stem().c_str());
+				m_Texs[m_Keys.back()] = new Texture(entry.path().c_str());
 			}
 		}
 	}
 
 	TextureArray::~TextureArray()
 	{
-		for(auto* tex: m_Array)
+		for(auto [k, tex]: m_Texs)
 			delete tex;
 	}
 
 	unsigned int TextureArray::size() const 
 	{
-		return m_Array.size();
+		return m_Texs.size();
 	}
 
-	Texture*& TextureArray::operator[](int index)
+	Texture*& TextureArray::operator[](const char* key)
 	{
-		return m_Array[index];
+		return m_Texs[key];
 	}
 
 	TextureArray::iterator TextureArray::begin()
 	{
-		return m_Array.begin();
+		return m_Texs.begin();
 	}
 
 	TextureArray::iterator TextureArray::end()
 	{
-		return m_Array.end();
+		return m_Texs.end();
 	}
 }

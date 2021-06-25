@@ -1,8 +1,9 @@
 #include <MeowPCH.h>
 
+#include <glad/glad.h>
 #include <Meow/Core.h>
 #include <Meow/Utils/Log.h>
-#include <glad/glad.h>
+#include <Meow/Renderer/Shader.h>
 
 void GlClearError()
 {
@@ -17,4 +18,17 @@ bool GlLogCall(const char* functionName, const char* file, const int& line)
         return false;
     }
     return true;
+}
+
+namespace Meow
+{
+    Shader* getActiveShader()
+    {
+        return g_ActiveShader;
+    }
+
+    void setActiveShader(Shader* shader)
+    {
+        g_ActiveShader = shader;
+    }
 }
