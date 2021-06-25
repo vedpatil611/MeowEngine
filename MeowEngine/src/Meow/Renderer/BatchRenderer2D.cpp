@@ -41,7 +41,7 @@ namespace Meow
 			auto it = std::find(m_TexturesSlots.begin(), m_TexturesSlots.end(), tid);
 			if (it != m_TexturesSlots.end())
 			{
-				textureSlot = static_cast<float>(*it);
+				textureSlot = static_cast<float>(it - m_TexturesSlots.begin());
 			}
 			else
 			{
@@ -93,15 +93,11 @@ namespace Meow
 
 	void BatchRenderer2D::flush(float delta)
 	{
-		std::vector<int> slots;
 		for (int i = 0; i < m_TexturesSlots.size(); ++i)
 		{
 			GLCALL(glActiveTexture(GL_TEXTURE0 + i));
 			GLCALL(glBindTexture(GL_TEXTURE_2D, m_TexturesSlots[i]));
-				
 		}
-		//Shader* shader = getActiveShader();
-		//shader->setUniform1iv("u_Texture", m_TexturesSlots.size(), m_TexturesSlots.data());
 
 		GLCALL(glBindVertexArray(m_VAO));
 		//m_IBO->bind();

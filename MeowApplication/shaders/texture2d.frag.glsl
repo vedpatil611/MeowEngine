@@ -14,9 +14,9 @@ void main()
 {
 	vec4 texColour = fs_data.colour;
 
-	if (fs_data.tid > 0.0f)
+	int tid = int(fs_data.tid + 0.5);
+	if (tid >= 0)
 	{
-		int tid = int(fs_data.tid + 0.5);
 		texColour = texture(u_Texture[tid], fs_data.uv);
 	}
 
