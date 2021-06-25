@@ -21,6 +21,7 @@
 #include <Meow/Renderer/Shader.h>
 #include <Meow/Renderer/TileSprite.h>
 #include <Meow/Renderer/Texture.h>
+#include <Meow/Renderer/TextureArray.h>
 #include <Meow/Utils/Timer.h>
 
 Meow::Application* Meow::CreateApplication()
@@ -42,7 +43,6 @@ MeowApplication::MeowApplication()
 
 MeowApplication::~MeowApplication()
 {
-	
 }
 
 void MeowApplication::Run()
@@ -63,12 +63,21 @@ void MeowApplication::Run()
 
 	Meow::Shader* shader = Meow::Shader::create("shaders/texture2d.vert.glsl", "shaders/texture2d.frag.glsl");
 	
+	Meow::TextureArray texArray;
+
 	int texIDs[32] = { 0 };
-	texIDs[1] = 1;
+
+	for(int i = 0; i < texArray.size(); ++i)
+	{
+		printf("%d %d\n", i, texArray[i]->getTextureId());
+		texIDs[i] = texArray[i]->getTextureId();
+	}
+
 	shader->bind();
 	shader->setUniformMat4f("u_proj_mat", proj);
-	Meow::Texture tex("assets/Circle.png");
-	Meow::Texture tex2("assets/icon/Meow.png");
+	
+	//Meow::Texture tex("assets/Circle.png");
+	//Meow::Texture tex2("assets/icon/Meow.png");
 	
 	shader->setUniform1iv("u_Texture", 32, texIDs);
 
@@ -80,12 +89,12 @@ void MeowApplication::Run()
 		{
 			if (s == 1)
 			{
-				sprites.emplace_back(new Meow::TileSprite({ i, j, 0.0f }, { 4.9f, 4.9f }, &tex, shader));
+				sprites.emplace_back(new Meow::TileSprite({ i, j, 0.0f }, { 4.9f, 4.9f }, texArray[0], shader));
 				s = 2;
 			}
 			else
 			{
-				sprites.emplace_back(new Meow::TileSprite({ i, j, 0.0f }, { 4.9f, 4.9f }, &tex2, shader));
+				sprites.emplace_back(new Meow::TileSprite({ i, j, 0.0f }, { 4.9f, 4.9f }, texArray[1], shader));
 				s = 1;
 			}
 		}
@@ -125,7 +134,7 @@ void MeowApplication::Run()
 		}
 	}
 
-	for (auto*& x : sprites)
+	for (auto* x : sprites)
 		delete x;
 
 	delete shader;

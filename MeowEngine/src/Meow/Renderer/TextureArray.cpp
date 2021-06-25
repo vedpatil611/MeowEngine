@@ -34,4 +34,24 @@ namespace Meow
 		for(auto* tex: m_Array)
 			delete tex;
 	}
+
+	unsigned int TextureArray::size() const 
+	{
+		return m_Array.size();
+	}
+
+	Texture*& TextureArray::operator[](int index)
+	{
+		return m_Array[index];
+	}
+
+	TextureArray::iterator TextureArray::begin()
+	{
+		return m_Array.begin();
+	}
+
+	TextureArray::iterator TextureArray::end()
+	{
+		return m_Array.end();
+	}
 }
