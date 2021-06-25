@@ -1,8 +1,6 @@
 #include "MeowPCH.h"
 #include "MeowApplication.h"
 
-#define BATCH_TEST
-
 #ifdef MEOW_PLATFORM_WINDOWS
 #include <Windows.h>
 #endif 
@@ -53,8 +51,7 @@ void MeowApplication::Run()
 	window->setBackgrondColor({ 0.0f, 0.0f, 0.0f, 1.0f });
 	//window->setIcon("assets/icon/Meow.png");
 
-	Meow::Layer* layer = new Meow::Layer();
-	pushLayer(layer);
+	Meow::Layer* layer = getBaseLayer();
 
 	std::vector<Meow::Renderable2D*> sprites;
 
@@ -70,7 +67,7 @@ void MeowApplication::Run()
 
 	for(int i = 0; i < 32; ++i)
 	{
-		texIDs[i] = 0;
+		texIDs[i] = i;
 	}
 
 	shader->bind();
@@ -86,12 +83,12 @@ void MeowApplication::Run()
 		{
 			if (s == 1)
 			{
-				sprites.emplace_back(new Meow::TileSprite({ i, j, 0.0f }, { 4.9f, 4.9f }, texArray["Meow"], shader));
+				sprites.emplace_back(new Meow::TileSprite({ i, j, 0.0f }, { 4.9f, 4.9f }, texArray["Circle"], shader));
 				s = 2;
 			}
 			else
 			{
-				sprites.emplace_back(new Meow::TileSprite({ i, j, 0.0f }, { 4.9f, 4.9f }, texArray["Circle"], shader));
+				sprites.emplace_back(new Meow::TileSprite({ i, j, 0.0f }, { 4.9f, 4.9f }, texArray["Meow"], shader));
 				s = 1;
 			}
 		}
@@ -114,10 +111,8 @@ void MeowApplication::Run()
 		layer->submit(sprites);
 
 		for (auto* layer : m_LayerStack)
-			layer->onUpdate();
-
-		for (auto* layer : m_LayerStack)
 		{
+			layer->onUpdate();
 			layer->begin();
 			layer->onRender(deltaTime);
 			layer->end();

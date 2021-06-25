@@ -22,7 +22,9 @@ namespace Meow {
 		window = new Window("Meow", 800, 800);
 		window->setEventCallback(BIND_EVENT_FN(Application::onEvent));
 
+		m_BaseLayer = new Layer();
 		m_ImGuiLayer = new ExampleLayer();
+		pushLayer(m_BaseLayer);
 		pushLayer(m_ImGuiLayer);
 	}
 
@@ -39,7 +41,7 @@ namespace Meow {
 
 		SAFE_DELETE(window);
 
-		if(s_Instance = this) s_Instance = nullptr;
+		if(s_Instance == this) s_Instance = nullptr;
 	}
 
 	void Application::Run()

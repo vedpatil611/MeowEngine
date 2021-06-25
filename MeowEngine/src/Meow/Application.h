@@ -12,7 +12,7 @@ namespace Meow {
 		Window* window;
 		ImGuiLayer* m_ImGuiLayer;
 		LayerStack m_LayerStack;
-
+		Layer* m_BaseLayer;
 		inline static Application* s_Instance = nullptr;
 	public:
 		Application();
@@ -25,6 +25,7 @@ namespace Meow {
 
 		static inline Application& getApplication() { return *s_Instance; }
 		inline Window* getWindow() { return window; }
+		inline Layer* getBaseLayer() { return m_BaseLayer; };
 	};
 
 	Application* CreateApplication();

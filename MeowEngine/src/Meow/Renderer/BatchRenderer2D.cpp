@@ -32,7 +32,7 @@ namespace Meow
 		const Maths::vec2& size = renderable->getSize();
 		const Maths::vec4& colour = renderable->getColor();
 		const std::vector<Maths::vec2>& uvs = renderable->getUVs();
-		const unsigned tid = renderable->getTID();
+		const unsigned int tid = renderable->getTID();
 
 		float textureSlot = 0.0f;
 	
@@ -93,11 +93,12 @@ namespace Meow
 
 	void BatchRenderer2D::flush(float delta)
 	{
+		std::vector<int> slots;
 		for (int i = 0; i < m_TexturesSlots.size(); ++i)
 		{
 			GLCALL(glActiveTexture(GL_TEXTURE0 + i));
 			GLCALL(glBindTexture(GL_TEXTURE_2D, m_TexturesSlots[i]));
-			
+				
 		}
 		//Shader* shader = getActiveShader();
 		//shader->setUniform1iv("u_Texture", m_TexturesSlots.size(), m_TexturesSlots.data());

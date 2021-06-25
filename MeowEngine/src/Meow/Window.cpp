@@ -47,8 +47,6 @@ namespace Meow {
 
 	Window::~Window()
 	{
-		delete m_Context;
-
 		glfwDestroyWindow(m_Window);
 		glfwTerminate();
 	}
