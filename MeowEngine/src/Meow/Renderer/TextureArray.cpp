@@ -18,6 +18,7 @@ namespace Meow
 				m_Texs.emplace(entry.path().stem().c_str(), new Texture(entry.path().c_str()));
 			}
 		}
+		m_Texs.emplace("null", nullptr);
 	}
 
 	TextureArray::TextureArray(const char* path)
@@ -30,6 +31,7 @@ namespace Meow
 				m_Texs[m_Keys.back()] = new Texture(entry.path().c_str());
 			}
 		}
+		m_Texs.emplace("null", nullptr);
 	}
 
 	TextureArray::~TextureArray()
@@ -45,7 +47,10 @@ namespace Meow
 
 	Texture*& TextureArray::operator[](const char* key)
 	{
-		return m_Texs[key];
+		if(m_Texs.find(key) != m_Texs.end())
+			return m_Texs[key];
+		else 
+			return m_Texs["null"];
 	}
 
 	TextureArray::iterator TextureArray::begin()
