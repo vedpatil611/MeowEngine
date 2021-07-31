@@ -8,17 +8,13 @@
 
 #include <Meow/Core.h>
 #include <Meow/Maths/Maths.h>
-#include "IndexBuffer.h"
-#include "Shader.h"
-#include "Texture.h"
-#include "VertexArray.h"
+#include <Meow/Renderer/Texture.h>
 #include <vector>
 
 DISABLE_WARNINGS()
 
 namespace Meow 
-{ 
-
+{
 	struct VertexData {
 		Maths::vec3 vertex;
 		Maths::vec4 colour;
@@ -45,9 +41,9 @@ namespace Meow
 		Renderable2D(const Maths::vec3& position, const Maths::vec2& size, const Maths::vec4 colour);
 		virtual ~Renderable2D();
 
-		virtual inline VertexArray* getVAO() const = 0;
-		virtual inline IndexBuffer* getIBO() const = 0;
-		virtual inline Shader* getShader() const = 0;
+		virtual inline class VertexArray* getVAO() const = 0;
+		virtual inline class IndexBuffer* getIBO() const = 0;
+		virtual inline class Shader* getShader() const = 0;
 
 		inline const Maths::vec3& getPositions() const { return m_Position; }
 		inline const Maths::vec2& getSize() const { return m_Size; }

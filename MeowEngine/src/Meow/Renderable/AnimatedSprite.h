@@ -3,11 +3,6 @@
 #include <Meow/Core.h>
 #include <Meow/Maths/Maths.h>
 #include "Sprite.h"
-#include "Shader.h"
-#include "VertexArray.h"
-#include "IndexBuffer.h"
-#include "Buffer.h"
-#include "Texture.h"
 
 namespace Meow
 {

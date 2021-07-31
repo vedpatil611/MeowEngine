@@ -2,10 +2,6 @@
 
 #include <Meow/Core.h>
 #include <Meow/Maths/Maths.h>
-#include "IndexBuffer.h"
-#include "VertexArray.h"
-#include "Shader.h"
-#include "Texture.h"
 #include "Renderable2D.h"
 
 namespace Meow
@@ -13,18 +9,18 @@ namespace Meow
 	class MEOW_API Sprite: public Renderable2D
 	{
 	protected:
-		Shader* m_Shader;
-		Texture* m_Texture;
-		VertexArray* m_VertexArray;
-		IndexBuffer* m_IndexBuffer;
+		class Shader* m_Shader;
+		class Texture* m_Texture;
+		class VertexArray* m_VertexArray;
+		class IndexBuffer* m_IndexBuffer;
 		
 		Transformations2D m_TransformData;
 	public:
 		Sprite(const Maths::vec3& position, const Maths::vec2& size, const Maths::vec4& colour, Shader* shader, Texture* texture);
 		virtual ~Sprite();
 
-		inline VertexArray* getVAO() const override { return m_VertexArray; }
-		inline IndexBuffer* getIBO() const override { return m_IndexBuffer; }
+		inline class VertexArray* getVAO() const override { return m_VertexArray; }
+		inline class IndexBuffer* getIBO() const override { return m_IndexBuffer; }
 		inline Shader* getShader() const override { return m_Shader; }
 		inline Texture* getTexture() const { return m_Texture; }
 		Transformations2D getTransform() const { return m_TransformData; }

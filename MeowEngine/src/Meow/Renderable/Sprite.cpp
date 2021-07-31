@@ -1,6 +1,10 @@
 #include "MeowPCH.h"
 #include "Sprite.h"
 
+#include <Meow/Renderer/IndexBuffer.h>
+#include <Meow/Renderer/Shader.h>
+#include <Meow/Renderer/VertexArray.h>
+
 namespace Meow
 {
 	Sprite::Sprite(const Maths::vec3& position, const Maths::vec2& size, const Maths::vec4& colour, Shader* shader, Texture* texture)
