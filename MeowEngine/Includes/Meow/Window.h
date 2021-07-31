@@ -49,7 +49,7 @@ namespace Meow {
 		void update();
 		bool closed() const;
 		void setCurrentContext() const;
-		bool setVSyncEnable(bool b);
+		bool setVSyncEnable(const bool b);
 		void setBackgrondColor(const Meow::Maths::vec4& color);
 		void setIcon(const char* iconPath);
 		double getWindowTimeNow();

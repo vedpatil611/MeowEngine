@@ -73,7 +73,7 @@ namespace Meow {
 			glfwGetGamepadState(GLFW_JOYSTICK_1, &gamepadState);
 
 		m_GraphicsContext->swapBuffers();
-		GLCALL(glClear(GL_COLOR_BUFFER_BIT));
+		m_GraphicsContext->clear();
 	}
 
 	bool Window::closed() const
@@ -86,9 +86,9 @@ namespace Meow {
 		glfwMakeContextCurrent(m_Window);
 	}
 
-	bool Window::setVSyncEnable(bool b)
+	bool Window::setVSyncEnable(const bool b)
 	{
-		glfwSwapInterval(static_cast<int>(b));
+		glfwSwapInterval(b ? 1 : 0);
 		return b;
 	}
 

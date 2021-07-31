@@ -14,6 +14,7 @@ namespace Meow
 		OpenGLContext(GLFWwindow* window);
 
 		void init() override;
+		void clear() override;
 		void swapBuffers() override;
 	};
 }
