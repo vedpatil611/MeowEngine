@@ -34,7 +34,7 @@ namespace Meow
 		const std::vector<Maths::vec2>& uvs = renderable->getUVs();
 		const unsigned int tid = renderable->getTID();
 
-		float textureSlot = 0.0f;
+		float textureSlot = -2.0f;
 	
 		if (tid > 0)
 		{
