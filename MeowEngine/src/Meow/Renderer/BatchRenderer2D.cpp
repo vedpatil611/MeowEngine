@@ -1,8 +1,9 @@
 #include "MeowPCH.h"
-#include "BatchRenderer2D.h"
+#include <Meow/Renderer/BatchRenderer2D.h>
 
 #include <algorithm>
 #include "glad/glad.h"
+#include <Meow/Renderer/IndexBuffer.h>
 
 namespace Meow
 {

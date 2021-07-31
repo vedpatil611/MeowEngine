@@ -1,5 +1,5 @@
 #include "MeowPCH.h"
-#include "Shader.h"
+#include <Meow/Renderer/Shader.h>
 
 #include <Meow/Renderer/Renderer.h>
 #include <Meow/Renderer/openGL/OpenGLShader.h>

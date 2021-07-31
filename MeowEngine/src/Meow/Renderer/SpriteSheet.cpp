@@ -1,5 +1,5 @@
 #include "MeowPCH.h"
-#include "SpriteSheet.h"
+#include <Meow/Renderer/SpriteSheet.h>
 
 namespace Meow
 {

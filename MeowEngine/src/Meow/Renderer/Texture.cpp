@@ -1,5 +1,5 @@
 #include "MeowPCH.h"
-#include "Texture.h"
+#include <Meow/Renderer/Texture.h>
 
 #include <glad/glad.h>
 #include <iostream>

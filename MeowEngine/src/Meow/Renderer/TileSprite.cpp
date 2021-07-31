@@ -1,5 +1,5 @@
 #include "MeowPCH.h"
-#include "TileSprite.h"
+#include <Meow/Renderer/TileSprite.h>
 
 namespace Meow
 {

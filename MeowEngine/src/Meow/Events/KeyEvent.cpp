@@ -1,6 +1,5 @@
 #include "MeowPCH.h"
-
-#include "KeyEvent.h"
+#include <Meow/Events/KeyEvent.h>
 
 namespace Meow
 {

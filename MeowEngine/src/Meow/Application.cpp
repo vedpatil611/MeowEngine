@@ -1,11 +1,11 @@
 #include "MeowPCH.h"
-#include "Application.h"
+#include <Meow/Application.h>
 
 #include <functional>
 
-#include "Events/KeyEvent.h"
-#include "Events/MouseEvent.h"
-#include "Events/ApplicationEvent.h"
+#include <Meow/Events/ApplicationEvent.h>
+#include <Meow/Events/KeyEvent.h>
+#include <Meow/Events/MouseEvent.h>
 
 #define BIND_EVENT_FN(x) std::bind(&x, this, std::placeholders::_1)
 

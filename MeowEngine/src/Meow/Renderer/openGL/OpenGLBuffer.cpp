@@ -1,5 +1,5 @@
 #include <MeowPCH.h>
-#include "OpenGLBuffer.h"
+#include <Meow/Renderer/openGL/OpenGLBuffer.h>
 
 #include <glad/glad.h>
 

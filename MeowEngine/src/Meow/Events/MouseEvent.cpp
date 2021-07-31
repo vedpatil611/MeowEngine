@@ -1,7 +1,7 @@
 #include "MeowPCH.h"
-#include "MouseEvent.h"
+#include <Meow/Events/MouseEvent.h>
 
-#include "Event.h"
+#include <Meow/Events/Event.h>
 
 namespace Meow
 {

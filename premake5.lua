@@ -37,7 +37,7 @@ project "MeowEngine"
 	}
 
 	includedirs {
-		"%{prj.name}/src/",
+		"%{prj.name}/Includes/",
 		"%{IncludeDirs.GLFW}",
 		"%{IncludeDirs.GLAD}",
 		"%{IncludeDirs.FreeImage}",
@@ -54,23 +54,14 @@ project "MeowEngine"
 	}
 
 	files { 
-		"%{prj.name}/src/**.h", 
 		"%{prj.name}/src/**.cpp",
-		"%{prj.name}/src/Meow/**.h", 
 		"%{prj.name}/src/Meow/**.cpp",
-		"%{prj.name}/src/Meow/Events/**.h",
 		"%{prj.name}/src/Meow/Events/**.cpp",
-		"%{prj.name}/src/Meow/Maths/**.h",
 		"%{prj.name}/src/Meow/Maths/**.cpp",
-		"%{prj.name}/src/Meow/Renderable/**.h",
 		"%{prj.name}/src/Meow/Renderable/**.cpp",
-		"%{prj.name}/src/Meow/Renderer/**.h",
 		"%{prj.name}/src/Meow/Renderer/**.cpp",
-		"%{prj.name}/src/Meow/Renderer/openGL/**.h",
 		"%{prj.name}/src/Meow/Renderer/openGL/**.cpp",
-		"%{prj.name}/src/Meow/Scene/**.h",
 		"%{prj.name}/src/Meow/Scene/**.cpp",
-		"%{prj.name}/src/Meow/Utils/**.h",
 		"%{prj.name}/src/Meow/Utils/**.cpp"
 	}
 
@@ -117,7 +108,7 @@ project "MeowApplication"
 	objdir ("intermediate/" .. outputdir .. "/%{prj.name}")
 
 	includedirs {
-		"MeowEngine/src",
+		"MeowEngine/Includes",
 		"%{IncludeDirs.GLFW}",
 		"%{IncludeDirs.GLAD}",
 		"%{IncludeDirs.FreeImage}",

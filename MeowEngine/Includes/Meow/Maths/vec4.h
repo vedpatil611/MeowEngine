@@ -4,7 +4,6 @@
 #include "vec3.h"
 
 #include <Meow/Core.h>
-#include <Meow/Utils/Log.h>
 #include <ostream>
 
 namespace Meow { 

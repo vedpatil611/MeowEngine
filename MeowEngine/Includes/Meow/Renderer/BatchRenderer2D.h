@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Renderer2D.h"
-#include "IndexBuffer.h"
 #include <Meow/Renderable/Renderable2D.h>
 #include <vector>
 
@@ -23,12 +22,12 @@ namespace Meow {
 	{
 	private:
 		unsigned int m_VAO;
-		IndexBuffer* m_IBO;
+		class IndexBuffer* m_IBO;
 		int m_IndexCount;
 		unsigned int m_VBO;
-		VertexData* m_Buffer;
 		unsigned int submitCount = 0;
 		std::vector<int> m_TexturesSlots;
+		VertexData* m_Buffer;
 	public:
 		BatchRenderer2D();
 		~BatchRenderer2D();

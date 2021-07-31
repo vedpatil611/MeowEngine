@@ -1,11 +1,11 @@
 #include <MeowPCH.h>
-#include "SimpleRenderer2D.h"
+#include <Meow/Renderer/SimpleRenderer2D.h>
 
 #include <Meow/Renderable/AnimatedSprite.h>
 #include <Meow/Renderable/Sprite.h>
-#include "IndexBuffer.h"
-#include "VertexArray.h"
-#include "Shader.h"
+#include <Meow/Renderer/IndexBuffer.h>
+#include <Meow/Renderer/VertexArray.h>
+#include <Meow/Renderer/Shader.h>
 
 namespace Meow
 {

@@ -1,7 +1,7 @@
 #include "MeowPCH.h"
-#include "mat4.h"
-#include "Maths.h"
+#include <Meow/Maths/mat4.h>
 
+#include <Meow/Maths/Maths.h>
 #include <cstring>
 
 namespace Meow {

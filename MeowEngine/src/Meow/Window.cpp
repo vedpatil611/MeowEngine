@@ -1,14 +1,14 @@
 #include "MeowPCH.h"
-#include "Window.h"
+#include <Meow/Window.h>
 
 #include <stdexcept>
 
-#include "Events/ApplicationEvent.h"
-#include "Events/KeyEvent.h"
-#include "Events/MouseEvent.h"
-#include "Renderer/Texture.h"
-#include "Renderer/Renderer.h"
-#include "Renderer/openGL/OpenGLContext.h"
+#include <Meow/Events/ApplicationEvent.h>
+#include <Meow/Events/KeyEvent.h>
+#include <Meow/Events/MouseEvent.h>
+#include <Meow/Renderer/Texture.h>
+#include <Meow/Renderer/Renderer.h>
+#include <Meow/Renderer/openGL/OpenGLContext.h>
 
 namespace Meow {
 	Window::Window(const char* title, int width, int height)

@@ -1,5 +1,6 @@
 #include "MeowPCH.h"
-#include "AnimatedSprite.h"
+
+#include <Meow/Renderable/AnimatedSprite.h>
 
 #include <Meow/Renderer/Shader.h>
 #include <Meow/Renderer/SpriteSheet.h>

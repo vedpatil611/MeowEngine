@@ -12,8 +12,6 @@
 
 #include <GLFW/glfw3.h>
 
-#include <Meow/Renderer/GraphicsContext.h>
-#include <Meow/Events/Event.h>
 
 DISABLE_WARNINGS()
 

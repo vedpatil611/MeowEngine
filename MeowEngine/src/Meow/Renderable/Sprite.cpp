@@ -1,6 +1,7 @@
 #include "MeowPCH.h"
-#include "Sprite.h"
+#include <Meow/Renderable/Sprite.h>
 
+#include <Meow/Renderer/Buffer.h>
 #include <Meow/Renderer/IndexBuffer.h>
 #include <Meow/Renderer/Shader.h>
 #include <Meow/Renderer/VertexArray.h>

@@ -1,5 +1,5 @@
 #include "MeowPCH.h"
-#include "VertexArray.h"
+#include <Meow/Renderer/VertexArray.h>
 
 #include <Meow/Renderer/Renderer.h>
 #include <Meow/Renderer/openGL/OpenGLVertexArray.h>

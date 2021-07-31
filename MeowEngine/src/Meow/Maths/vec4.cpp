@@ -1,5 +1,5 @@
 #include "MeowPCH.h"
-#include "vec4.h"
+#include <Meow/Maths/vec4.h>
 
 namespace Meow {
 	namespace Maths {

@@ -1,5 +1,5 @@
 #include "MeowPCH.h"
-#include "Buffer.h"
+#include <Meow/Renderer/Buffer.h>
 
 #include <stdexcept>
 #include "Meow/Renderer/Renderer.h"

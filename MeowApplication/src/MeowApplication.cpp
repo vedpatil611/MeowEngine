@@ -1,4 +1,4 @@
-#include "MeowPCH.h"
+#include <MeowPCH.h>
 #include "MeowApplication.h"
 
 #ifdef MEOW_PLATFORM_WINDOWS

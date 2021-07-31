@@ -1,6 +1,6 @@
 #include "MeowPCH.h"
 #include "Meow/Core.h"
-#include "OpenGLShader.h"
+#include <Meow/Renderer/openGL/OpenGLShader.h>
 
 #include <glad/glad.h>
 #include <Meow/Utils/Log.h>

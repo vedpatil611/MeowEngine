@@ -1,5 +1,5 @@
 #include "MeowPCH.h"
-#include "Maths.h"
+#include <Meow/Maths/Maths.h>
 
 float Meow::Maths::toRad(float degree)
 {
