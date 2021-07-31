@@ -1,6 +1,12 @@
 #include "MeowPCH.h"
 #include <Meow/Window.h>
 
+#ifndef __glad_h_
+#include <glad/glad.h>
+#endif
+
+#include <GLFW/glfw3.h>
+
 #include <stdexcept>
 
 #include <Meow/Events/ApplicationEvent.h>
@@ -70,7 +76,7 @@ namespace Meow {
 	{
 		glfwPollEvents();
 		if(isJoystickPresent())
-			glfwGetGamepadState(GLFW_JOYSTICK_1, &gamepadState);
+			glfwGetGamepadState(GLFW_JOYSTICK_1, gamepadState);
 
 		m_GraphicsContext->swapBuffers();
 		m_GraphicsContext->clear();

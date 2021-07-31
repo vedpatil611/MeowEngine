@@ -6,29 +6,24 @@
 
 #include <functional>
 
-#ifndef __glad_h_
-#include <glad/glad.h>
-#endif
-
-#include <GLFW/glfw3.h>
-
-
 DISABLE_WARNINGS()
 
+struct GLFWgamepadstate;
 typedef struct GLFWgamepadstate GamepadState;
+struct GLFWwindow;
 
 namespace Meow {
 	class MEOW_API Window {
 	private:
 		using EventCallbackFn = std::function<void(Event&)>;
 		
-		GLFWwindow* m_Window;
+		struct GLFWwindow* m_Window;
 		const char* m_Title;
 
 		int m_Height, m_Width;
 		double m_MouseX, m_MouseY;
 		bool m_PressedKey[1024] = { false };
-		GamepadState gamepadState;
+		GamepadState* gamepadState;
 
 		class GraphicsContext* m_GraphicsContext;
 
@@ -41,10 +36,10 @@ namespace Meow {
 		inline int getHeight() const { return m_Height; }
 		inline double getMouseX() const { return m_MouseX; }
 		inline double getMouseY() const { return m_MouseY; }
-		inline GLFWwindow* getWindow() const { return m_Window; }
+		inline struct GLFWwindow* getWindow() const { return m_Window; }
 
 		int isJoystickPresent() const;
-		inline GamepadState getGamepadState() const { return gamepadState; }
+		inline GamepadState* getGamepadState() const { return gamepadState; }
 
 		void update();
 		bool closed() const;
@@ -56,12 +51,12 @@ namespace Meow {
 
 		inline void setEventCallback(const EventCallbackFn& callback) { eventCallback = callback; }
 	private:
-		static void windowResizeCallback(GLFWwindow* window, int width, int height);
-		static void windowCloseCallback(GLFWwindow* window);
-		static void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods);
-		static void mouseButtonCallback(GLFWwindow* window, int button, int action, int mods);
-		static void cursorPosCallback(GLFWwindow* window, double xPos, double yPos);
-		static void scrollCallback(GLFWwindow* window, double xOffset, double yOffset);
-		static void charCallback(GLFWwindow* window, unsigned int code);
+		static void windowResizeCallback(struct GLFWwindow* window, int width, int height);
+		static void windowCloseCallback(struct GLFWwindow* window);
+		static void keyCallback(struct GLFWwindow* window, int key, int scancode, int action, int mods);
+		static void mouseButtonCallback(struct GLFWwindow* window, int button, int action, int mods);
+		static void cursorPosCallback(struct GLFWwindow* window, double xPos, double yPos);
+		static void scrollCallback(struct GLFWwindow* window, double xOffset, double yOffset);
+		static void charCallback(struct GLFWwindow* window, unsigned int code);
 	};
 }

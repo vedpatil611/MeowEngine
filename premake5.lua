@@ -1,6 +1,5 @@
 workspace "Meow"
 	architecture "x64"
-	startproject "MeowApplication"
 
 	configurations
 	{
@@ -86,65 +85,6 @@ project "MeowEngine"
 			"MEOW_PLATFORM_LINUX"
 		}
 
-	filter "configurations:Debug"
-		defines { "DEBUG" }
-		symbols "On"
-
-	filter "configurations:Release"
-		defines { "RELEASE" }
-		optimize "On"
-		buildoptions "/MD"
-
-
-project "MeowApplication"
-	location "MeowApplication"
-	kind "ConsoleApp"
-	language "C++"
-	cppdialect "C++17"
-    systemversion "latest"
-	inlining "Auto"
-
-	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
-	objdir ("intermediate/" .. outputdir .. "/%{prj.name}")
-
-	includedirs {
-		"MeowEngine/Includes",
-		"%{IncludeDirs.GLFW}",
-		"%{IncludeDirs.GLAD}",
-		"%{IncludeDirs.FreeImage}",
-	}
-	
-	libdirs {
-		"Dependencies/FreeImage/libs"
-	}
-
-	links {
-		"MeowEngine"
-	}
-
-	files { 
-		"%{prj.name}/shaders/**.glsl", 
-		"%{prj.name}/src/**.h", 
-		"%{prj.name}/src/**.cpp"
-	}
-
-	filter "system:windows"
-		defines {
-			"MEOW_PLATFORM_WINDOWS"
-		}
-
-	filter "system:linux"
-		defines {
-			"MEOW_PLATFORM_LINUX"
-		}
-        links {
-            "GLAD",
-            "GL"
-        }
-		postbuildcommands {
-			("cp -r ./shaders/ ../bin/" .. outputdir .. "/%{prj.name}"),
-			("cp -r ./assets/ ../bin/" .. outputdir .. "/%{prj.name}")
-		}
 	filter "configurations:Debug"
 		defines { "DEBUG" }
 		symbols "On"
