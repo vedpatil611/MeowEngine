@@ -25,13 +25,14 @@ namespace Meow {
 		using EventCallbackFn = std::function<void(Event&)>;
 		
 		GLFWwindow* m_Window;
-		GraphicsContext* m_Context;
 		const char* m_Title;
 
 		int m_Height, m_Width;
 		double m_MouseX, m_MouseY;
 		bool m_PressedKey[1024] = { false };
 		GamepadState gamepadState;
+
+		class GraphicsContext* m_GraphicsContext;
 
 		EventCallbackFn eventCallback;
 	public:

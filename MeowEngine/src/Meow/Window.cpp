@@ -7,6 +7,7 @@
 #include "Events/KeyEvent.h"
 #include "Events/MouseEvent.h"
 #include "Renderer/Texture.h"
+#include "Renderer/Renderer.h"
 #include "Renderer/openGL/OpenGLContext.h"
 
 namespace Meow {
@@ -33,20 +34,29 @@ namespace Meow {
 
 		// 0 for vsync off
 		//glfwSwapInterval(0);
+		switch (Renderer::getRendererAPI())
+		{
+		case RendererAPI::None:
+			throw std::runtime_error("No renderer api selected");
+		case RendererAPI::OpenGL:
+			m_GraphicsContext = new OpenGLContext(m_Window);
+			m_GraphicsContext->init();
 
-		m_Context = new OpenGLContext(m_Window);
-		m_Context->init();
-		
-		GLCALL(glEnable(GL_BLEND));
-		GLCALL(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));
-		GLCALL(glClearColor(0.0f, 0.0f, 0.0f, 0.0f));
+			GLCALL(glEnable(GL_BLEND));
+			GLCALL(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));
+			GLCALL(glClearColor(0.0f, 0.0f, 0.0f, 0.0f));
+			GLCALL(printf("%s\n", glGetString(GL_VERSION)));
+			break;
+		case RendererAPI::Vulkan:
+			throw std::runtime_error("Vulkan not yet supported");
+		}
 
-		printf("%s\n", glGetString(GL_VERSION));
 		glfwSetWindowUserPointer(m_Window, this);
 	}
 
 	Window::~Window()
 	{
+		delete m_GraphicsContext;
 		glfwDestroyWindow(m_Window);
 		glfwTerminate();
 	}
@@ -62,7 +72,7 @@ namespace Meow {
 		if(isJoystickPresent())
 			glfwGetGamepadState(GLFW_JOYSTICK_1, &gamepadState);
 
-		m_Context->swapBuffers();
+		m_GraphicsContext->swapBuffers();
 		GLCALL(glClear(GL_COLOR_BUFFER_BIT));
 	}
 
