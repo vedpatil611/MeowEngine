@@ -3,14 +3,12 @@
 #include "Window.h"
 #include "Events/Event.h"
 #include "Renderer/LayerStack.h"
-#include "ImGui/ImGuiLayer.h"
 
 namespace Meow {
 	class MEOW_API Application
 	{
 	protected:
 		Window* window;
-		ImGuiLayer* m_ImGuiLayer;
 		LayerStack m_LayerStack;
 		Layer* m_BaseLayer;
 		inline static Application* s_Instance = nullptr;

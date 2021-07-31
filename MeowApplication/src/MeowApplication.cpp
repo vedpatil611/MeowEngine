@@ -13,8 +13,6 @@
 
 #include <Meow.h>
 #include <Meow/Core.h>
-#include <Meow/ImGui/ImGuiLayer.h>
-#include <Meow/ImGui/ExampleLayer.h>
 #include <Meow/Maths/Maths.h>
 #include <Meow/Renderer/Layer.h>
 #include <Meow/Renderer/Shader.h>
