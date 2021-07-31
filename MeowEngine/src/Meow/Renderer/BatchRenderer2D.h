@@ -1,8 +1,8 @@
 #pragma once
 
 #include "Renderer2D.h"
-#include "Renderable2D.h"
 #include "IndexBuffer.h"
+#include <Meow/Renderable/Renderable2D.h>
 #include <vector>
 
 #define RENDERER_MAX_SPRITES	10000

@@ -3,7 +3,7 @@
 #include <Meow/Core.h>
 #include <Meow/Events/Event.h>
 #include <Meow/Renderer/BatchRenderer2D.h>
-#include <Meow/Renderer/Renderable2D.h>
+#include <Meow/Renderable/Renderable2D.h>
 #include <vector>
 
 namespace Meow 

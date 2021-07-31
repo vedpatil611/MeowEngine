@@ -2,11 +2,11 @@
 
 #include <Meow/Core.h>
 #include <Meow/Maths/Maths.h>
+#include <Meow/Renderable/Renderable2D.h>
 #include "IndexBuffer.h"
 #include "VertexArray.h"
 #include "Shader.h"
 #include "Texture.h"
-#include "Renderable2D.h"
 
 namespace Meow
 {
