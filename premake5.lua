@@ -12,13 +12,11 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 include "Dependencies/GLFW"
 include "Dependencies/GLAD"
-include "Dependencies/ImGui"
 
 IncludeDirs = {}
 IncludeDirs["GLFW"] = "Dependencies/GLFW/include"
 IncludeDirs["GLAD"] = "Dependencies/GLAD/include"
 IncludeDirs["FreeImage"] = "Dependencies/FreeImage/include"
-IncludeDirs["ImGui"] = "Dependencies/ImGui/src"
 
 project "MeowEngine"
 	location "MeowEngine"
@@ -36,7 +34,6 @@ project "MeowEngine"
 
 	defines {
 		"MEOW_BUILD_DLL",
-        "IMGUI_IMPL_OPENGL_LOADER_GLAD"
 	}
 
 	includedirs {
@@ -44,7 +41,6 @@ project "MeowEngine"
 		"%{IncludeDirs.GLFW}",
 		"%{IncludeDirs.GLAD}",
 		"%{IncludeDirs.FreeImage}",
-		"%{IncludeDirs.ImGui}",
 	}
 
 	libdirs {
@@ -55,7 +51,6 @@ project "MeowEngine"
 		"GLFW",
 		"GLAD",
 		"FreeImage",
-		"ImGui",
 	}
 
 	files { 
@@ -124,7 +119,6 @@ project "MeowApplication"
 		"%{IncludeDirs.GLFW}",
 		"%{IncludeDirs.GLAD}",
 		"%{IncludeDirs.FreeImage}",
-		"%{IncludeDirs.ImGui}"
 	}
 	
 	libdirs {

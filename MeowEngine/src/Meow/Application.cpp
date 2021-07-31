@@ -6,7 +6,6 @@
 #include "Events/KeyEvent.h"
 #include "Events/MouseEvent.h"
 #include "Events/ApplicationEvent.h"
-#include <imgui.h>
 
 #define BIND_EVENT_FN(x) std::bind(&x, this, std::placeholders::_1)
 
