@@ -14,8 +14,8 @@
 #include <Meow/Maths/Maths.h>
 #include <Meow/Renderer/Layer.h>
 #include <Meow/Renderer/Shader.h>
-#include <Meow/Renderer/TileSprite.h>
 #include <Meow/Renderer/Texture.h>
+#include <Meow/Renderer/TileSprite.h>
 #include <Meow/Utils/Timer.h>
 
 Meow::Application* Meow::CreateApplication()
@@ -49,7 +49,7 @@ void MeowApplication::Run()
 
 	Meow::Layer* layer = getBaseLayer();
 
-	std::vector<Meow::Renderable2D*> sprites;
+	//std::vector<Meow::Renderable2D*> sprites;
 
 	auto proj = Meow::Maths::mat4::orthographic(-50, 50, -50, 50, -10, 10);
 	Meow::Maths::mat4 model(1.0f);
@@ -65,16 +65,17 @@ void MeowApplication::Run()
 	}
 
 	Meow::Texture circle("assets/Circle.png");
-	Meow::Texture cat("assets/icon/Meow.png");
+	Meow::Texture catTex("assets/icon/Meow.png");
 
 	shader->bind();
 	shader->setUniformMat4f("u_proj_mat", proj);
 	
 	shader->setUniform1iv("u_Texture", 32, texIDs);
 
-	int s = 1;
+	//int s = 1;
 
-	for (float i = -50.0; i < 50.0; i += 5.0f)
+	Meow::TileSprite* cat = new Meow::TileSprite({ 0.0f, 0.0f, 0.0f }, { 5.0f, 5.0f }, &catTex, shader);
+	/*for (float i = -50.0; i < 50.0; i += 5.0f)
 	{
 		for (float j = -50.0; j < 50.0; j += 5.0f)
 		{
@@ -89,7 +90,7 @@ void MeowApplication::Run()
 				s = 1;
 			}
 		}
-	}
+	}*/
 
 	Meow::Utils::Timer timer, t2;
 	
@@ -105,7 +106,8 @@ void MeowApplication::Run()
 		window->update();
 		timer.reset();
 
-		layer->submit(sprites);
+		layer->clear();
+		layer->submit(cat);
 
 		for (auto* layer : m_LayerStack)
 		{
@@ -123,8 +125,9 @@ void MeowApplication::Run()
 		}
 	}
 
-	for (auto* x : sprites)
-		delete x;
+	//for (auto* x : sprites)
+		//delete x;
 
+	delete cat;
 	delete shader;
 }

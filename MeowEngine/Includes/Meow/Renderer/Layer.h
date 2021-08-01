@@ -10,7 +10,7 @@ namespace Meow
 	class MEOW_API Layer 
 	{
 	protected: 
-		BatchRenderer2D renderer;
+		BatchRenderer2D m_Renderer;
 	public:
 		Layer() = default;
 		virtual ~Layer() = default;
@@ -21,7 +21,9 @@ namespace Meow
 		virtual void onEvent(Event& e);
 
 		virtual void begin();
+		virtual void submit(class Renderable2D* sprite);
 		virtual void submit(const std::vector<class Renderable2D*>& sprites);
+		virtual void clear();
 		virtual void onRender(float delta);
 		virtual void end();
 	};

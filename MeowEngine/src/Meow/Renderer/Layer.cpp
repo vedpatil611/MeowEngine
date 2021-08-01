@@ -3,33 +3,40 @@
 
 namespace Meow 
 {
-	void Layer::onAttach()
+	void Layer::onAttach() {}
+	
+	void Layer::onDettach() {}
+	
+	void Layer::onUpdate() {}
+	
+	void Layer::onEvent(Event& e) {}
+	
+	void Layer::begin() {}
+	
+	void Layer::submit(Renderable2D* sprite)
 	{
+		m_Renderer.begin();
+		m_Renderer.submit(sprite);
+		m_Renderer.end();
 	}
-	void Layer::onDettach()
-	{
-	}
-	void Layer::onUpdate()
-	{
-	}
-	void Layer::onEvent(Event& e)
-	{
-	}
-	void Layer::begin()
-	{
-	}
+	
 	void Layer::submit(const std::vector<Renderable2D*>& sprites)
 	{
-		renderer.begin();
+		m_Renderer.begin();
 		for(auto sprite: sprites)
-			renderer.submit(sprite);
-		renderer.end();
+			m_Renderer.submit(sprite);
+		m_Renderer.end();
 	}
+
+	void Layer::clear()
+	{
+		m_Renderer.clear();
+	}
+	
 	void Layer::onRender(float delta)
 	{
-		renderer.flush(delta);
+		m_Renderer.flush(delta);
 	}
-	void Layer::end()
-	{
-	}
+	
+	void Layer::end() {}
 }

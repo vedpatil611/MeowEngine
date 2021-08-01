@@ -36,6 +36,7 @@ namespace Meow {
 		void end();	
 		void submit(const Renderable2D* renderable) override;
 		void flush(float delta) override;
+		void clear();
 	private:
 		void init();
 	};

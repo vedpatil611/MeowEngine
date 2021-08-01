@@ -22,7 +22,7 @@ namespace Meow
 
 	void BatchRenderer2D::begin()
 	{
-		m_IndexCount = 0;
+		//m_IndexCount = 0;
 		GLCALL(glBindBuffer(GL_ARRAY_BUFFER, m_VBO));
 		GLCALL(m_Buffer = (VertexData*) glMapBuffer(GL_ARRAY_BUFFER, GL_WRITE_ONLY));
 	}
@@ -107,6 +107,11 @@ namespace Meow
 
 		//m_IBO->unbind();
 		GLCALL(glBindVertexArray(0));
+	}
+
+	void BatchRenderer2D::clear()
+	{
+		m_IndexCount = 0;
 	}
 
 	void BatchRenderer2D::init() 
