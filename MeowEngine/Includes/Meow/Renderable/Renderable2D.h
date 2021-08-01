@@ -31,10 +31,11 @@ namespace Meow
 
 	class MEOW_API Renderable2D
 	{
-	protected:
+	public:
 		Maths::vec3 m_Position;
 		Maths::vec2 m_Size;
 		Maths::vec4 m_Colour;
+	protected:
 		std::vector<Maths::vec2> m_UVS;
 		Texture* m_Texture = nullptr;
 	public:

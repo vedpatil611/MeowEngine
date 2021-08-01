@@ -7,8 +7,8 @@
 
 namespace Meow
 {
-	AnimatedSprite::AnimatedSprite(const Maths::vec3& position, const Maths::vec2& size, const Maths::vec4 colour, Shader* shader, Texture* texture)
-		:Sprite(position, size, colour, shader, texture)
+	AnimatedSprite::AnimatedSprite(const Maths::vec3& position, const Maths::vec2& size, class Texture* texture, Shader* shader)
+		:Sprite(position, size, texture, shader)
 	{
 		auto* tex = static_cast<SpriteSheet*>(m_Texture);
 		m_CurrentIndex = tex->getStartIndex();
@@ -17,7 +17,7 @@ namespace Meow
 	AnimatedSprite::~AnimatedSprite()
 	{
 	}
-
+	
 	void AnimatedSprite::updateUniforms(float delta) const
 	{
 		auto* tex = static_cast<SpriteSheet*>(m_Texture);
