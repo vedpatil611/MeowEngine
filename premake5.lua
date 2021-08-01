@@ -53,6 +53,16 @@ project "MeowEngine"
 	}
 
 	files { 
+		"%{prj.name}/Includes/**.h",
+		"%{prj.name}/Includes/Meow/**.h",
+		"%{prj.name}/Includes/Meow/Events/**.h",
+		"%{prj.name}/Includes/Meow/Maths/**.h",
+		"%{prj.name}/Includes/Meow/Renderable/**.h",
+		"%{prj.name}/Includes/Meow/Renderer/**.h",
+		"%{prj.name}/Includes/Meow/Renderer/openGL/**.h",
+		"%{prj.name}/Includes/Meow/Scene/**.h",
+		"%{prj.name}/Includes/Meow/Utils/**.h",
+
 		"%{prj.name}/src/**.cpp",
 		"%{prj.name}/src/Meow/**.cpp",
 		"%{prj.name}/src/Meow/Events/**.cpp",

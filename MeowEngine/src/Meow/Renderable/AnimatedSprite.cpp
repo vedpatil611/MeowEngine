@@ -10,7 +10,7 @@ namespace Meow
 	AnimatedSprite::AnimatedSprite(const Maths::vec3& position, const Maths::vec2& size, class Texture* texture, Shader* shader)
 		:Sprite(position, size, texture, shader)
 	{
-		auto* tex = static_cast<SpriteSheet*>(m_Texture);
+		auto* tex = dynamic_cast<SpriteSheet*>(m_Texture);
 		m_CurrentIndex = tex->getStartIndex();
 	}
 
