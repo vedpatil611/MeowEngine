@@ -10,8 +10,6 @@ namespace Meow
 	{
 	protected:
 		class Shader* m_Shader = nullptr;
-		class VertexArray* m_VertexArray;
-		class IndexBuffer* m_IndexBuffer;
 		
 		Transformations2D m_TransformData;
 	public:
@@ -19,8 +17,6 @@ namespace Meow
 		Sprite(const Maths::vec3& position, const Maths::vec2& size, Texture* tex, Shader* shader);
 		virtual ~Sprite();
 
-		inline class VertexArray* getVAO() const override { return m_VertexArray; }
-		inline class IndexBuffer* getIBO() const override { return m_IndexBuffer; }
 		inline Shader* getShader() const override { return m_Shader; }
 		inline Texture* getTexture() const { return m_Texture; }
 		Transformations2D& getTransform() { return m_TransformData; }

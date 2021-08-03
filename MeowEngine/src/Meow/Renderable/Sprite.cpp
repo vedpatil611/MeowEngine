@@ -14,11 +14,7 @@ namespace Meow
 	Sprite::Sprite(const Maths::vec3& position, const Maths::vec2& size, Texture* tex, Shader* shader)
 		:Renderable2D(position, size, {1.0f, 0.0f, 1.0f, 1.0f}), m_Shader(shader) {  }
 
-	Sprite::~Sprite()
-	{
-		SAFE_DELETE(m_IndexBuffer);
-		SAFE_DELETE(m_VertexArray);
-	}
+	Sprite::~Sprite() {}
 
 	void Sprite::addTranslation(Maths::vec3 translation)
 	{
