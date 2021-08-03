@@ -9,73 +9,10 @@
 namespace Meow
 {
 	Sprite::Sprite(const Maths::vec3& position, const Maths::vec2& size, const Maths::vec4& colour, Shader* shader)
-		:Renderable2D(position, size, colour), m_Shader(shader)
-	{
-		m_TransformData.translation = position;
-		float vertices[] =
-		{
-			0.0f - size.x / 2, 0.0f - size.y / 2, 0,
-			0.0f - size.x / 2, 0.0f + size.y / 2, 0,
-			0.0f + size.x / 2, 0.0f + size.y / 2, 0,
-			0.0f + size.x / 2, 0.0f - size.y / 2, 0
-		};
-		float colours[] =
-		{
-			colour.r, colour.g, colour.b, colour.a,
-			colour.r, colour.g, colour.b, colour.a,
-			colour.r, colour.g, colour.b, colour.a,
-			colour.r, colour.g, colour.b, colour.a
-		};
-		float uv[] =
-		{
-			0.0f, 0.0f,
-			0.0f, 1.0f,
-			1.0f, 1.0f,
-			1.0f, 0.0f
-		};
-		m_VertexArray = VertexArray::create();
-		m_VertexArray->addBuffer(Buffer::create(vertices, 3), 0);
-		m_VertexArray->addBuffer(Buffer::create(colours, 4), 1);
-		m_VertexArray->addBuffer(Buffer::create(uv, 2), 2);
-
-		unsigned short indices[] = { 0, 1, 2, 2, 3, 0 };
-		m_IndexBuffer = IndexBuffer::create(indices, 6);
-	}
+		:Renderable2D(position, size, colour), m_Shader(shader) {  }
 
 	Sprite::Sprite(const Maths::vec3& position, const Maths::vec2& size, Texture* tex, Shader* shader)
-		:Renderable2D(position, size, {1.0f, 0.0f, 1.0f, 1.0f}), m_Shader(shader)
-	{
-		m_Texture = tex;
-		m_TransformData.translation = position;
-		float vertices[] =
-		{
-			0.0f - size.x / 2, 0.0f - size.y / 2, 0,
-			0.0f - size.x / 2, 0.0f + size.y / 2, 0,
-			0.0f + size.x / 2, 0.0f + size.y / 2, 0,
-			0.0f + size.x / 2, 0.0f - size.y / 2, 0
-		};
-		float colours[] =
-		{
-			1.0f, 0.0f, 1.0f, 1.0f,
-			1.0f, 0.0f, 1.0f, 1.0f,
-			1.0f, 0.0f, 1.0f, 1.0f,
-			1.0f, 0.0f, 1.0f, 1.0f
-		};
-		float uv[] =
-		{
-			0.0f, 0.0f,
-			0.0f, 1.0f,
-			1.0f, 1.0f,
-			1.0f, 0.0f
-		};
-		m_VertexArray = VertexArray::create();
-		m_VertexArray->addBuffer(Buffer::create(vertices, 3), 0);
-		m_VertexArray->addBuffer(Buffer::create(colours, 4), 1);
-		m_VertexArray->addBuffer(Buffer::create(uv, 2), 2);
-
-		unsigned short indices[] = { 0, 1, 2, 2, 3, 0 };
-		m_IndexBuffer = IndexBuffer::create(indices, 6);
-	}
+		:Renderable2D(position, size, {1.0f, 0.0f, 1.0f, 1.0f}), m_Shader(shader) {  }
 
 	Sprite::~Sprite()
 	{
