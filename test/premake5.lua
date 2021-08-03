@@ -10,8 +10,8 @@ workspace "MeowTest"
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
-project "TestApp"
-	location "TestApp"
+project "testapp"
+	location "testapp"
 	kind "ConsoleApp"
 	language "C++"
 	cppdialect "C++17"
@@ -51,6 +51,7 @@ project "TestApp"
             "GL"
         }
 		postbuildcommands {
+			("cp ../../bin/" .. outputdir .. "/MeowEngine/libMeowEngine.so ../bin/" .. outputdir .. "/%{prj.name}/"),
 			("cp -r ./shaders/ ../bin/" .. outputdir .. "/%{prj.name}"),
 			("cp -r ./assets/ ../bin/" .. outputdir .. "/%{prj.name}")
 		}
