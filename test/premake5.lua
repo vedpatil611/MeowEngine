@@ -43,6 +43,10 @@ project "testapp"
 		defines {
 			"MEOW_PLATFORM_WINDOWS"
 		}
+		postbuildcommands {
+			("{COPY} ../../bin/" .. outputdir .. "/MeowEngine/MeowEngine.dll ../bin/" .. outputdir .. "/%{prj.name}/"),
+		}
+
 	filter "system:linux"
 		defines {
 			"MEOW_PLATFORM_LINUX"

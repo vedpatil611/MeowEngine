@@ -13,9 +13,9 @@
 #include <Meow/Core.h>
 #include <Meow/Maths/Maths.h>
 #include <Meow/Renderer/Layer.h>
+#include <Meow/Renderable/Sprite.h>
 #include <Meow/Renderer/Shader.h>
 #include <Meow/Renderer/Texture.h>
-#include <Meow/Renderer/TileSprite.h>
 #include <Meow/Utils/Timer.h>
 
 Meow::Application* Meow::CreateApplication()
@@ -45,11 +45,8 @@ void MeowApplication::Run()
 	
 	window->setVSyncEnable(false);
 	window->setBackgrondColor({ 0.0f, 0.0f, 0.0f, 1.0f });
-	//window->setIcon("assets/icon/Meow.png");
 
 	Meow::Layer* layer = getBaseLayer();
-
-	//std::vector<Meow::Renderable2D*> sprites;
 
 	auto proj = Meow::Maths::mat4::orthographic(-50, 50, -50, 50, -10, 10);
 	Meow::Maths::mat4 model(1.0f);
@@ -73,8 +70,8 @@ void MeowApplication::Run()
 	shader->setUniform1iv("u_Texture", 32, texIDs);
 
 	//int s = 1;
+	Meow::Sprite* cat = new Meow::Sprite({ 0.0f, 0.0f, 0.0f }, { 5.0f, 5.0f }, &catTex, shader);
 
-	Meow::TileSprite* cat = new Meow::TileSprite({ 0.0f, 0.0f, 0.0f }, { 5.0f, 5.0f }, &catTex, shader);
 	/*for (float i = -50.0; i < 50.0; i += 5.0f)
 	{
 		for (float j = -50.0; j < 50.0; j += 5.0f)
