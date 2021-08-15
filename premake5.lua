@@ -15,7 +15,7 @@ include "Dependencies/GLAD"
 IncludeDirs = {}
 IncludeDirs["GLFW"] = "Dependencies/GLFW/include"
 IncludeDirs["GLAD"] = "Dependencies/GLAD/include"
-IncludeDirs["FreeImage"] = "Dependencies/FreeImage/include"
+IncludeDirs["STB_IMAGE"] = "Dependencies/stb_image"
 
 project "MeowEngine"
 	location "MeowEngine"
@@ -39,17 +39,12 @@ project "MeowEngine"
 		"%{prj.name}/Includes/",
 		"%{IncludeDirs.GLFW}",
 		"%{IncludeDirs.GLAD}",
-		"%{IncludeDirs.FreeImage}",
-	}
-
-	libdirs {
-		"Dependencies/FreeImage/libs"
+		"%{IncludeDirs.STB_IMAGE}"
 	}
 
 	links {
 		"GLFW",
 		"GLAD",
-		"FreeImage",
 	}
 
 	files { 
@@ -71,17 +66,14 @@ project "MeowEngine"
 		"%{prj.name}/src/Meow/Renderer/**.cpp",
 		"%{prj.name}/src/Meow/Renderer/openGL/**.cpp",
 		"%{prj.name}/src/Meow/Scene/**.cpp",
-		"%{prj.name}/src/Meow/Utils/**.cpp"
+		"%{prj.name}/src/Meow/Utils/**.cpp",
+		"Dependencies/stb_image/stb_image.cpp"
 	}
 
 	filter "system:windows"		
 		defines {
 			"MEOW_PLATFORM_WINDOWS",
 			"_CRT_SECURE_NO_WARNINGS"
-		}
-		postbuildcommands {
-			("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/MeowApplication"),
-			("{COPY} ../Dependencies/FreeImage/bin/ ../bin/" .. outputdir .. "/MeowApplication")
 		}
 
 	filter "system:linux"

@@ -4,55 +4,34 @@
 #include <glad/glad.h>
 #include <iostream>
 #include <stdexcept>
-#include "FreeImage/FreeImage.h"
+#include <stb_image.h>
 
 namespace Meow
 {
 	Texture::Texture(const char* texPath)
 		:m_TexPath(texPath), m_Width(0), m_Height(0), m_BPP(0)
 	{
-		FREE_IMAGE_FORMAT fif = FIF_UNKNOWN;
-		FIBITMAP* dib(0);
-		m_Bits = 0;
+		m_Bits = stbi_load(texPath, &m_Width, &m_Height, &m_BPP, 0);
+		if (!m_Bits)
+		{
+			printf("Failed to find tex file\n");
+			throw std::runtime_error("Failed to find texture");
+		}
 
-		fif = FreeImage_GetFileType(texPath, 0);
-		if (fif == FIF_UNKNOWN)
-			fif = FreeImage_GetFIFFromFilename(texPath);
+		glGenTextures(1, &m_TexID);
+		glBindTexture(GL_TEXTURE_2D, m_TexID);
 
-		if (fif == FIF_UNKNOWN)
-			throw std::runtime_error("File type not supported");
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
-		if (FreeImage_FIFSupportsReading(fif))
-			dib = FreeImage_Load(fif, texPath);
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, m_Width, m_Height, 0, GL_RGB, GL_UNSIGNED_BYTE, m_Bits);
+		glGenerateMipmap(GL_TEXTURE_2D);
 
-		if (!dib)
-			throw std::runtime_error("Failed to load textures");
-
-		FreeImage_FlipVertical(dib);
-
-		m_Bits = FreeImage_GetBits(dib);
-		m_Width = FreeImage_GetWidth(dib);
-		m_Height = FreeImage_GetHeight(dib);
-
-		if (m_Bits == 0 || m_Width == 0 || m_Height == 0)
-			throw std::runtime_error("Failed to load textures");
-
-		GLCALL(glGenTextures(1, &m_TexID));
-		GLCALL(glBindTexture(GL_TEXTURE_2D, m_TexID));
+		glBindTexture(GL_TEXTURE_2D, 0);
 		
-		GLCALL(glPixelStorei(GL_UNPACK_ALIGNMENT, 1));
-
-		GLCALL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR));
-		GLCALL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR));
-		GLCALL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE));
-		GLCALL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE));
-		
-		GLCALL(glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, m_Width, m_Height, 0, GL_RGBA, GL_UNSIGNED_BYTE, m_Bits));
-
-		GLCALL(glGenerateMipmap(GL_TEXTURE_2D));
-		m_Slot = provideSlotNo++;
-
-		FreeImage_Unload(dib);
+		stbi_image_free(m_Bits);
 	}
 
 	Texture::~Texture()
