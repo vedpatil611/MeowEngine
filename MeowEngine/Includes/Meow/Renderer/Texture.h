@@ -1,6 +1,5 @@
 #pragma once
 
-#include "MeowPCH.h"
 #include <Meow/Core.h>
 
 namespace Meow
@@ -17,6 +16,8 @@ namespace Meow
 	public:
 		Texture(const char* texPath);
 		virtual ~Texture();
+
+		static Rc<Texture> create(const char* texPath);
 
 		inline unsigned int getTextureId() const { return m_TexID; }
 		inline unsigned int getSlot() const { return m_Slot; }

@@ -11,7 +11,7 @@ namespace Meow
 	Sprite::Sprite(const Maths::vec3& position, const Maths::vec2& size, const Maths::vec4& colour, Rc<Shader> shader)
 		:Renderable2D(position, size, colour), m_Shader(shader) {  }
 
-	Sprite::Sprite(const Maths::vec3& position, const Maths::vec2& size, Texture* tex, Rc<Shader> shader)
+	Sprite::Sprite(const Maths::vec3& position, const Maths::vec2& size, Rc<Texture> tex, Rc<Shader> shader)
 		:Renderable2D(position, size, {1.0f, 0.0f, 1.0f, 1.0f}), m_Shader(shader) 
 	{
 		m_Texture = tex;

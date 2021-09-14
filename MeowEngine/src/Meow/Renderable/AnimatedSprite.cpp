@@ -7,10 +7,10 @@
 
 namespace Meow
 {
-	AnimatedSprite::AnimatedSprite(const Maths::vec3& position, const Maths::vec2& size, class Texture* texture, Rc<Shader> shader)
+	AnimatedSprite::AnimatedSprite(const Maths::vec3& position, const Maths::vec2& size, Rc<class Texture> texture, Rc<Shader> shader)
 		:Sprite(position, size, texture, shader)
 	{
-		auto* tex = dynamic_cast<SpriteSheet*>(m_Texture);
+		auto* tex = dynamic_cast<SpriteSheet*>(m_Texture.get());
 		m_CurrentIndex = tex->getStartIndex();
 	}
 
@@ -20,7 +20,7 @@ namespace Meow
 	
 	void AnimatedSprite::updateUniforms(float delta) const
 	{
-		auto* tex = static_cast<SpriteSheet*>(m_Texture);
+		auto* tex = static_cast<SpriteSheet*>(m_Texture.get());
 
 		Sprite::updateUniforms(delta);
 		int maxSpriteCount = tex->getSpriteCountX() * tex->getSpriteCountY();

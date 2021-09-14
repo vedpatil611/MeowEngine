@@ -59,11 +59,5 @@ namespace Meow
 template <typename T>
 using Rc = std::shared_ptr<T>;
 
-template <class T, class... Types>
-using newRc = Rc<T>(*)(Types&&... Args);
-
 template <typename T>
 using Unique = std::unique_ptr<T>;
-
-template <class T, class... Types>
-using newUnique = Unique<T>(*)(Types&&... Args);

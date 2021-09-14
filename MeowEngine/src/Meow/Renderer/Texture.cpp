@@ -38,6 +38,11 @@ namespace Meow
 		GLCALL(glDeleteTextures(1, &m_TexID));
 	}
 
+	Rc<Texture> Texture::create(const char* texPath)
+	{
+		return Rc<Texture>(new Texture(texPath));
+	}
+
 	void Texture::setSlot(unsigned int slotNo)
 	{
 		m_Slot = slotNo;

@@ -37,7 +37,7 @@ namespace Meow
 		Maths::vec4 m_Colour;
 	protected:
 		std::vector<Maths::vec2> m_UVS;
-		Texture* m_Texture = nullptr;
+		Rc<Texture> m_Texture = nullptr;
 	public:
 		Renderable2D(const Maths::vec3& position, const Maths::vec2& size, const Maths::vec4 colour);
 		virtual ~Renderable2D();

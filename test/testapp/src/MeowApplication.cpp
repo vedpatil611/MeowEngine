@@ -62,8 +62,8 @@ void MeowApplication::Run()
 		texIDs[i] = i;
 	}
 
-	Meow::Texture circle("assets/Circle.png");
-	Meow::Texture catTex("assets/icon/Meow.png");
+	auto circle = Meow::Texture::create("assets/Circle.png");
+	auto catTex = Meow::Texture::create("assets/icon/Meow.png");
 
 	shader->bind();
 	shader->setUniformMat4f("u_proj_mat", proj);
@@ -71,7 +71,7 @@ void MeowApplication::Run()
 	shader->setUniform1iv("u_Texture", 32, texIDs);
 
 	//int s = 1;
-	Meow::Sprite* cat = new Meow::Sprite({ 0.0f, 0.0f, 0.0f }, { 5.0f, 5.0f }, &catTex, shader);
+	Meow::Sprite* cat = new Meow::Sprite({ 0.0f, 0.0f, 0.0f }, { 5.0f, 5.0f }, catTex, shader);
 
 	/*for (float i = -50.0; i < 50.0; i += 5.0f)
 	{
