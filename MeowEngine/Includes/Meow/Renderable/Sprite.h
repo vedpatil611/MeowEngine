@@ -8,10 +8,10 @@ namespace Meow
 {
 	class MEOW_API Sprite: public Renderable2D
 	{
+	public:
+		Transformations2D m_TransformData;
 	protected:
 		Rc<Shader> m_Shader = nullptr;
-		
-		Transformations2D m_TransformData;
 	public:
 		Sprite(const Maths::vec3& position, const Maths::vec2& size, const Maths::vec4& colour, Rc<Shader> shader);
 		Sprite(const Maths::vec3& position, const Maths::vec2& size, Rc<Texture> tex, Rc<Shader> shader);

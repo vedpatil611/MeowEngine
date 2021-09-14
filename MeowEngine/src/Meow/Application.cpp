@@ -66,62 +66,62 @@ namespace Meow {
 		layer->onAttach();
 	}
 
-	void Application::setKeyPressedCallback(KeyPressedFn& keyPressedFn)
+	void Application::setKeyPressedCallback(KeyPressedFn keyPressedFn)
 	{
 		m_KeyPressedFn = keyPressedFn;
 	}
 
-	void Application::setKeyReleasedCallback(KeyReleasedFn& keyReleasedFn)
+	void Application::setKeyReleasedCallback(const KeyReleasedFn& keyReleasedFn)
 	{
 		m_KeYReleasedFn = keyReleasedFn;
 	}
 
-	void Application::setKeyTypedCallback(KeyTypedFn& keyTypedFn)
+	void Application::setKeyTypedCallback(const KeyTypedFn& keyTypedFn)
 	{
 		m_KeyTypedFn = keyTypedFn;
 	}
 
-	void Application::setWindowResizedCallback(WindowResizedFn& windowResizedFn)
+	void Application::setWindowResizedCallback(const WindowResizedFn& windowResizedFn)
 	{
 		m_WindowResizedFn = windowResizedFn;
 	}
 
-	void Application::setWindowClosedCallback(WindowClosedFn& windowClosedFn)
+	void Application::setWindowClosedCallback(const WindowClosedFn& windowClosedFn)
 	{
 		m_WindowClosedFn = windowClosedFn;
 	}
 
-	void Application::setAppTickCallback(AppTickFn& apptickFn)
+	void Application::setAppTickCallback(const AppTickFn& apptickFn)
 	{
 		m_AppTickFn = apptickFn;
 	}
 
-	void Application::setAppUpdateCallback(AppUpdateFn& appUpdateFn)
+	void Application::setAppUpdateCallback(const AppUpdateFn& appUpdateFn)
 	{
 		m_AppUpdateFn = appUpdateFn;
 	}
 
-	void Application::setAppRenderCallback(AppRenderFn& appRenderFn)
+	void Application::setAppRenderCallback(const AppRenderFn& appRenderFn)
 	{
 		m_AppRenderFn = appRenderFn;
 	}
 
-	void Application::setMouseButtonPressedCallback(MouseButtonPressedFn& mousePressedFn)
+	void Application::setMouseButtonPressedCallback(const MouseButtonPressedFn& mousePressedFn)
 	{
 		m_MousePressedFn = mousePressedFn;
 	}
 
-	void Application::setMouseButtonReleasedCallback(MouseButtonReleasedFn& mouseReleasedFn)
+	void Application::setMouseButtonReleasedCallback(const MouseButtonReleasedFn& mouseReleasedFn)
 	{
 		m_MouseReleasedFn = mouseReleasedFn;
 	}
 
-	void Application::setMouseMovedCallback(MouseMovedFn& mouseMovedFn)
+	void Application::setMouseMovedCallback(const MouseMovedFn& mouseMovedFn)
 	{
 		m_MouseMovedfn = mouseMovedFn;
 	}
 
-	void Application::serMouseScrolledFn(MouseScrolledFn& mouseScrolledFn)
+	void Application::serMouseScrolledFn(const MouseScrolledFn& mouseScrolledFn)
 	{
 		m_MouseScrolledFn = mouseScrolledFn;
 	}

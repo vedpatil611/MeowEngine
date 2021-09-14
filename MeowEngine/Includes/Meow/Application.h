@@ -50,18 +50,18 @@ namespace Meow {
 		void onEvent(Event& event);
 		void pushLayer(Rc<class Layer> layer);
 
-		void setKeyPressedCallback(KeyPressedFn& keyPressedFn);
-		void setKeyReleasedCallback(KeyReleasedFn& keyReleasedFn);
-		void setKeyTypedCallback(KeyTypedFn& keyTypedFn);
-		void setWindowResizedCallback(WindowResizedFn& windowResizedFn);
-		void setWindowClosedCallback(WindowClosedFn& windowClosedFn);
-		void setAppTickCallback(AppTickFn& apptickFn);
-		void setAppUpdateCallback(AppUpdateFn& appUpdateFn);
-		void setAppRenderCallback(AppRenderFn& appRenderFn);
-		void setMouseButtonPressedCallback(MouseButtonPressedFn& mousePressedFn);
-		void setMouseButtonReleasedCallback(MouseButtonReleasedFn& mouseReleasedFn);
-		void setMouseMovedCallback(MouseMovedFn& mouseMovedFn);
-		void serMouseScrolledFn(MouseScrolledFn& mouseScrolledFn);
+		void setKeyPressedCallback(KeyPressedFn keyPressedFn);
+		void setKeyReleasedCallback(const KeyReleasedFn& keyReleasedFn);
+		void setKeyTypedCallback(const KeyTypedFn& keyTypedFn);
+		void setWindowResizedCallback(const WindowResizedFn& windowResizedFn);
+		void setWindowClosedCallback(const WindowClosedFn& windowClosedFn);
+		void setAppTickCallback(const AppTickFn& apptickFn);
+		void setAppUpdateCallback(const AppUpdateFn& appUpdateFn);
+		void setAppRenderCallback(const AppRenderFn& appRenderFn);
+		void setMouseButtonPressedCallback(const MouseButtonPressedFn& mousePressedFn);
+		void setMouseButtonReleasedCallback(const MouseButtonReleasedFn& mouseReleasedFn);
+		void setMouseMovedCallback(const MouseMovedFn& mouseMovedFn);
+		void serMouseScrolledFn(const MouseScrolledFn& mouseScrolledFn);
 
 		static inline Application& getApplication() { return *s_Instance; }
 		inline Rc<Window> getWindow() { return window; }

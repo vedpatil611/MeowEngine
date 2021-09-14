@@ -131,7 +131,7 @@ namespace Meow {
 	void Window::keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods)
 	{
 		Window* currentWindow = reinterpret_cast<Window*>(glfwGetWindowUserPointer(window));
-
+		
 		switch (action)
 		{
 			case GLFW_PRESS:

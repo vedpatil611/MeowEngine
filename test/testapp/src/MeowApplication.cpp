@@ -17,8 +17,7 @@
 #include <Meow/Renderer/Shader.h>
 #include <Meow/Renderer/Texture.h>
 #include <Meow/Utils/Timer.h>
-template <typename T>
-using Rc = std::shared_ptr<T>;
+
 Meow::Application* Meow::CreateApplication()
 {
 	/*#ifdef MEOW_PLATFORM_WINDOWS
@@ -71,7 +70,7 @@ void MeowApplication::Run()
 	shader->setUniform1iv("u_Texture", 32, texIDs);
 
 	//int s = 1;
-	auto cat = Meow::Sprite::create({ 0.0f, 0.0f, 0.0f }, { 5.0f, 5.0f }, catTex, shader);
+	cat = Meow::Sprite::create({ 0.0f, 0.0f, 0.0f }, { 5.0f, 5.0f }, catTex, shader);
 
 	/*for (float i = -50.0; i < 50.0; i += 5.0f)
 	{
@@ -89,6 +88,8 @@ void MeowApplication::Run()
 			}
 		}
 	}*/
+
+	setKeyPressedCallback(&onKeyPressed);
 
 	Meow::Utils::Timer timer, t2;
 	
@@ -122,4 +123,31 @@ void MeowApplication::Run()
 			printf("%d\n", window->closed());
 		}
 	}
+
+	cat.reset();
+}
+
+bool MeowApplication::onKeyPressed(Meow::KeyPressedEvent& e)
+{
+	switch (e.getKeyCode())
+	{
+	case MEOW_KEY_W:
+	case MEOW_KEY_UP:
+		cat->m_Position.y -= 0.5f;
+		break;
+	case MEOW_KEY_S:
+	case MEOW_KEY_DOWN:
+		cat->m_Position.y += 0.5f;
+		break;
+	case MEOW_KEY_A:
+	case MEOW_KEY_LEFT:
+		cat->m_Position.x -= 0.5f;
+		break;
+	case MEOW_KEY_D:
+	case MEOW_KEY_RIGHT:
+		cat->m_Position.x += 0.5f;
+		break;
+	}
+
+	return true;
 }
