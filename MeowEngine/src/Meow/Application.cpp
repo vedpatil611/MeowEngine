@@ -18,7 +18,7 @@ namespace Meow {
 		window = Rc<Window>(new Window("Meow", 800, 800));
 		window->setEventCallback(BIND_EVENT_FN(Application::onEvent));
 
-		m_BaseLayer = new Layer();
+		m_BaseLayer = Rc<Layer>(new Layer());
 		pushLayer(m_BaseLayer);
 	}
 
@@ -66,7 +66,7 @@ namespace Meow {
 		}
 	}
 
-	void Application::pushLayer(Layer* layer)
+	void Application::pushLayer(Rc<Layer> layer)
 	{
 		m_LayerStack.pushLayer(layer);
 		layer->onAttach();

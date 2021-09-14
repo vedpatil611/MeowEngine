@@ -47,7 +47,7 @@ void MeowApplication::Run()
 	window->setVSyncEnable(false);
 	window->setBackgrondColor({ 0.0f, 0.0f, 0.0f, 1.0f });
 
-	Meow::Layer* layer = getBaseLayer();
+	auto layer = getBaseLayer();
 
 	auto proj = Meow::Maths::mat4::orthographic(-50, 50, -50, 50, -10, 10);
 	Meow::Maths::mat4 model(1.0f);
@@ -107,7 +107,7 @@ void MeowApplication::Run()
 		layer->clear();
 		layer->submit(cat);
 
-		for (auto* layer : m_LayerStack)
+		for (auto layer : m_LayerStack)
 		{
 			layer->onUpdate();
 			layer->begin();

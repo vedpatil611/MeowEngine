@@ -9,11 +9,11 @@ namespace Meow
 
 	LayerStack::~LayerStack()
 	{
-		for (Layer* layer : m_Layer)
-			delete layer;
+		//for (Layer* layer : m_Layer)
+			//delete layer;
 	}
 
-	void LayerStack::pushLayer(Layer* layer)
+	void LayerStack::pushLayer(Rc<Layer> layer)
 	{
 		m_Layer.emplace_back(layer);
 	}
@@ -23,7 +23,7 @@ namespace Meow
 		m_Layer.pop_back();
 	}
 
-	void LayerStack::popLayer(Layer* layer)
+	void LayerStack::popLayer(Rc<Layer> layer)
 	{
 		auto it = std::find(m_Layer.begin(), m_Layer.end(), layer);
 		if (it != m_Layer.end())
