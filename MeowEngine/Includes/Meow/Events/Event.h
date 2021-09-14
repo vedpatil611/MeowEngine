@@ -63,6 +63,8 @@ namespace Meow
 		template<typename T>
 		bool dispatch(EventFn<T> func)
 		{
+			if (func == nullptr) return false;
+
 			if (m_Event.getEventType() == T::getStaticType())
 			{
 				m_Event.handled = func(*(T*)&m_Event);

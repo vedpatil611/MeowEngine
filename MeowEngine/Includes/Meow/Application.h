@@ -4,6 +4,19 @@
 #include "Events/Event.h"
 #include "Renderer/LayerStack.h"
 
+using KeyPressedFn			= bool (*)(class KeyPressedEvent&);
+using KeyReleasedFn			= bool (*)(class KeyReleasedEvent&);
+using KeyTypedFn			= bool (*)(class KeyTypedEvent&);
+using WindowResizedFn		= bool (*)(class WindowResizeEvent&);
+using WindowClosedFn		= bool (*)(class WindowCloseEvent&);
+using AppTickFn				= bool (*)(class AppTickEvent&);
+using AppUpdateFn			= bool (*)(class AppUpdateEvent&);
+using AppRenderFn			= bool (*)(class AppRenderEvent&);
+using MouseButtonPressedFn	= bool (*)(class MouseButtonPressedEvent&);
+using MouseButtonReleasedFn	= bool (*)(class MouseButtonReleasedEvent&);
+using MouseMovedFn			= bool (*)(class MouseMovedEvent&);
+using MouseScrolledFn		= bool (*)(class MouseScrolledEvent&);
+
 namespace Meow {
 	class MEOW_API Application
 	{

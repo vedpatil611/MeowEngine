@@ -107,7 +107,7 @@ void MeowApplication::Run()
 		layer->clear();
 		layer->submit(cat);
 
-		for (auto layer : m_LayerStack)
+		for (auto& layer : m_LayerStack)
 		{
 			layer->onUpdate();
 			layer->begin();
