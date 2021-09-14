@@ -21,8 +21,8 @@ namespace Meow
 		virtual void onEvent(Event& e);
 
 		virtual void begin();
-		virtual void submit(class Renderable2D* sprite);
-		virtual void submit(const std::vector<class Renderable2D*>& sprites);
+		virtual void submit(Rc<Renderable2D> sprite);
+		virtual void submit(const std::vector<Rc<Renderable2D>>& sprites);
 		virtual void clear();
 		virtual void onRender(float delta);
 		virtual void end();

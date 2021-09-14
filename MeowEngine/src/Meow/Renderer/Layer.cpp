@@ -13,14 +13,14 @@ namespace Meow
 	
 	void Layer::begin() {}
 	
-	void Layer::submit(Renderable2D* sprite)
+	void Layer::submit(Rc<Renderable2D> sprite)
 	{
 		m_Renderer.begin();
 		m_Renderer.submit(sprite);
 		m_Renderer.end();
 	}
 	
-	void Layer::submit(const std::vector<Renderable2D*>& sprites)
+	void Layer::submit(const std::vector<Rc<Renderable2D>>& sprites)
 	{
 		m_Renderer.begin();
 		for(auto sprite: sprites)

@@ -27,7 +27,7 @@ namespace Meow
 		GLCALL(m_Buffer = (VertexData*) glMapBuffer(GL_ARRAY_BUFFER, GL_WRITE_ONLY));
 	}
 
-	void BatchRenderer2D::submit(const Renderable2D* renderable)
+	void BatchRenderer2D::submit(Rc<Renderable2D> renderable)
 	{
 		const Maths::vec3& position = renderable->getPositions();
 		const Maths::vec2& size = renderable->getSize();
