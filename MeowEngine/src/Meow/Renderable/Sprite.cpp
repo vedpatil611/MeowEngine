@@ -19,6 +19,16 @@ namespace Meow
 
 	Sprite::~Sprite() {}
 
+	Rc<Sprite> Sprite::create(const Maths::vec3& position, const Maths::vec2& size, const Maths::vec4& colour, Rc<Shader> shader)
+	{
+		return Rc<Sprite>(new Sprite(position, size, colour, shader));
+	}
+
+	Rc<Sprite> Sprite::create(const Maths::vec3& position, const Maths::vec2& size, Rc<Texture> tex, Rc<Shader> shader)
+	{
+		return Rc<Sprite>(new Sprite(position, size, tex, shader));
+	}
+
 	void Sprite::addTranslation(Maths::vec3 translation)
 	{
 		m_TransformData.translation += translation;

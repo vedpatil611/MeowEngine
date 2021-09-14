@@ -71,7 +71,7 @@ void MeowApplication::Run()
 	shader->setUniform1iv("u_Texture", 32, texIDs);
 
 	//int s = 1;
-	auto cat = Rc<Meow::Sprite>(new Meow::Sprite({ 0.0f, 0.0f, 0.0f }, { 5.0f, 5.0f }, catTex, shader));
+	auto cat = Meow::Sprite::create({ 0.0f, 0.0f, 0.0f }, { 5.0f, 5.0f }, catTex, shader);
 
 	/*for (float i = -50.0; i < 50.0; i += 5.0f)
 	{
@@ -122,9 +122,4 @@ void MeowApplication::Run()
 			printf("%d\n", window->closed());
 		}
 	}
-
-	//for (auto* x : sprites)
-		//delete x;
-
-	//delete cat;
 }

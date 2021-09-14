@@ -17,6 +17,9 @@ namespace Meow
 		Sprite(const Maths::vec3& position, const Maths::vec2& size, Rc<Texture> tex, Rc<Shader> shader);
 		virtual ~Sprite();
 
+		static Rc<Sprite> create(const Maths::vec3& position, const Maths::vec2& size, const Maths::vec4& colour, Rc<Shader> shader);
+		static Rc<Sprite> create(const Maths::vec3& position, const Maths::vec2& size, Rc<Texture> tex, Rc<Shader> shader);
+
 		inline Rc<Shader> getShader() const override { return m_Shader; }
 		inline Rc<Texture> getTexture() const { return m_Texture; }
 		Transformations2D& getTransform() { return m_TransformData; }
