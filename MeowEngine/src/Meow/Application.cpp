@@ -24,7 +24,7 @@ namespace Meow {
 
 	Application::~Application()
 	{
-		for (auto layer : m_LayerStack)
+		for (auto& layer : m_LayerStack)
 		{
 			layer->onDettach();
 		}
@@ -37,27 +37,21 @@ namespace Meow {
 
 	}
 
-	static bool onkeypressed(KeyPressedEvent& e)
-	{
-		return true;
-	}
-
-	static bool onmousemoved(MouseMovedEvent& e)
-	{
-		return true;
-	}
-
-	static bool onWindowResize(WindowResizeEvent& e)
-	{
-		return true;
-	}
-
 	void Application::onEvent(Event& event)
 	{
 		EventDispatcher dispatcher(event);
-		dispatcher.dispatch<KeyPressedEvent>(onkeypressed);
-		dispatcher.dispatch<MouseMovedEvent>(onmousemoved);
-		dispatcher.dispatch<WindowResizeEvent>(onWindowResize);
+		dispatcher.dispatch<KeyPressedEvent>(m_KeyPressedFn);
+		dispatcher.dispatch<KeyReleasedEvent>(m_KeYReleasedFn);
+		dispatcher.dispatch<KeyTypedEvent>(m_KeyTypedFn);
+		dispatcher.dispatch<WindowResizeEvent>(m_WindowResizedFn);
+		dispatcher.dispatch<WindowCloseEvent>(m_WindowClosedFn);
+		dispatcher.dispatch<AppTickEvent>(m_AppTickFn);
+		dispatcher.dispatch<AppRenderEvent>(m_AppRenderFn);
+		dispatcher.dispatch<AppUpdateEvent>(m_AppUpdateFn);
+		dispatcher.dispatch<MouseButtonPressedEvent>(m_MousePressedFn);
+		dispatcher.dispatch<MouseButtonReleasedEvent>(m_MouseReleasedFn);
+		dispatcher.dispatch<MouseMovedEvent>(m_MouseMovedfn);
+		dispatcher.dispatch<MouseScrolledEvent>(m_MouseScrolledFn);
 
 		for (auto it = m_LayerStack.rbegin(); it != m_LayerStack.rend(); )
 		{
@@ -70,5 +64,65 @@ namespace Meow {
 	{
 		m_LayerStack.pushLayer(layer);
 		layer->onAttach();
+	}
+
+	void Application::setKeyPressedCallback(KeyPressedFn& keyPressedFn)
+	{
+		m_KeyPressedFn = keyPressedFn;
+	}
+
+	void Application::setKeyReleasedCallback(KeyReleasedFn& keyReleasedFn)
+	{
+		m_KeYReleasedFn = keyReleasedFn;
+	}
+
+	void Application::setKeyTypedCallback(KeyTypedFn& keyTypedFn)
+	{
+		m_KeyTypedFn = keyTypedFn;
+	}
+
+	void Application::setWindowResizedCallback(WindowResizedFn& windowResizedFn)
+	{
+		m_WindowResizedFn = windowResizedFn;
+	}
+
+	void Application::setWindowClosedCallback(WindowClosedFn& windowClosedFn)
+	{
+		m_WindowClosedFn = windowClosedFn;
+	}
+
+	void Application::setAppTickCallback(AppTickFn& apptickFn)
+	{
+		m_AppTickFn = apptickFn;
+	}
+
+	void Application::setAppUpdateCallback(AppUpdateFn& appUpdateFn)
+	{
+		m_AppUpdateFn = appUpdateFn;
+	}
+
+	void Application::setAppRenderCallback(AppRenderFn& appRenderFn)
+	{
+		m_AppRenderFn = appRenderFn;
+	}
+
+	void Application::setMouseButtonPressedCallback(MouseButtonPressedFn& mousePressedFn)
+	{
+		m_MousePressedFn = mousePressedFn;
+	}
+
+	void Application::setMouseButtonReleasedCallback(MouseButtonReleasedFn& mouseReleasedFn)
+	{
+		m_MouseReleasedFn = mouseReleasedFn;
+	}
+
+	void Application::setMouseMovedCallback(MouseMovedFn& mouseMovedFn)
+	{
+		m_MouseMovedfn = mouseMovedFn;
+	}
+
+	void Application::serMouseScrolledFn(MouseScrolledFn& mouseScrolledFn)
+	{
+		m_MouseScrolledFn = mouseScrolledFn;
 	}
 }
