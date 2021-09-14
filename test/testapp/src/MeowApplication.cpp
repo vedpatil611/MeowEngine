@@ -17,7 +17,8 @@
 #include <Meow/Renderer/Shader.h>
 #include <Meow/Renderer/Texture.h>
 #include <Meow/Utils/Timer.h>
-
+template <typename T>
+using Rc = std::shared_ptr<T>;
 Meow::Application* Meow::CreateApplication()
 {
 	/*#ifdef MEOW_PLATFORM_WINDOWS
@@ -51,8 +52,8 @@ void MeowApplication::Run()
 	auto proj = Meow::Maths::mat4::orthographic(-50, 50, -50, 50, -10, 10);
 	Meow::Maths::mat4 model(1.0f);
 
-	Meow::Shader* shader = Meow::Shader::create("shaders/texture2d.vert.glsl", "shaders/texture2d.frag.glsl");
-	Meow::setActiveShader(shader);
+	Rc<Meow::Shader> shader = Meow::Shader::create("shaders/texture2d.vert.glsl", "shaders/texture2d.frag.glsl");
+	Meow::setActiveShader(shader.get());
 
 	int texIDs[32] = { 0 };
 
@@ -126,6 +127,5 @@ void MeowApplication::Run()
 		//delete x;
 
 	delete cat;
-	delete shader;
 	delete window;
 }

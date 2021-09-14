@@ -12,7 +12,7 @@ namespace Meow
 		mutable float lastTime = 0.0f;
 		mutable int m_CurrentIndex;
 	public:
-		AnimatedSprite(const Maths::vec3& position, const Maths::vec2& size, class Texture* texture, Shader* shader);
+		AnimatedSprite(const Maths::vec3& position, const Maths::vec2& size, class Texture* texture, Rc<Shader> shader);
 		~AnimatedSprite();
 
 		void updateUniforms(float delta) const override;

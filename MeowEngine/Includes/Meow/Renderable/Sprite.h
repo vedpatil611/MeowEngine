@@ -9,15 +9,15 @@ namespace Meow
 	class MEOW_API Sprite: public Renderable2D
 	{
 	protected:
-		class Shader* m_Shader = nullptr;
+		Rc<Shader> m_Shader = nullptr;
 		
 		Transformations2D m_TransformData;
 	public:
-		Sprite(const Maths::vec3& position, const Maths::vec2& size, const Maths::vec4& colour, Shader* shader);
-		Sprite(const Maths::vec3& position, const Maths::vec2& size, Texture* tex, Shader* shader);
+		Sprite(const Maths::vec3& position, const Maths::vec2& size, const Maths::vec4& colour, Rc<Shader> shader);
+		Sprite(const Maths::vec3& position, const Maths::vec2& size, Texture* tex, Rc<Shader> shader);
 		virtual ~Sprite();
 
-		inline Shader* getShader() const override { return m_Shader; }
+		inline Rc<Shader> getShader() const override { return m_Shader; }
 		inline Texture* getTexture() const { return m_Texture; }
 		Transformations2D& getTransform() { return m_TransformData; }
 

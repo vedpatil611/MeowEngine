@@ -9,7 +9,7 @@ namespace Meow
 	class MEOW_API Shader // OpenGL shader
 	{
 	public:
-		static Shader* create(const char* vertPath, const char* fragPath);
+		static Rc<Shader> create(const char* vertPath, const char* fragPath);
 		virtual ~Shader() {}
 
 		virtual unsigned int getShaderID() const = 0;
