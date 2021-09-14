@@ -127,4 +127,5 @@ void MeowApplication::Run()
 
 	delete cat;
 	delete shader;
+	delete window;
 }

@@ -48,9 +48,22 @@
 void GlClearError();
 bool GlLogCall(const char* functionName, const char* file, const int& line);
 
-namespace Meow{
+namespace Meow
+{
 	static class Shader* g_ActiveShader = nullptr;
 	
 	MEOW_API class Shader* getActiveShader();
 	MEOW_API void setActiveShader(class Shader* shader);
 }
+
+template <typename T>
+using Rc = std::shared_ptr<T>;
+
+template <class T, class... Types>
+using newRc = Rc<T>(*)(Types&&... Args);
+
+template <typename T>
+using Unique = std::unique_ptr<T>;
+
+template <class T, class... Types>
+using newUnique = Unique<T>(*)(Types&&... Args);
