@@ -8,7 +8,7 @@ namespace Meow {
 	class MEOW_API Application
 	{
 	protected:
-		Window* window;
+		Rc<Window> window;
 		LayerStack m_LayerStack;
 		class Layer* m_BaseLayer;
 		inline static Application* s_Instance = nullptr;
@@ -22,7 +22,7 @@ namespace Meow {
 		void pushLayer(class Layer* layer);
 
 		static inline Application& getApplication() { return *s_Instance; }
-		inline Window* getWindow() { return window; }
+		inline Rc<Window> getWindow() { return window; }
 		inline class Layer* getBaseLayer() { return m_BaseLayer; };
 	};
 

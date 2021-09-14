@@ -15,7 +15,7 @@ namespace Meow {
 		ASSERT(!s_Instance);
 		s_Instance = this;
 
-		window = new Window("Meow", 800, 800);
+		window = Rc<Window>(new Window("Meow", 800, 800));
 		window->setEventCallback(BIND_EVENT_FN(Application::onEvent));
 
 		m_BaseLayer = new Layer();
@@ -28,8 +28,6 @@ namespace Meow {
 		{
 			layer->onDettach();
 		}
-
-		SAFE_DELETE(window);
 
 		if(s_Instance == this) s_Instance = nullptr;
 	}

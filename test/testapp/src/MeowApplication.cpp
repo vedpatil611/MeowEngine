@@ -127,5 +127,4 @@ void MeowApplication::Run()
 		//delete x;
 
 	delete cat;
-	delete window;
 }
