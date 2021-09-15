@@ -52,14 +52,7 @@ void MeowApplication::Run()
 	Meow::Maths::mat4 model(1.0f);
 
 	Rc<Meow::Shader> shader = Meow::Shader::create("shaders/texture2d.vert.glsl", "shaders/texture2d.frag.glsl");
-	Meow::setActiveShader(shader.get());
-
-	int texIDs[32] = { 0 };
-
-	for(int i = 0; i < 32; ++i)
-	{
-		texIDs[i] = i;
-	}
+	Meow::setActiveShader(shader);
 
 	auto circle = Meow::Texture::create("assets/Circle.png");
 	auto catTex = Meow::Texture::create("assets/icon/Meow.png");
@@ -67,8 +60,6 @@ void MeowApplication::Run()
 	shader->bind();
 	shader->setUniformMat4f("u_proj_mat", proj);
 	
-	shader->setUniform1iv("u_Texture", 32, texIDs);
-
 	//int s = 1;
 	cat = Meow::Sprite::create({ 0.0f, 0.0f, 0.0f }, { 5.0f, 5.0f }, catTex, shader);
 
