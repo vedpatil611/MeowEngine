@@ -50,19 +50,19 @@
 void GlClearError();
 bool GlLogCall(const char* functionName, const char* file, const int& line);
 
-namespace Meow
-{
-	static class Shader* g_ActiveShader = nullptr;
-	
-	MEOW_API class Shader* getActiveShader();
-	MEOW_API void setActiveShader(class Shader* shader);
-}
-
 template <typename T>
 using Rc = std::shared_ptr<T>;
 
 template <typename T>
 using Unique = std::unique_ptr<T>;
+
+namespace Meow
+{
+	static Rc<class Shader> g_ActiveShader = nullptr;
+	
+	MEOW_API Rc<class Shader> getActiveShader();
+	MEOW_API void setActiveShader(Rc<class Shader> shader);
+}
 
 // Key codes
 #define MEOW_KEY_UNKNOWN            -1
