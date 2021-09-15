@@ -89,7 +89,31 @@ void MeowApplication::Run()
 		}
 	}*/
 
-	setKeyPressedCallback(&onKeyPressed);
+	setKeyPressedCallback([&](Meow::KeyPressedEvent& e) -> bool
+		{
+			switch (e.getKeyCode())
+			{
+			case MEOW_KEY_W:
+			case MEOW_KEY_UP:
+				cat->m_Position.y -= 0.5f;
+				break;
+			case MEOW_KEY_S:
+			case MEOW_KEY_DOWN:
+				cat->m_Position.y += 0.5f;
+				break;
+			case MEOW_KEY_A:
+			case MEOW_KEY_LEFT:
+				cat->m_Position.x -= 0.5f;
+				break;
+			case MEOW_KEY_D:
+			case MEOW_KEY_RIGHT:
+				cat->m_Position.x += 0.5f;
+				break;
+			}
+
+			return true;
+		}
+	);
 
 	Meow::Utils::Timer timer, t2;
 	
@@ -123,31 +147,4 @@ void MeowApplication::Run()
 			printf("%d\n", window->closed());
 		}
 	}
-
-	cat.reset();
-}
-
-bool MeowApplication::onKeyPressed(Meow::KeyPressedEvent& e)
-{
-	switch (e.getKeyCode())
-	{
-	case MEOW_KEY_W:
-	case MEOW_KEY_UP:
-		cat->m_Position.y -= 0.5f;
-		break;
-	case MEOW_KEY_S:
-	case MEOW_KEY_DOWN:
-		cat->m_Position.y += 0.5f;
-		break;
-	case MEOW_KEY_A:
-	case MEOW_KEY_LEFT:
-		cat->m_Position.x -= 0.5f;
-		break;
-	case MEOW_KEY_D:
-	case MEOW_KEY_RIGHT:
-		cat->m_Position.x += 0.5f;
-		break;
-	}
-
-	return true;
 }
