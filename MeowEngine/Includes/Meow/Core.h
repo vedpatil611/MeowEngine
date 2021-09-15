@@ -1,5 +1,7 @@
 #pragma once
 
+#include <memory>
+
 #ifdef MEOW_PLATFORM_WINDOWS
 	#ifdef MEOW_BUILD_DLL
 		#define MEOW_API __declspec(dllexport)
