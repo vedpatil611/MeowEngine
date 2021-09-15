@@ -10,6 +10,7 @@ namespace Meow {
 		printf("%d\n", Renderer::getRendererAPI());
 		switch (Renderer::getRendererAPI())
 		{
+		default:
 		case RendererAPI::None:
 			throw std::runtime_error("No renderer api specified");
 		case RendererAPI::OpenGL:

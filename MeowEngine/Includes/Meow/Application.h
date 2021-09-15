@@ -6,19 +6,22 @@
 #include "Events/KeyEvent.h"
 #include "Events/MouseEvent.h"
 #include "Renderer/LayerStack.h"
+#include <functional>
 
-using KeyPressedFn			= bool (*)(class Meow::KeyPressedEvent&);
-using KeyReleasedFn			= bool (*)(class Meow::KeyReleasedEvent&);
-using KeyTypedFn			= bool (*)(class Meow::KeyTypedEvent&);
-using WindowResizedFn		= bool (*)(class Meow::WindowResizeEvent&);
-using WindowClosedFn		= bool (*)(class Meow::WindowCloseEvent&);
-using AppTickFn				= bool (*)(class Meow::AppTickEvent&);
-using AppUpdateFn			= bool (*)(class Meow::AppUpdateEvent&);
-using AppRenderFn			= bool (*)(class Meow::AppRenderEvent&);
-using MouseButtonPressedFn	= bool (*)(class Meow::MouseButtonPressedEvent&);
-using MouseButtonReleasedFn	= bool (*)(class Meow::MouseButtonReleasedEvent&);
-using MouseMovedFn			= bool (*)(class Meow::MouseMovedEvent&);
-using MouseScrolledFn		= bool (*)(class Meow::MouseScrolledEvent&);
+using KeyPressedFn			= std::function<bool(Meow::KeyPressedEvent&)>;
+using KeyReleasedFn			= std::function<bool(Meow::KeyReleasedEvent&)>;
+using KeyTypedFn			= std::function<bool(Meow::KeyTypedEvent&)>;
+using WindowResizedFn		= std::function<bool(Meow::WindowResizeEvent&)>;
+using WindowClosedFn		= std::function<bool(Meow::WindowCloseEvent&)>;
+using AppTickFn				= std::function<bool(Meow::AppTickEvent&)>;
+using AppUpdateFn			= std::function<bool(Meow::AppUpdateEvent&)>;
+using AppRenderFn			= std::function<bool(Meow::AppRenderEvent&)>;
+using MouseButtonPressedFn	= std::function<bool(Meow::MouseButtonPressedEvent&)>;
+using MouseButtonReleasedFn	= std::function<bool(Meow::MouseButtonReleasedEvent&)>;
+using MouseMovedFn			= std::function<bool(Meow::MouseMovedEvent&)>;
+using MouseScrolledFn		= std::function<bool(Meow::MouseScrolledEvent&)>;
+
+#define BIND_FN(x) std::bind(&x, this, std::placeholders::_1)
 
 namespace Meow {
 	class MEOW_API Application
@@ -50,7 +53,7 @@ namespace Meow {
 		void onEvent(Event& event);
 		void pushLayer(Rc<class Layer> layer);
 
-		void setKeyPressedCallback(KeyPressedFn keyPressedFn);
+		void setKeyPressedCallback(const KeyPressedFn& keyPressedFn);
 		void setKeyReleasedCallback(const KeyReleasedFn& keyReleasedFn);
 		void setKeyTypedCallback(const KeyTypedFn& keyTypedFn);
 		void setWindowResizedCallback(const WindowResizedFn& windowResizedFn);

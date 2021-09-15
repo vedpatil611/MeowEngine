@@ -7,8 +7,6 @@
 #include <Meow/Events/KeyEvent.h>
 #include <Meow/Events/MouseEvent.h>
 
-#define BIND_EVENT_FN(x) std::bind(&x, this, std::placeholders::_1)
-
 namespace Meow {
 	Application::Application()
 	{
@@ -16,7 +14,7 @@ namespace Meow {
 		s_Instance = this;
 
 		window = Rc<Window>(new Window("Meow", 800, 800));
-		window->setEventCallback(BIND_EVENT_FN(Application::onEvent));
+		window->setEventCallback(BIND_FN(Application::onEvent));
 
 		m_BaseLayer = Rc<Layer>(new Layer());
 		pushLayer(m_BaseLayer);
@@ -66,7 +64,7 @@ namespace Meow {
 		layer->onAttach();
 	}
 
-	void Application::setKeyPressedCallback(KeyPressedFn keyPressedFn)
+	void Application::setKeyPressedCallback(const KeyPressedFn& keyPressedFn)
 	{
 		m_KeyPressedFn = keyPressedFn;
 	}
