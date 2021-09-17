@@ -50,7 +50,6 @@ namespace Meow
 				{
 					end();
 					flush(0.0f);
-
 					begin();
 				}
 				m_TexturesSlots.emplace_back(tid);
@@ -101,12 +100,12 @@ namespace Meow
 		}
 
 		GLCALL(glBindVertexArray(m_VAO));
-		//m_IBO->bind();
 
 		GLCALL(glDrawElements(GL_TRIANGLES, m_IndexCount, GL_UNSIGNED_SHORT, nullptr));
 
-		//m_IBO->unbind();
 		GLCALL(glBindVertexArray(0));
+
+		m_TexturesSlots.clear();
 	}
 
 	void BatchRenderer2D::clear()

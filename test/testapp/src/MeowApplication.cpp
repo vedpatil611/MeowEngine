@@ -66,7 +66,7 @@ void MeowApplication::Run()
 
 	shader->bind();
 	shader->setUniformMat4f("u_proj_mat", proj);
-	
+
 	shader->setUniform1iv("u_Texture", 32, texIDs);
 
 	//int s = 1;
