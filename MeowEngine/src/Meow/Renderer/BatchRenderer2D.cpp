@@ -4,6 +4,7 @@
 #include <algorithm>
 #include "glad/glad.h"
 #include <Meow/Renderer/IndexBuffer.h>
+#include <Meow/Renderer/Shader.h>
 
 namespace Meow
 {
@@ -93,12 +94,18 @@ namespace Meow
 
 	void BatchRenderer2D::flush(float delta)
 	{
+		std::vector<int> slots;
+		slots.reserve(m_TexturesSlots.size());
 		for (int i = 0; i < m_TexturesSlots.size(); ++i)
 		{
 			GLCALL(glActiveTexture(GL_TEXTURE0 + i));
 			GLCALL(glBindTexture(GL_TEXTURE_2D, m_TexturesSlots[i]));
+			slots.push_back(i);
 		}
 
+		auto shader = getActiveShader();
+		shader->setUniform1iv("u_Texture", slots.size(), slots.data());
+			
 		GLCALL(glBindVertexArray(m_VAO));
 
 		GLCALL(glDrawElements(GL_TRIANGLES, m_IndexCount, GL_UNSIGNED_SHORT, nullptr));

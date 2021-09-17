@@ -1,5 +1,6 @@
 #pragma once
 
+#include <Meow/Core.h>
 #include "Window.h"
 #include "Events/Event.h"
 #include "Events/ApplicationEvent.h"

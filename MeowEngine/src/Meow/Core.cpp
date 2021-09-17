@@ -22,12 +22,12 @@ bool GlLogCall(const char* functionName, const char* file, const int& line)
 
 namespace Meow
 {
-    Shader* getActiveShader()
+    Rc<Shader> getActiveShader()
     {
         return g_ActiveShader;
     }
 
-    void setActiveShader(Shader* shader)
+    void setActiveShader(Rc<Shader> shader)
     {
         g_ActiveShader = shader;
     }

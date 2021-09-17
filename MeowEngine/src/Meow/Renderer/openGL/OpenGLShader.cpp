@@ -49,7 +49,7 @@ namespace Meow
 		GLCALL(glUniform1i(getUniformLocation(uniformName), value));
 	}
 
-	void OpenGLShader::setUniform1iv(const char* uniformName, int count, int* value)
+	void OpenGLShader::setUniform1iv(const char* uniformName, int count, const int* value)
 	{
 		GLCALL(glUniform1iv(getUniformLocation(uniformName), count, value));
 	}
@@ -59,7 +59,7 @@ namespace Meow
 		GLCALL(glUniform1f(getUniformLocation(uniformName), value));
 	}
 
-	void OpenGLShader::setUniform1fv(const char* uniformName, int count, float* value)
+	void OpenGLShader::setUniform1fv(const char* uniformName, int count, const float* value)
 	{
 		GLCALL(glUniform1fv(getUniformLocation(uniformName), count, value));
 	}

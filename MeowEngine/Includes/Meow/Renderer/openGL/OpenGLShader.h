@@ -26,9 +26,9 @@ namespace Meow
 		void unbind() const override;
 
 		void setUniform1i(const char* uniformName, int value) override;
-		void setUniform1iv(const char* uniformName, int count, int* value) override;
+		void setUniform1iv(const char* uniformName, int count, const int* value) override;
 		void setUniform1f(const char* uniformName, float value) override;
-		void setUniform1fv(const char* uniformName, int count, float* value) override;
+		void setUniform1fv(const char* uniformName, int count, const float* value) override;
 		void setUniform2f(const char* uniformName, const Maths::vec2& vec) override;
 		void setUniform3f(const char* uniformName, const Maths::vec3& vec) override;
 		void setUniform4f(const char* uniformName, const Maths::vec4& vec) override;
