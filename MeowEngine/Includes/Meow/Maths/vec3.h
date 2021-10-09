@@ -35,7 +35,7 @@ namespace Meow {
 			vec3(const vec2& vec, const float& z);
 			vec3(float x, float y, float z);
 			vec3(const vec3& other);
-			vec3(const vec3&& other);
+			vec3(vec3&& other);
 
 			// Functions
 			vec3& add(const vec3& vec);
@@ -52,6 +52,7 @@ namespace Meow {
 			MEOW_API friend vec3 operator*(vec3 a, const float& num);
 			MEOW_API friend vec3 operator/(vec3 a, const float& num);
 
+			vec3& operator=(const vec3& other);
 			vec3& operator+=(const vec3& vec);
 			vec3& operator-=(const vec3& vec);
 			vec3& operator*=(const float& num);

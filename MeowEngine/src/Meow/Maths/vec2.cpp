@@ -11,7 +11,7 @@ namespace Meow {
 		vec2::vec2(const vec2& other)
 			:x(other.x), y(other.y) {}
 
-		vec2::vec2(const vec2&& other)
+		vec2::vec2(vec2&& other)
 			:x(other.x), y(other.y) {}
 		
 		vec2& vec2::add(const vec2& vec)
@@ -57,6 +57,11 @@ namespace Meow {
 			return vec2(*this) * Maths::qrSqrt(x * x + y * y);
 		}
 		
+		vec2& vec2::operator=(const vec2& other)
+		{
+			return *this;
+		}
+
 		vec2& vec2::operator+=(const vec2& vec)
 		{
 			return add(vec);

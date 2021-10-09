@@ -26,7 +26,7 @@ namespace Meow {
 			vec2();
 			vec2(float x, float y);
 			vec2(const vec2& other);
-			vec2(const vec2&& other);
+			vec2(vec2&& other);
 
 			// Functions
 			vec2& add(const vec2& vec);
@@ -43,6 +43,7 @@ namespace Meow {
 			MEOW_API friend vec2 operator*(vec2 a, const float& num);
 			MEOW_API friend vec2 operator/(vec2 a, const float& num);
 
+			vec2& operator=(const vec2& other);
 			vec2& operator+=(const vec2& vec);
 			vec2& operator-=(const vec2& vec);
 			vec2& operator*=(const float& num);
