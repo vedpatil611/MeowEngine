@@ -12,6 +12,12 @@ namespace Meow {
 
 		vec3::vec3(float x, float y, float z) : x(x), y(y), z(z) {}
 
+		vec3::vec3(const vec3& other)
+			:x(other.x), y(other.y), z(other.z) {}
+
+		vec3::vec3(const vec3&& other)
+			: x(other.x), y(other.y), z(other.z) {}
+
 		vec3& vec3::add(const vec3& vec)
 		{
 			x += vec.x;

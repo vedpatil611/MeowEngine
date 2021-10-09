@@ -34,6 +34,8 @@ namespace Meow {
 			vec3(const vec2& vec);
 			vec3(const vec2& vec, const float& z);
 			vec3(float x, float y, float z);
+			vec3(const vec3& other);
+			vec3(const vec3&& other);
 
 			// Functions
 			vec3& add(const vec3& vec);

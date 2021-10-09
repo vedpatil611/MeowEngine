@@ -25,6 +25,8 @@ namespace Meow {
 			// Constructor
 			vec2();
 			vec2(float x, float y);
+			vec2(const vec2& other);
+			vec2(const vec2&& other);
 
 			// Functions
 			vec2& add(const vec2& vec);
