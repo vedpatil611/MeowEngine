@@ -13,6 +13,11 @@ namespace Meow {
 	namespace Maths {
 		float toRad(float degree);
 
+		/// <summary>
+		///  Fast inverse sqaure root function
+		/// </summary>
+		/// <param name="float number"></param>
+		/// <returns>float</returns>
 		float qrSqrt(float number);
 	}
 }

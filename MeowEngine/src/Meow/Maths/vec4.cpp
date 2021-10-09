@@ -1,4 +1,5 @@
 #include "MeowPCH.h"
+#include <Meow/Maths/Maths.h>
 #include <Meow/Maths/vec4.h>
 
 namespace Meow {
@@ -51,6 +52,22 @@ namespace Meow {
 			z /= num;
 			w /= num;
 			return *this;
+		}
+
+		float vec4::length() const
+		{
+			return sqrt(x * x + y * y + z * z + w * w);
+			return 0.0f;
+		}
+
+		float vec4::lengthSqr() const
+		{
+			return x * x + y * y + z * z + w * w;
+		}
+
+		vec4 vec4::unit() const
+		{
+			return vec4(*this) * Maths::qrSqrt(x * x + y * y + z * z + w * w);
 		}
 
 		vec4& vec4::operator+=(const vec4& vec)
