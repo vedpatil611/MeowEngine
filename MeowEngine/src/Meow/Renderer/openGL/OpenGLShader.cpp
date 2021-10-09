@@ -11,7 +11,7 @@ namespace Meow
 	OpenGLShader::OpenGLShader(const char* vertPath, const char* fragPath)
 		:m_VertPath(vertPath), m_FragPath(fragPath)
 	{
-		unsigned int program = glCreateProgram();
+		//unsigned int program = glCreateProgram();
 		m_ShaderID = createShaderProgram(Utils::readFile(vertPath), Utils::readFile(fragPath));
 	}
 

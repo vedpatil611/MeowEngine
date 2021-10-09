@@ -12,5 +12,7 @@
 namespace Meow {
 	namespace Maths {
 		float toRad(float degree);
+
+		float qrSqrt(float number);
 	}
 }

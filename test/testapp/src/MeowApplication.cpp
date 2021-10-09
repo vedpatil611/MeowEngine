@@ -59,7 +59,7 @@ void MeowApplication::Run()
 
 	shader->bind();
 	shader->setUniformMat4f("u_proj_mat", proj);
-	
+
 	//int s = 1;
 	cat = Meow::Sprite::create({ 0.0f, 0.0f, 0.0f }, { 5.0f, 5.0f }, catTex, shader);
 

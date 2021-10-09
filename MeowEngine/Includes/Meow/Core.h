@@ -22,6 +22,7 @@
 #ifdef DEBUG
 	#ifdef MEOW_PLATFORM_WINDOWS
 		#define ASSERT(x) if(!(x)) __debugbreak();
+
 		#define GLCALL(func) GlClearError();					\
 				func;											\
 				ASSERT(GlLogCall(#func, __FILE__, __LINE__))
