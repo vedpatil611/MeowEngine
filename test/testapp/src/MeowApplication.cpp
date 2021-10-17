@@ -51,7 +51,7 @@ void MeowApplication::Run()
 	auto proj = Meow::Maths::mat4::orthographic(-50, 50, -50, 50, -10, 10);
 	Meow::Maths::mat4 model(1.0f);
 
-	Rc<Meow::Shader> shader = Meow::Shader::create("shaders/texture2d.vert.glsl", "shaders/texture2d.frag.glsl");
+	auto shader = Meow::Shader::create("shaders/texture2d.vert.glsl", "shaders/texture2d.frag.glsl");
 	Meow::setActiveShader(shader);
 
 	auto circle = Meow::Texture::create("assets/Circle.png");
