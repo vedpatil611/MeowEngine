@@ -23,7 +23,7 @@ var hierarchy =
       [ "Meow::WindowResizeEvent", "class_meow_1_1_window_resize_event.html", null ]
     ] ],
     [ "Meow::EventDispatcher", "class_meow_1_1_event_dispatcher.html", null ],
-    [ "FrameBuffer", "class_frame_buffer.html", null ],
+    [ "Meow::FrameBuffer", "class_meow_1_1_frame_buffer.html", null ],
     [ "Meow::GraphicsContext", "class_meow_1_1_graphics_context.html", [
       [ "Meow::OpenGLContext", "class_meow_1_1_open_g_l_context.html", null ]
     ] ],

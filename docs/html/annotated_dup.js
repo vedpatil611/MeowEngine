@@ -3,7 +3,7 @@ var annotated_dup =
     [ "Meow", null, [
       [ "Maths", null, [
         [ "mat4", "struct_meow_1_1_maths_1_1mat4.html", null ],
-        [ "vec2", "struct_meow_1_1_maths_1_1vec2.html", null ],
+        [ "vec2", "struct_meow_1_1_maths_1_1vec2.html", "struct_meow_1_1_maths_1_1vec2" ],
         [ "vec3", "struct_meow_1_1_maths_1_1vec3.html", null ],
         [ "vec4", "struct_meow_1_1_maths_1_1vec4.html", null ]
       ] ],
@@ -20,6 +20,7 @@ var annotated_dup =
       [ "Buffer", "class_meow_1_1_buffer.html", null ],
       [ "Event", "class_meow_1_1_event.html", null ],
       [ "EventDispatcher", "class_meow_1_1_event_dispatcher.html", null ],
+      [ "FrameBuffer", "class_meow_1_1_frame_buffer.html", null ],
       [ "GraphicsContext", "class_meow_1_1_graphics_context.html", null ],
       [ "IndexBuffer", "class_meow_1_1_index_buffer.html", null ],
       [ "KeyEvent", "class_meow_1_1_key_event.html", null ],
@@ -52,6 +53,5 @@ var annotated_dup =
       [ "Window", "class_meow_1_1_window.html", null ],
       [ "WindowCloseEvent", "class_meow_1_1_window_close_event.html", null ],
       [ "WindowResizeEvent", "class_meow_1_1_window_resize_event.html", null ]
-    ] ],
-    [ "FrameBuffer", "class_frame_buffer.html", null ]
+    ] ]
 ];
