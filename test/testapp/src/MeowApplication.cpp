@@ -43,6 +43,7 @@ void MeowApplication::Run()
 {
 	Application::Run();
 	
+	auto window = Meow::Application::getWindow();
 	window->setVSyncEnable(false);
 	window->setBackgrondColor({ 0.0f, 0.0f, 0.0f, 1.0f });
 
@@ -63,22 +64,7 @@ void MeowApplication::Run()
 	//int s = 1;
 	cat = Meow::Sprite::create({ 0.0f, 0.0f, 0.0f }, { 5.0f, 5.0f }, catTex, shader);
 
-	/*for (float i = -50.0; i < 50.0; i += 5.0f)
-	{
-		for (float j = -50.0; j < 50.0; j += 5.0f)
-		{
-			if (s == 1)
-			{
-				sprites.emplace_back(new Meow::TileSprite({ i, j, 0.0f }, { 4.9f, 4.9f }, &circle, shader));
-				s = 2;
-			}
-			else
-			{
-				sprites.emplace_back(new Meow::TileSprite({ i, j, 0.0f }, { 4.9f, 4.9f }, &cat, shader));
-				s = 1;
-			}
-		}
-	}*/
+	auto layerStack = Meow::Application::getLayerStack();
 
 	setKeyPressedCallback([&](Meow::KeyPressedEvent& e) -> bool
 		{
@@ -123,7 +109,7 @@ void MeowApplication::Run()
 		layer->clear();
 		layer->submit(cat);
 
-		for (auto& layer : m_LayerStack)
+		for (auto& layer : layerStack)
 		{
 			layer->onUpdate();
 			layer->begin();
