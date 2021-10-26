@@ -7,11 +7,12 @@
 class MeowApplication: public Meow::Application
 {
 private:
-	Rc<Meow::Sprite> cat = nullptr;
+	//Rc<Meow::Sprite> cat = nullptr;
 public:
 	MeowApplication();
 	~MeowApplication();
 	
 	void Run() override;
+	void Loop() override;
 };
 

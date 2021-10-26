@@ -45,7 +45,9 @@ namespace Meow {
 		case RendererAPI::None:
 			throw std::runtime_error("No renderer api selected");
 		case RendererAPI::OpenGL:
-			m_GraphicsContext = new OpenGLContext(m_Window);
+			//m_GraphicsContext = new OpenGLContext(m_Window);
+			//m_GraphicsContext = std::make_shared<OpenGLContext>(m_Window);
+			m_GraphicsContext = std::make_shared<OpenGLContext>(m_Window);
 			m_GraphicsContext->init();
 
 			GLCALL(glEnable(GL_BLEND));
@@ -62,7 +64,6 @@ namespace Meow {
 
 	Window::~Window()
 	{
-		delete m_GraphicsContext;
 		glfwDestroyWindow(m_Window);
 		glfwTerminate();
 	}
@@ -78,8 +79,12 @@ namespace Meow {
 		if(isJoystickPresent())
 			glfwGetGamepadState(GLFW_JOYSTICK_1, gamepadState);
 
-		m_GraphicsContext->swapBuffers();
 		m_GraphicsContext->clear();
+	}
+
+	void Window::swapBuffer()
+	{
+		m_GraphicsContext->swapBuffers();
 	}
 
 	bool Window::closed() const
@@ -115,6 +120,11 @@ namespace Meow {
 	double Window::getWindowTimeNow()
 	{
 		return glfwGetTime();
+	}
+
+	void Window::callEvent(Event& event) const
+	{
+		eventCallback(event);
 	}
 
 	void Window::windowResizeCallback(GLFWwindow* window, int width, int height)

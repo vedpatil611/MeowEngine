@@ -25,7 +25,7 @@ namespace Meow {
 		bool m_PressedKey[1024] = { false };
 		GamepadState* gamepadState;
 
-		class GraphicsContext* m_GraphicsContext;
+		Rc<class GraphicsContext> m_GraphicsContext;
 
 		EventCallbackFn eventCallback;
 	public:
@@ -42,6 +42,7 @@ namespace Meow {
 		inline GamepadState* getGamepadState() const { return gamepadState; }
 
 		void update();
+		void swapBuffer();
 		bool closed() const;
 		void setCurrentContext() const;
 		bool setVSyncEnable(const bool b);
@@ -50,6 +51,7 @@ namespace Meow {
 		double getWindowTimeNow();
 
 		inline void setEventCallback(const EventCallbackFn& callback) { eventCallback = callback; }
+		void callEvent(Event& event) const;
 	private:
 		static void windowResizeCallback(struct GLFWwindow* window, int width, int height);
 		static void windowCloseCallback(struct GLFWwindow* window);

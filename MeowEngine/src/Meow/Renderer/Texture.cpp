@@ -40,7 +40,7 @@ namespace Meow
 
 	Rc<Texture> Texture::create(const char* texPath)
 	{
-		return Rc<Texture>(new Texture(texPath));
+		return std::make_shared<Texture>(texPath);
 	}
 
 	void Texture::setSlot(unsigned int slotNo)

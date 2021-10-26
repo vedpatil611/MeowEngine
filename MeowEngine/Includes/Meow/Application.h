@@ -49,7 +49,8 @@ namespace Meow {
 		Application();
 		virtual ~Application();
 
-		virtual void Run();
+		virtual void Run() = 0;
+		virtual void Loop() = 0;
 
 		void onEvent(Event& event);
 		void pushLayer(Rc<class Layer> layer);

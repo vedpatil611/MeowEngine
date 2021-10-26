@@ -7,7 +7,7 @@
 namespace Meow {
 	Rc<Shader> Shader::create(const char* vertPath, const char* fragPath)
 	{
-		printf("%d\n", Renderer::getRendererAPI());
+		//printf("%d\n", Renderer::getRendererAPI());
 		switch (Renderer::getRendererAPI())
 		{
 		default:

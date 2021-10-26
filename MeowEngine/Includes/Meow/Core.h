@@ -59,7 +59,9 @@ using Unique = std::unique_ptr<T>;
 
 namespace Meow
 {
-	static Rc<class Shader> g_ActiveShader = nullptr;
+	inline static Rc<class Window> g_Window = nullptr;
+	inline static Rc<class Shader> g_ActiveShader = nullptr;
+	inline static Rc<class Application> g_App = nullptr;
 	
 	MEOW_API Rc<class Shader> getActiveShader();
 	MEOW_API void setActiveShader(Rc<class Shader> shader);

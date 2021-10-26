@@ -13,10 +13,13 @@ namespace Meow {
 		ASSERT(!s_Instance);
 		s_Instance = this;
 
-		window = Rc<Window>(new Window("Meow", 800, 800));
+		window = std::make_shared<Window>("Meow", 800, 800);
 		window->setEventCallback(BIND_FN(Application::onEvent));
 
-		m_BaseLayer = Rc<Layer>(new Layer());
+		g_Window = window;
+
+		//m_BaseLayer = Rc<Layer>(new Layer());
+		m_BaseLayer = std::make_shared<Layer>();
 		pushLayer(m_BaseLayer);
 	}
 
@@ -30,10 +33,10 @@ namespace Meow {
 		if(s_Instance == this) s_Instance = nullptr;
 	}
 
-	void Application::Run()
+	/*void Application::Run()
 	{
 
-	}
+	}*/
 
 	void Application::onEvent(Event& event)
 	{

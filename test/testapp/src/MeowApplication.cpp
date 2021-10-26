@@ -32,6 +32,7 @@ Meow::Application* Meow::CreateApplication()
 }
 
 MeowApplication::MeowApplication()
+	:Meow::Application()
 {
 }
 
@@ -41,13 +42,11 @@ MeowApplication::~MeowApplication()
 
 void MeowApplication::Run()
 {
-	Application::Run();
-	
 	auto window = Meow::Application::getWindow();
 	window->setVSyncEnable(false);
 	window->setBackgrondColor({ 0.0f, 0.0f, 0.0f, 1.0f });
 
-	auto layer = getBaseLayer();
+	auto layer = Meow::Application::getBaseLayer();
 
 	auto proj = Meow::Maths::mat4::orthographic(-50, 50, -50, 50, -10, 10);
 	Meow::Maths::mat4 model(1.0f);
@@ -61,12 +60,10 @@ void MeowApplication::Run()
 	shader->bind();
 	shader->setUniformMat4f("u_proj_mat", proj);
 
-	//int s = 1;
-	cat = Meow::Sprite::create({ 0.0f, 0.0f, 0.0f }, { 5.0f, 5.0f }, catTex, shader);
+	auto cat = Meow::Sprite::create({ 0.0f, 0.0f, 0.0f }, { 5.0f, 5.0f }, catTex, shader);
 
-	auto layerStack = Meow::Application::getLayerStack();
-
-	setKeyPressedCallback([&](Meow::KeyPressedEvent& e) -> bool
+	//auto& layerStack = Meow::Application::getLayerStack();
+	setKeyPressedCallback([cat](Meow::KeyPressedEvent& e) -> bool
 		{
 			switch (e.getKeyCode())
 			{
@@ -92,7 +89,15 @@ void MeowApplication::Run()
 		}
 	);
 
-	Meow::Utils::Timer timer, t2;
+	setAppUpdateCallback([cat, layer](Meow::AppUpdateEvent& e) -> bool
+		{
+			layer->clear();
+			layer->submit(cat);
+
+			return true;
+		}
+	);
+	/*Meow::Utils::Timer timer, t2;
 	
 	float lastTime = 0.0f;
 
@@ -116,12 +121,15 @@ void MeowApplication::Run()
 			layer->onRender(deltaTime);
 			layer->end();
 		}
-
 		if (t2.getElapsedTime() > 1000000)
 		{
 			t2.reset();
 			printf("%d\n", static_cast<int>(1000000 / timer.getElapsedTime()));
 			printf("%d\n", window->closed());
 		}
-	}
+	}*/
+}
+
+void MeowApplication::Loop()
+{
 }
