@@ -27,7 +27,6 @@ Meow::Application* Meow::CreateApplication()
 			ShowWindow(GetConsoleWindow(), SW_SHOW);
 		#endif 
 	#endif */
-
 	return new MeowApplication();
 }
 

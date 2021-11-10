@@ -2,6 +2,12 @@
 
 #include <memory>
 
+#if defined(WIN32) || defined(_WIN32) || defined(__WIN32__)
+	#define MEOW_PLATFORM_WINDOWS
+#elif __linux__ || __unix__
+	#define MEOW_PLATFORM_LINUX
+#endif
+
 #ifdef MEOW_PLATFORM_WINDOWS
 	#ifdef MEOW_BUILD_DLL
 		#define MEOW_API __declspec(dllexport)

@@ -14,7 +14,7 @@ namespace Meow {
 		case RendererAPI::None:
 			throw std::runtime_error("No renderer api specified");
 		case RendererAPI::OpenGL:
-			return Rc<OpenGLShader>(new OpenGLShader(vertPath, fragPath));
+			return std::make_shared<OpenGLShader>(vertPath, fragPath);
 		case RendererAPI::Vulkan:
 			throw std::runtime_error("Vulkan not supported yet");
 		}

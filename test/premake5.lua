@@ -40,17 +40,11 @@ project "testapp"
 	}
 
 	filter "system:windows"
-		defines {
-			"MEOW_PLATFORM_WINDOWS"
-		}
 		postbuildcommands {
 			("{COPY} ../../bin/" .. outputdir .. "/MeowEngine/MeowEngine.dll ../bin/" .. outputdir .. "/%{prj.name}/"),
 		}
 
 	filter "system:linux"
-		defines {
-			"MEOW_PLATFORM_LINUX"
-		}
         links {
             "GL"
         }

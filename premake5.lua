@@ -72,7 +72,6 @@ project "MeowEngine"
 
 	filter "system:windows"		
 		defines {
-			"MEOW_PLATFORM_WINDOWS",
 			"_CRT_SECURE_NO_WARNINGS"
 		}
 
@@ -83,9 +82,6 @@ project "MeowEngine"
 			"dl",
 			"pthread",
         }
-		defines {
-			"MEOW_PLATFORM_LINUX"
-		}
 
 	filter "configurations:Debug"
 		defines { "DEBUG" }

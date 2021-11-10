@@ -27,7 +27,7 @@ using MouseScrolledFn		= std::function<bool(Meow::MouseScrolledEvent&)>;
 namespace Meow {
 	class MEOW_API Application
 	{
-	private:
+	public:
 		Rc<Window> window;
 		LayerStack m_LayerStack;
 		Rc<class Layer> m_BaseLayer;

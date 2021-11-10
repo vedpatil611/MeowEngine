@@ -37,10 +37,10 @@ int main(int argc, char** argv)
 		for (auto& layer : layerStack)
 		{
 			//layer->clear();
-			layer->onUpdate();
-			layer->begin();
+			//layer->onUpdate();
+			//layer->begin();
 			layer->onRender(deltaTime);
-			layer->end();
+			//layer->end();
 		}
 
 		window->swapBuffer();
