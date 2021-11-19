@@ -4,7 +4,7 @@
 
 #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__)
 	#define MEOW_PLATFORM_WINDOWS
-#elif __linux__ || __unix__
+#elif defined(__linux__) || defined(__unix__)
 	#define MEOW_PLATFORM_LINUX
 #endif
 
@@ -16,7 +16,7 @@
 		#define MEOW_API __declspec(dllimport)
 		#define EXPORT_EXTERN extern
 	#endif 
-#elif MEOW_PLATFORM_LINUX
+#elif defined(MEOW_PLATFORM_LINUX)
 	#ifdef MEOW_BUILD_DLL
 		#define MEOW_API __attribute__((visibility("default")))
 	#else
@@ -44,7 +44,7 @@
 #ifdef MEOW_PLATFORM_WINDOWS
 	#define DISABLE_WARNINGS()				\
 		__pragma(warning(disable : 4251))			
-#elif MEOW_PLATFORM_LINUX
+#elif defined(MEOW_PLATFORM_LINUX)
 	#define DISABLE_WARNINGS()
 #else
 	#define DISABLE_WARNINGS()
