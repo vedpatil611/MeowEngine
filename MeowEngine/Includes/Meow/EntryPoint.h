@@ -13,7 +13,7 @@ int main(int argc, char** argv)
 
 	float lastTime = 0.0f;
 
-	auto& window = app->getWindow();
+	auto window = app->getWindow();
 	auto layerStack = app->getLayerStack();
 
 	t2.reset();

@@ -49,7 +49,7 @@ project "testapp"
             "GL"
         }
 		postbuildcommands {
-			("cp ../../bin/" .. outputdir .. "/MeowEngine/libMeowEngine.so ../bin/" .. outputdir .. "/%{prj.name}/"),
+			--("cp ../../bin/" .. outputdir .. "/MeowEngine/libMeowEngine.so ../bin/" .. outputdir .. "/%{prj.name}/"),
 			("cp -r ./shaders/ ../bin/" .. outputdir .. "/%{prj.name}"),
 			("cp -r ./assets/ ../bin/" .. outputdir .. "/%{prj.name}")
 		}
