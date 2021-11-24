@@ -7,12 +7,14 @@
 namespace Meow {
 	namespace Maths {
 		mat4::mat4() {
-			for (int i = 0; i < 16; ++i) elements[i] = 0;
+			//for (int i = 0; i < 16; ++i) elements[i] = 0;
+			memset(elements, 0, sizeof(elements));
 		}
 		
 		mat4::mat4(const float& diagonal)
 		{
-			for (int i = 0; i < 16; ++i) elements[i] = 0;
+			//for (int i = 0; i < 16; ++i) elements[i] = 0;
+			memset(elements, 0, sizeof(elements));
 			elements[0 + 0 * 4] = elements[1 + 1 * 4] = elements[2 + 2 * 4] = elements[3 + 3 * 4] = diagonal;
 		}
 
